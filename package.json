@@ -1,0 +1,81 @@
+{
+  "name": "ai-chat",
+  "private": true,
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "preinstall": "npx only-allow pnpm",
+    "start": "astro dev --host",
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "lint": "eslint --fix --quiet --ext .js,.ts,.tsx,.astro ."
+  },
+  "dependencies": {
+    "@headlessui/react": "^1.7.13",
+    "@heroicons/react": "^2.0.17",
+    "@tippyjs/react": "^4.2.6",
+    "@uiw/react-md-editor": "^3.20.6",
+    "ahooks": "^3.7.6",
+    "astro": "^2.1.8",
+    "classnames": "^2.3.2",
+    "highlight.js": "^11.7.0",
+    "katex": "^0.16.4",
+    "lodash-es": "^4.17.21",
+    "markdown-it": "^13.0.1",
+    "markdown-it-highlightjs": "^4.0.1",
+    "markdown-it-katex": "^2.0.3",
+    "markdown-it-kbd": "^2.2.2",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-hot-toast": "^2.4.0",
+    "react-scroll": "^1.8.9",
+    "react-textarea-autosize": "^8.4.1",
+    "react-timeago": "^7.1.0",
+    "tippy.js": "^6.3.7"
+  },
+  "devDependencies": {
+    "@astrojs/node": "^5.1.0",
+    "@astrojs/react": "^2.1.0",
+    "@astrojs/tailwind": "^3.1.1",
+    "@trivago/prettier-plugin-sort-imports": "^4.1.1",
+    "@types/lodash-es": "^4.17.7",
+    "@types/markdown-it": "^12.2.3",
+    "@types/node": "^18.15.11",
+    "@types/react": "^18.0.31",
+    "@types/react-dom": "^18.0.11",
+    "@types/react-scroll": "^1.8.6",
+    "@typescript-eslint/eslint-plugin": "^5.57.0",
+    "@typescript-eslint/parser": "^5.57.0",
+    "astro-eslint-parser": "^0.13.2",
+    "eslint": "^8.37.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-astro": "^0.26.1",
+    "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-react": "^7.32.2",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "postcss": "^8.4.21",
+    "prettier": "^2.8.7",
+    "prettier-plugin-astro": "^0.8.0",
+    "tailwindcss": "^3.3.1",
+    "typescript": "^5.0.3"
+  },
+  "packageManager": "pnpm@8.0.0",
+  "pnpm": {
+    "peerDependencyRules": {
+      "ignoreMissing": [
+        "csstype"
+      ]
+    }
+  },
+  "engines": {
+    "node": ">=18.12.1"
+  },
+  "author": {
+    "name": "zhengxs2018",
+    "email": "zhengxs2018@gmail.com"
+  },
+  "license": "MIT"
+}

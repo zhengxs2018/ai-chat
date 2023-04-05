@@ -1,0 +1,40 @@
+---
+import { SiteData, SITE_DATA } from '@/shared/constants/data'
+
+export type Props = Partial<SiteData>;
+
+const {
+  lang = SITE_DATA.lang,
+  title = SITE_DATA.title,
+  description =SITE_DATA.description,
+  keywords = SITE_DATA.keywords,
+} = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang={lang}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="description" content={description} />
+    <meta name="keywords" content={keywords} />
+    <title>{title}</title>
+    <slot name="head"></slot>
+
+    <!-- TODO 需要与项目解耦 -->
+    {import.meta.env.PROD && (<script is:inline>
+      var _hmt = _hmt || [];
+      (function () {
+        const hm = document.createElement('script');
+        hm.src = 'https://hm.baidu.com/hm.js?1065b07d015c5a284e225220119307e7';
+        const s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(hm, s);
+      })();
+    </script>)}
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>

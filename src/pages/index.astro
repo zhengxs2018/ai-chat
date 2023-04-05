@@ -1,0 +1,21 @@
+---
+import Layout from '@/theme/Layout.astro';
+
+import ChatApp from '@/apps/chat/main';
+import { checkAuthFromCookies } from '@/shared/node/auth';
+
+if (!checkAuthFromCookies(Astro.cookies)) {
+  return Astro.redirect('/password');
+}
+---
+
+<Layout title="与 AI 对话">
+  <ChatApp client:only="react" />
+</Layout>
+
+<style is:global>
+  /* Hide vertical scrollbar */
+  ::-webkit-scrollbar {
+    display: none;
+  }
+</style>

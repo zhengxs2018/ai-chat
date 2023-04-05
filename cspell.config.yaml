@@ -1,0 +1,49 @@
+version: "0.2"
+ignorePaths:
+  - archive
+  - dist
+  - node_modules
+dictionaries:
+  - en_US
+  - softwareTerms
+  - bash
+  - node
+  - npm
+  - html
+  - css
+  - typescript
+  - filetypes
+words:
+  - ahooks
+  - astro
+  - astrojs
+  - attributify
+  - autosize
+  - chatgpt
+  - cognitiveservices
+  - csstype
+  - eventsource
+  - heroicons
+  - highlightjs
+  - Inputbar
+  - jridgewell
+  - justjavac
+  - katex
+  - linkify
+  - msgtype
+  - npmmirror
+  - openai
+  - plusplus
+  - preact
+  - prefs
+  - preinstall
+  - reduxjs
+  - tailwindcss
+  - timeago
+  - tippyjs
+  - tsconfigs
+  - undici
+  - unocss
+ignoreWords:
+  - trivago
+  - zhengxs
