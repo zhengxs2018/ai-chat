@@ -8,6 +8,7 @@ import { useSender } from './useSender';
 export function useCompletion() {
   const service = useCompletionService();
 
+  // TODO: 待优化
   const data = useMemo(
     () => service.data[service.cursor.index],
     [service.data, service.cursor.index]
@@ -17,7 +18,9 @@ export function useCompletion() {
 
   async function complete(input: string): Promise<string> {
     return withRequest(async (signal) => {
-      service.draft(data.id, input);
+      const itemId = data.id;
+
+      service.draft(itemId, input);
 
       const payload = pick(service.preferences, [
         'model',
@@ -34,7 +37,7 @@ export function useCompletion() {
       );
 
       const content = res.choices[0].text;
-      service.complete(data.id, input + content);
+      service.complete(itemId, input + content);
 
       return content;
     });

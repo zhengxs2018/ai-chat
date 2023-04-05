@@ -18,5 +18,5 @@ export const post: APIRoute = async ({ request, cookies }) => {
     });
   }
 
-  return openai.post('/v1/completions', request);
+  return openai.post('/v1/chat/completions', request);
 };

@@ -155,13 +155,13 @@ export function useLocalHistory<
 
   return {
     /**
-     * 仅方便调试，请勿使用
+     * 仅用于方便调试，请勿使用
      */
     store,
-    /**
-     * 数据
-     */
     data,
+    has(id: string) {
+      return store.has(id);
+    },
     /**
      *  获取数据
      *
@@ -194,6 +194,8 @@ export function useLocalHistory<
       const version = oldItem ? oldItem.version : 0;
       const mergedItem = { ...oldItem, ...newItem, version: version + 1 };
 
+      // hack 解决二级数组无法更新的问题
+      store.set(primaryId, mergedItem);
       op.set(primaryId, mergedItem);
       ws.setItem(primaryId, mergedItem);
 

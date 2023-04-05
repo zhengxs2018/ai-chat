@@ -1,6 +1,6 @@
 import { useCompletion } from '../hooks/useCompletion';
 import CompletionEditor from './CompletionEditor';
-import CompletionEmpty from './CompletionEmpty';
+import CompletionViewEmpty from './CompletionViewEmpty';
 import CompletionParameterPanel from './CompletionParameterPanel';
 import CompletionSidebar from './CompletionSidebar';
 
@@ -16,7 +16,7 @@ export default function CompletionView() {
           <CompletionParameterPanel></CompletionParameterPanel>
         </>
       ) : (
-        <CompletionEmpty></CompletionEmpty>
+        <CompletionViewEmpty></CompletionViewEmpty>
       )}
     </div>
   );

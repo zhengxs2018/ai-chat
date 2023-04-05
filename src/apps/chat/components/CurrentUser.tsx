@@ -4,12 +4,22 @@ import {
   PowerIcon,
 } from '@heroicons/react/24/outline';
 
+import { useChatService } from '../hooks/useChatService';
+
 import DropdownMenu from '@/components/base/DropdownMenu';
 
-export default function ActivitybarUser() {
+export default function CurrentUser() {
+  const chatService = useChatService();
+
+  const handleLogout = () => {
+    document.cookie = '';
+    chatService.clear();
+    window.location.reload();
+  };
+
   const button = (
     <Menu.Button>
-      <div className="ai-activitybar-user-avatar bg-gray-400 opacity-60"></div>
+      <div className="ai-current-user-avatar bg-gray-400 opacity-60"></div>
     </Menu.Button>
   );
 
@@ -40,6 +50,7 @@ export default function ActivitybarUser() {
                 ? 'bg-indigo-500 text-gray-100 active:bg-indigo-600'
                 : 'text-gray-700'
             } group flex rounded-md items-center w-full px-2 py-2 text-sm font-medium`}
+            onClick={handleLogout}
           >
             <PowerIcon className="w-4 h-4" />
             <span className="ml-2">退出登录</span>

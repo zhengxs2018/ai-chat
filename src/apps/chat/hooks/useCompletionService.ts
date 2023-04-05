@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import { useContext } from 'react';
 
 import { CompletionContext } from './useCompletionProvider';

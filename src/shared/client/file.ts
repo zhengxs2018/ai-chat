@@ -25,7 +25,7 @@ export const saveMarkdownToFile = (
   title: string,
   messages: Record<'role' | 'content', string>[]
 ) => {
-  const markdown: string[] = [`# ${title}', '\n\n`];
+  const markdown: string[] = [`# ${title} \n\n`];
 
   messages.forEach((item) => {
     markdown.push(`## ${item.role}`, '\n\n', item.content, '\n\n');

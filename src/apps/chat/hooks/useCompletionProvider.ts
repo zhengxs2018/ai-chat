@@ -22,14 +22,12 @@ export type CompletionItem = {
   date: number;
 };
 
-type CompletionConfiguration = Omit<
-  OpenAICreateCompletionParameters,
-  'prompt'
-> &
-  LocalState;
+type CompletionConfiguration = LocalState &
+  Omit<OpenAICreateCompletionParameters, 'prompt'> & {
+    useVersions: boolean;
+  };
 
 export function useCompletionProvider() {
-  // See https://platform.openai.com/docs/api-reference/completions/create
   const [preferences, prefs] = useLocalState<CompletionConfiguration>(
     'ai:complete:preferences',
     {
@@ -42,8 +40,8 @@ export function useCompletionProvider() {
         temperature: 0.7,
         frequency_penalty: 0,
         presence_penalty: 0,
-        stop: '\n',
-        useVersion: false,
+        // stop: [],
+        useVersions: false,
       }),
     }
   );
@@ -74,7 +72,7 @@ export function useCompletionProvider() {
     // 可能在其他页面删除
     if (!item) {
       return history.create({
-        id: uuid(),
+        id,
         title: 'New Note!',
         version: 0,
         content: '',
@@ -107,7 +105,7 @@ export function useCompletionProvider() {
     // 如果状态是完成的，说明是上次有会议的
     if (item.status === 'complete') {
       history.create({
-        id: uuid(),
+        id,
         title: 'New Note!',
         version: 0,
         content: '',
@@ -135,7 +133,19 @@ export function useCompletionProvider() {
     setPreference: prefs.set,
     data: history.data,
     cursor,
+    get(id: string) {
+      return history.get(id);
+    },
     create,
+    has(id: string) {
+      return history.has(id);
+    },
+    remove(id: string) {
+      history.delete(id);
+    },
+    clear() {
+      history.clear();
+    },
     draft,
     complete,
   } as const;
