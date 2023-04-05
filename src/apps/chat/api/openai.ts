@@ -37,9 +37,14 @@ async function createCompletion(
     body: JSON.stringify(body),
   });
 
-  const res = await response.json();
+  if (response.ok) {
+    const res = await response.json();
+    const ex = res.error;
 
-  return res.error ? Promise.reject(res.error) : res;
+    return ex ? Promise.reject(new Error(ex.message || '请求失败')) : res;
+  }
+
+  return Promise.reject(new Error(response.statusText));
 }
 
 async function createChatCompletion(
@@ -52,9 +57,14 @@ async function createChatCompletion(
     body: JSON.stringify(body),
   });
 
-  const res = await response.json();
+  if (response.ok) {
+    const res = await response.json();
+    const ex = res.error;
 
-  return res.error ? Promise.reject(res.error) : res;
+    return ex ? Promise.reject(new Error(ex.message || '请求失败')) : res;
+  }
+
+  return Promise.reject(new Error(response.statusText));
 }
 
 export default {

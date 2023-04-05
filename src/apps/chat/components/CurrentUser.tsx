@@ -4,17 +4,13 @@ import {
   PowerIcon,
 } from '@heroicons/react/24/outline';
 
-import { useChatService } from '../hooks/useChatService';
+import Toast from 'react-hot-toast';
 
 import DropdownMenu from '@/components/base/DropdownMenu';
 
 export default function CurrentUser() {
-  const chatService = useChatService();
-
-  const handleLogout = () => {
-    document.cookie = '';
-    chatService.clear();
-    window.location.reload();
+  const handleNoop = async () => {
+    Toast('没有功能');
   };
 
   const button = (
@@ -36,6 +32,7 @@ export default function CurrentUser() {
                 ? 'bg-indigo-500 text-gray-100 active:bg-indigo-600'
                 : 'text-gray-700'
             } group flex rounded-md items-center w-full px-2 py-2 text-sm font-medium`}
+            onClick={handleNoop}
           >
             <AdjustmentsHorizontalIcon className="w-4 h-4" />
             <span className="ml-2">修改资料</span>
@@ -50,7 +47,7 @@ export default function CurrentUser() {
                 ? 'bg-indigo-500 text-gray-100 active:bg-indigo-600'
                 : 'text-gray-700'
             } group flex rounded-md items-center w-full px-2 py-2 text-sm font-medium`}
-            onClick={handleLogout}
+            onClick={handleNoop}
           >
             <PowerIcon className="w-4 h-4" />
             <span className="ml-2">退出登录</span>

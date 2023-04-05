@@ -3,7 +3,7 @@ import FieldSlider from '@/components/fields/FieldSlider';
 import { useCompletionService } from '../hooks/useCompletionService';
 import OpenAIModelEngineSelect from './OpenAIModelSelect';
 
-export default function CompletionParameterPanel() {
+export default function OpenAICompletionConfigurationForm() {
   const { preferences, setPreference } = useCompletionService();
 
   return (

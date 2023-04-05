@@ -43,7 +43,7 @@ export function useChatProvider() {
       initialValue: () => ({
         model: 'gpt-3.5-turbo',
         version: 0,
-        max_tokens: 256,
+        max_tokens: 2048,
         top_p: 1,
         n: 1,
         temperature: 0.7,
@@ -111,6 +111,14 @@ export function useChatProvider() {
     },
     clear() {
       history.clear();
+    },
+    setTitle(id: string, title: string) {
+      const item = history.get(id);
+
+      // hack 兼容异常数据
+      if (!item) return;
+
+      history.set(id, 'title', title);
     },
     /**
      * ChatGPT 需要接受所有消息

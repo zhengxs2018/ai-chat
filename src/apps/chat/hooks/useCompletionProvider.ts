@@ -22,6 +22,15 @@ export type CompletionItem = {
   date: number;
 };
 
+export type CompletionCreateItem = {
+  title: string;
+};
+
+export type CompletionUpdateItem = {
+  id: string;
+  title: string;
+};
+
 type CompletionConfiguration = LocalState &
   Omit<OpenAICreateCompletionParameters, 'prompt'> & {
     useVersions: boolean;
@@ -34,7 +43,7 @@ export function useCompletionProvider() {
       initialValue: () => ({
         model: 'text-davinci-003',
         version: 0,
-        max_tokens: 256,
+        max_tokens: 2048,
         top_p: 1,
         n: 1,
         temperature: 0.7,
@@ -54,10 +63,10 @@ export function useCompletionProvider() {
 
   const cursor = useCursor(history.data);
 
-  const create = () => {
+  const create = (title?: string) => {
     history.create({
       id: uuid(),
-      title: 'New Note!',
+      title: title || 'New Note!',
       version: 0,
       content: '',
       versions: [],
@@ -137,6 +146,9 @@ export function useCompletionProvider() {
       return history.get(id);
     },
     create,
+    set(id: string, key: string, value: unknown) {
+      history.set(id, key, value);
+    },
     has(id: string) {
       return history.has(id);
     },

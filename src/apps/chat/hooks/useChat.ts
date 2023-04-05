@@ -65,6 +65,9 @@ export function useChat() {
     clearMessages() {
       service.clearMessages(data.id);
     },
+    setTitle(title: string) {
+      service.setTitle(data.id, title);
+    },
     abort: abortRequest,
   };
 }

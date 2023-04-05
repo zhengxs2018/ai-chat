@@ -182,6 +182,15 @@ export function useLocalHistory<
 
       return newItem;
     },
+    set(id: string, key: string, value: unknown) {
+      const item = store.get(id);
+      if (!item) return;
+
+      const newItem = { ...item, [key]: value };
+
+      op.set(id, newItem);
+      ws.setItem(id, newItem);
+    },
     /**
      * 防止意外覆盖
      *
@@ -196,6 +205,7 @@ export function useLocalHistory<
 
       // hack 解决二级数组无法更新的问题
       store.set(primaryId, mergedItem);
+
       op.set(primaryId, mergedItem);
       ws.setItem(primaryId, mergedItem);
 

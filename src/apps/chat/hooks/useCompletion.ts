@@ -36,6 +36,8 @@ export function useCompletion() {
         { signal }
       );
 
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
       const content = res.choices[0].text;
       service.complete(itemId, input + content);
 
@@ -48,6 +50,9 @@ export function useCompletion() {
     sending,
     waiting,
     complete,
+    setTitle(title) {
+      service.set(data.id, 'title', title);
+    },
     abort: abortRequest,
   };
 }

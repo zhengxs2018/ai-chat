@@ -1,4 +1,5 @@
 import { CloudArrowDownIcon, TrashIcon } from '@heroicons/react/24/outline';
+import Toast from 'react-hot-toast';
 
 import TippyButton from '@/components/base/TippyButton';
 import MessageInputbar from '@/components/message/MessageInputbar';
@@ -10,8 +11,16 @@ import { useChat } from '../hooks/useChat';
 export default function ChatInputbar() {
   const { data, sending, send, clearMessages } = useChat();
 
+  const handleSend = async (value: string) => {
+    try {
+      await send(value);
+    } catch (ex) {
+      Toast.error(ex.message);
+    }
+  };
+
   return (
-    <MessageInputbar loading={sending} onSend={send}>
+    <MessageInputbar loading={sending} onSend={handleSend}>
       <TippyButton
         tooltip="导出"
         placement="top"
