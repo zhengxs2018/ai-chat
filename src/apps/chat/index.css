@@ -54,6 +54,7 @@
 
 .ai-primary-sidebar {
   max-width: var(--ai-primary-sidebar-width);
+  min-width: var(--ai-primary-sidebar-width);
 }
 
 .ai-secondary-sidebar {

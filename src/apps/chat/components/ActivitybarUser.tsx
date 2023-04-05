@@ -6,7 +6,7 @@ import {
 
 import DropdownMenu from '@/components/base/DropdownMenu';
 
-export default function PGNewChatButton() {
+export default function ActivitybarUser() {
   const button = (
     <Menu.Button>
       <div className="ai-activitybar-user-avatar bg-gray-400 opacity-60"></div>

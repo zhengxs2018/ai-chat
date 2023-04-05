@@ -1,0 +1,50 @@
+import { useState, KeyboardEventHandler } from 'react';
+import TextareaAutosize from 'react-textarea-autosize';
+
+export type TextareaProps = {
+  value?: string;
+  className?: string;
+  onChange?: (event: React.ChangeEvent<HTMLTextAreaElement>) => void;
+  placeholder?: string;
+  readOnly?: boolean;
+  disabled?: boolean;
+  onKeyDown?: KeyboardEventHandler<HTMLTextAreaElement>;
+  rows?: number;
+  maxRows?: number;
+};
+
+export default function Textarea({
+  value,
+  className,
+  onChange,
+  placeholder,
+  onKeyDown,
+  readOnly,
+  disabled,
+  rows,
+  maxRows,
+}: TextareaProps) {
+  const [inputValue, setInputValue] = useState(value || '');
+
+  const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setInputValue(event.target.value);
+
+    if (onChange) {
+      onChange(event);
+    }
+  };
+
+  return (
+    <TextareaAutosize
+      className={`focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 border-2 shadow-sm block text-base text-gray-700 py-1 px-3 border-gray-200 rounded-md ${className}`}
+      placeholder={placeholder}
+      rows={rows}
+      readOnly={readOnly}
+      maxRows={maxRows}
+      disabled={disabled}
+      value={inputValue}
+      onChange={handleChange}
+      onKeyDown={onKeyDown}
+    />
+  );
+}

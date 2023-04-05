@@ -1,35 +1,35 @@
 import { Placement } from 'tippy.js';
 
+import Textarea from '../base/Textarea';
 import FieldLabel from './FieldLabel';
-import Input from './Input';
 
-export interface FieldInputProps {
+interface FieldTextAreaProps {
   text: string;
   helpText?: string;
-  id?: string;
-  type: string;
-  className?: string;
-  value: string;
   helpPlacement?: Placement;
+  value: string;
+  onChange: (value: string) => void;
+  className?: string;
+  placeholder?: string;
   disabled?: boolean;
   readOnly?: boolean;
-  placeholder: string;
-  onChange: (value: string) => void;
+  rows?: number;
+  maxRows?: number;
 }
 
-export default function FieldInput({
+export default function FieldTextArea({
   text,
   helpText,
-  id,
-  type,
-  className,
-  value,
-  readOnly,
-  disabled,
   helpPlacement,
-  placeholder,
+  value,
   onChange,
-}: FieldInputProps) {
+  className,
+  placeholder,
+  disabled,
+  readOnly,
+  rows,
+  maxRows,
+}: FieldTextAreaProps) {
   return (
     <div className={'flex flex-col space-y-2'}>
       <FieldLabel
@@ -37,15 +37,15 @@ export default function FieldInput({
         helpText={helpText}
         helpPlacement={helpPlacement}
       />
-      <Input
-        id={id}
-        type={type}
+      <Textarea
         value={value}
         readOnly={readOnly}
         disabled={disabled}
+        className={`h-9 ml-0.5 resize-none ${className}`}
         onChange={(e) => onChange(e.target.value)}
-        className={`h-9 mx-0.5 ${className}`}
         placeholder={placeholder}
+        rows={rows}
+        maxRows={maxRows}
       />
     </div>
   );

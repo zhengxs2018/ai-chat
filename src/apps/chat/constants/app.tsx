@@ -28,4 +28,4 @@ export const APP_FEATURES = [
   },
 ];
 
-export const DEFAULT_APP_FEATURE = 'complete';
+export const DEFAULT_APP_FEATURE = 'chat';
