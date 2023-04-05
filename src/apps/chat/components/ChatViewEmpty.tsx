@@ -1,19 +1,20 @@
-import { useState } from 'react';
+// import { useState } from 'react';
 
-import { PlusIcon } from '@heroicons/react/24/outline';
-import TippyButton from '@/components/base/TippyButton';
+// import { PlusIcon } from '@heroicons/react/24/outline';
+// import TippyButton from '@/components/base/TippyButton';
 
-import ChatSettingModel from './ChatSettingModel';
+// import ChatSettingModel from './ChatSettingModel';
 
 export default function ChatViewEmpty() {
-  const [opened, setOpen] = useState(false);
+  // const [opened, setOpen] = useState(false);
 
   return (
     <div className="h-full w-full ai-fcc">
       <div className="text-center text-sm text-gray-400">
-        <p className="mb-4">想要创建一个新会话？</p>
+        <p>没有记录</p>
+        <p className="mb-4">创建一个试试</p>
 
-        <TippyButton
+        {/* <TippyButton
           tooltip="创建一个新的聊天"
           placement="top"
           onClick={() => setOpen(true)}
@@ -23,7 +24,7 @@ export default function ChatViewEmpty() {
         />
         {opened && (
           <ChatSettingModel opened={opened} onClose={() => setOpen(false)} />
-        )}
+        )} */}
       </div>
     </div>
   );

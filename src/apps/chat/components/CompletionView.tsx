@@ -1,22 +1,25 @@
+import { useCompletionService } from '../hooks/useCompletionService';
 import { useCompletion } from '../hooks/useCompletion';
-import CompletionEditor from './CompletionEditor';
-import CompletionEmpty from './CompletionEmpty';
-import CompletionParameterPanel from './CompletionParameterPanel';
+
+import CompletionViewEmpty from './CompletionViewEmpty';
 import CompletionSidebar from './CompletionSidebar';
+import CompletionEditor from './CompletionEditor';
 
 export default function CompletionView() {
   const { data } = useCompletion();
+  const service = useCompletionService();
+
+  const handleNew = () => {
+    service.create();
+  };
 
   return (
     <div className="flex-1 flex">
-      <CompletionSidebar></CompletionSidebar>
+      <CompletionSidebar onCreate={handleNew} />
       {data ? (
-        <>
-          <CompletionEditor></CompletionEditor>
-          <CompletionParameterPanel></CompletionParameterPanel>
-        </>
+        <CompletionEditor></CompletionEditor>
       ) : (
-        <CompletionEmpty></CompletionEmpty>
+        <CompletionViewEmpty onCreate={handleNew} />
       )}
     </div>
   );

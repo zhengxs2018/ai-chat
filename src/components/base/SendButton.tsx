@@ -1,21 +1,29 @@
+import classNames from 'classnames';
+
 import SendIcon from '@/components/icons/SendIcon';
 import WaitingIcon from '@/components/icons/WaitingIcon';
 
 export interface MessageInputSendButtonProps {
+  text?: string;
   loading: boolean;
+  className?: string;
   onClick?: () => void;
 }
 
 function MessageInputSendButton({
+  text = '发送',
   loading,
+  className,
   onClick,
 }: MessageInputSendButtonProps) {
+  const base =
+    'flex flex-row items-center space-x-2 px-4 py-2 rounded-lg font-medium text-white bg-gradient-to-tr from-indigo-500 to-purple-500 transition-colors duration-300';
   if (loading) {
     return (
       <button
         type="button"
         disabled
-        className="flex flex-row items-center space-x-2 cursor-wait rounded-lg px-4 py-2 font-medium text-white bg-gradient-to-tr from-indigo-500 to-purple-500 transition-colors duration-300"
+        className={classNames(base, 'cursor-wait', className)}
       >
         <WaitingIcon className="h-5 w-5 animate-spin" />
         <div>等待</div>
@@ -26,11 +34,15 @@ function MessageInputSendButton({
   return (
     <button
       type="button"
-      className="flex flex-row items-center space-x-2 rounded-lg px-4 py-2 font-medium text-white bg-gradient-to-tr from-indigo-500 to-purple-500 hover:bg-green-600 hover:from-indigo-600 hover:to-purple-600 transition-colors duration-300"
+      className={classNames(
+        base,
+        ' hover:bg-green-600 hover:from-indigo-600 hover:to-purple-600 ',
+        className
+      )}
       onClick={onClick}
     >
       <SendIcon className="h-5 w-5" />
-      <div>发送</div>
+      <div>{text}</div>
     </button>
   );
 }

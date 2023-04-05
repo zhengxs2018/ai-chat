@@ -7,7 +7,7 @@
     #cfdde0 80%,
     #d4d9de 100%
   );
-  --ai-activitybar-user-avatar-width: 30px;
+  --ai-current-user-avatar-width: 30px;
 
   /* 动作栏 */
   --ai-action-bar-item-height: 48px;
@@ -33,10 +33,10 @@
   background: var(--ai-activitybar-background);
 }
 
-.ai-activitybar-user-avatar {
+.ai-current-user-avatar {
   margin: 0 auto;
-  width: var(--ai-activitybar-user-avatar-width);
-  height: var(--ai-activitybar-user-avatar-width);
+  width: var(--ai-current-user-avatar-width);
+  height: var(--ai-current-user-avatar-width);
 }
 
 .ai-action-button {
@@ -59,8 +59,4 @@
 
 .ai-secondary-sidebar {
   min-width: var(--ai-secondary-sidebar-width);
-}
-
-.ai-primary-sidebar__header {
-  height: var(--ai-header-height);
 }

@@ -3,6 +3,7 @@ import {
   ChatBubbleBottomCenterIcon,
   PencilIcon,
   PhotoIcon,
+  FaceSmileIcon,
 } from '@heroicons/react/24/solid';
 
 export const APP_FEATURES = [
@@ -12,7 +13,7 @@ export const APP_FEATURES = [
     key: 'chat',
   },
   {
-    text: '自动补全',
+    text: '笔记',
     icon: <BookOpenIcon className="action-button-icon" />,
     key: 'complete',
   },
@@ -25,6 +26,11 @@ export const APP_FEATURES = [
     text: '图像生成',
     icon: <PhotoIcon className="action-button-icon" />,
     key: 'image',
+  },
+  {
+    text: '角色扮演',
+    icon: <FaceSmileIcon className="action-button-icon" />,
+    key: 'role',
   },
 ];
 

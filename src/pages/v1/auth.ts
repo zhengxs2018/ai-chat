@@ -10,7 +10,6 @@ export const post: APIRoute = async ({ request, cookies }) => {
       path: '/',
       httpOnly: true,
       maxAge: 7 * 24 * 60 * 60 * 1000,
-      secure: true,
     });
 
     return new Response('{"code":0}');

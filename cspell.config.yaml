@@ -45,6 +45,7 @@ words:
   - tsconfigs
   - undici
   - unocss
+  - Vditor
 ignoreWords:
   - trivago
   - zhengxs

@@ -45,4 +45,15 @@ export default {
       duplex: 'half',
     });
   },
+  post(path: string, req: Request) {
+    return sendRequest(path, {
+      method: 'POST',
+      headers: copyRequestHeaders(req.headers),
+      body: req.body,
+      // fix https://github.com/nodejs/node/issues/46221
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      duplex: 'half',
+    });
+  },
 };

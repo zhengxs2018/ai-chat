@@ -34,7 +34,7 @@ export default function Dialog({ open, onClose, children }: DialogProps) {
               leaveFrom="opacity-100 translate-y-0 sm:scale-100"
               leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
             >
-              <Popup.Panel className="relative transform overflow-hidden rounded-xl bg-white shadow-xl transition-all w-180">
+              <Popup.Panel className="relative transform overflow-hidden rounded-xl bg-white shadow-xl transition-all w-90">
                 <div className="bg-white dark:bg-gray-800">{children}</div>
               </Popup.Panel>
             </Transition.Child>

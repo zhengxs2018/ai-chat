@@ -8,6 +8,7 @@ import { useSender } from './useSender';
 export function useCompletion() {
   const service = useCompletionService();
 
+  // TODO: 待优化
   const data = useMemo(
     () => service.data[service.cursor.index],
     [service.data, service.cursor.index]
@@ -17,7 +18,9 @@ export function useCompletion() {
 
   async function complete(input: string): Promise<string> {
     return withRequest(async (signal) => {
-      service.draft(data.id, input);
+      const itemId = data.id;
+
+      service.draft(itemId, input);
 
       const payload = pick(service.preferences, [
         'model',
@@ -33,8 +36,10 @@ export function useCompletion() {
         { signal }
       );
 
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
       const content = res.choices[0].text;
-      service.complete(data.id, input + content);
+      service.complete(itemId, input + content);
 
       return content;
     });
@@ -45,6 +50,9 @@ export function useCompletion() {
     sending,
     waiting,
     complete,
+    setTitle(title) {
+      service.set(data.id, 'title', title);
+    },
     abort: abortRequest,
   };
 }

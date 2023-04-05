@@ -22,6 +22,9 @@ const {
     <meta name="keywords" content={keywords} />
     <title>{title}</title>
     <slot name="head"></slot>
+  </head>
+  <body>
+    <slot />
 
     <!-- TODO 需要与项目解耦 -->
     {import.meta.env.PROD && (<script is:inline>
@@ -33,8 +36,5 @@ const {
         s.parentNode.insertBefore(hm, s);
       })();
     </script>)}
-  </head>
-  <body>
-    <slot />
   </body>
 </html>

@@ -10,6 +10,12 @@ export type MessageUserProps = {
 function MessageUser({ payload }: MessageUserProps) {
   const { self, talker, date } = payload;
 
+  if (self) {
+    <div className="flex items-center mb-1">
+      <div className="text-xs text-gray-300 mr-2">{formatDate(date)}</div>
+    </div>;
+  }
+
   return (
     <div
       className={`flex items-center mb-1 ${
