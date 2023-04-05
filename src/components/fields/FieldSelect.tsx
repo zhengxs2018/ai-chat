@@ -1,7 +1,7 @@
 import { Placement } from 'tippy.js';
 
+import Select from '../base/Select';
 import FieldLabel from './FieldLabel';
-import Select from './Select';
 
 interface FieldSelectProps {
   text: string;

@@ -1,0 +1,28 @@
+.message-content::before {
+  position: absolute;
+  top: 0;
+  height: 0.75rem;
+  width: 0.75rem;
+  background-color: inherit;
+  content: '';
+  mask-size: contain;
+  mask-repeat: no-repeat;
+  mask-position: center;
+}
+
+.message-content::before {
+  mask-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0nMycgaGVpZ2h0PSczJyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnPjxwYXRoIGZpbGw9J2JsYWNrJyBkPSdtIDAgMyBMIDMgMyBMIDMgMCBDIDMgMSAxIDMgMCAzJy8+PC9zdmc+);
+  left: -0.75rem;
+}
+.message-content.itself::before {
+  mask-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0nMycgaGVpZ2h0PSczJyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnPjxwYXRoIGZpbGw9J2JsYWNrJyBkPSdtIDAgMyBMIDEgMyBMIDMgMyBDIDIgMyAwIDEgMCAwJy8+PC9zdmc+);
+  left: 100%;
+}
+
+.message-markdown-content code {
+  @apply rounded-md;
+}
+
+.message-markdown-content p {
+  @apply my-2;
+}

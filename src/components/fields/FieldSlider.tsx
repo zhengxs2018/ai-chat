@@ -1,9 +1,9 @@
 import { useEffect } from 'react';
 import { Placement } from 'tippy.js';
 
+import Input from '../base/Input';
+import RangeSlider from '../base/RangeSlider';
 import FieldLabel from './FieldLabel';
-import Input from './Input';
-import RangeSlider from './RangeSlider';
 
 export interface FieldSliderProps {
   text: string;

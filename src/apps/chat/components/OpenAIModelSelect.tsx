@@ -1,4 +1,4 @@
-import FieldSelect from '@/components/base/FieldSelect';
+import FieldSelect from '@/components/fields/FieldSelect';
 
 import { OPENAI_MODEL_ENGINES_MAP } from '../constants/openai';
 

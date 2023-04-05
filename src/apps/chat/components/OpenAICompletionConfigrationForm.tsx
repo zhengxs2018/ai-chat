@@ -1,4 +1,4 @@
-import FieldSlider from '@/components/base/FieldSlider';
+import FieldSlider from '@/components/fields/FieldSlider';
 
 import { useCompletionService } from '../hooks/useCompletionService';
 import OpenAIModelEngineSelect from './OpenAIModelSelect';
