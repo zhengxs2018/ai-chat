@@ -2,6 +2,16 @@
 
 功能正在开发中。
 
+## 屏幕截图
+
+聊天界面
+
+<img src="./imgs/chat.jpg" width="300px" /><img src="./imgs/chat-1.jpg" width="300px" />
+
+自动补全
+
+<img src="./imgs/note.jpg" width="300px" />
+
 ## 环境变量
 
 | 名称                    | 用途                               | 是否必须 | 默认值                   |
