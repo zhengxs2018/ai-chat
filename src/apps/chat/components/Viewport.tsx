@@ -1,5 +1,6 @@
 import ChatView from './ChatView';
 import CompletionView from './CompletionView';
+import NotFoundView from './NotFoundView';
 
 export type ViewportProps = {
   viewName: string;
@@ -12,6 +13,6 @@ export default function Viewport({ viewName }: ViewportProps) {
     case 'complete':
       return <CompletionView></CompletionView>;
     default:
-      return <div>404</div>;
+      return <NotFoundView></NotFoundView>;
   }
 }
