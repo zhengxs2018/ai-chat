@@ -6,7 +6,7 @@
 
 密码界面
 
-<img src="https://user-images.githubusercontent.com/7506913/230239243-c4ce29a8-127a-47ec-9fcb-8fbd88ae1d11.png" />
+![密码界面](./imgs/password.png)
 
 聊天界面
 
