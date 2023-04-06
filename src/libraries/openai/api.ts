@@ -32,6 +32,10 @@ function buildURL(path: string, base?: string): string {
 export class OpenAIApiBuilder {
   constructor(public configuration: Configuration) {}
 
+  configure(configuration: Configuration) {
+    this.configuration = { ...this.configuration, ...configuration };
+  }
+
   async createRequest(info: CreateRequestInfo): Promise<Response> {
     const { baseURL, headersInit } = this.configuration;
 
