@@ -2,7 +2,7 @@
   "name": "ai-chat",
   "private": true,
   "type": "module",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "scripts": {
     "preinstall": "npx only-allow pnpm",
     "start": "astro dev --host",

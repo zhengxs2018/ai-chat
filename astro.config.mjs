@@ -4,6 +4,8 @@ import tailwind from '@astrojs/tailwind';
 
 import react from '@astrojs/react';
 
+import { version } from './package.json';
+
 // https://astro.build/config
 export default defineConfig({
   integrations: [tailwind(), react()],
@@ -16,6 +18,6 @@ export default defineConfig({
   },
   site: 'https://ai.zhengxs.cn',
   build: {
-    assetsPrefix: 'https://cdn.zhengxs.cn/ai/',
+    assetsPrefix: `https://cdn.zhengxs.cn/ai/${version}`,
   },
 });

@@ -2,10 +2,10 @@
 import Layout from '@/theme/Layout.astro';
 
 import ChatApp from '@/apps/chat/main';
-import { checkAuthFromCookies } from '@/shared/node/auth';
+import { checkPass } from '@/shared/node/auth';
 
-if (!checkAuthFromCookies(Astro.cookies)) {
-  return Astro.redirect('/password');
+if (!checkPass(Astro.cookies.get('code').value)) {
+  return Astro.redirect('/password', 302);
 }
 ---
 
