@@ -9,6 +9,9 @@ const {
   description =SITE_DATA.description,
   keywords = SITE_DATA.keywords,
 } = Astro.props;
+
+// 百度统计代码
+const baApiKey = import.meta.env.BAIDU_API_KEY
 ---
 
 <!DOCTYPE html>
@@ -26,15 +29,9 @@ const {
   <body>
     <slot />
 
-    <!-- TODO 需要与项目解耦 -->
-    {import.meta.env.PROD && (<script is:inline>
-      var _hmt = _hmt || [];
-      (function () {
-        const hm = document.createElement('script');
-        hm.src = 'https://hm.baidu.com/hm.js?1065b07d015c5a284e225220119307e7';
-        const s = document.getElementsByTagName('script')[0];
-        s.parentNode.insertBefore(hm, s);
-      })();
-    </script>)}
+    {import.meta.env.PROD && baApiKey && (
+      <script is:inline async src={`https://hm.baidu.com/hm.js?${baApiKey}`}></script>
+      <script is:inline>var _hmt = _hmt || [];</script>
+    )}
   </body>
 </html>
