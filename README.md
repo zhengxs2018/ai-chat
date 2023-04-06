@@ -6,7 +6,7 @@
 
 密码界面
 
-<img src="https://user-images.githubusercontent.com/7506913/230239243-c4ce29a8-127a-47ec-9fcb-8fbd88ae1d11.png" />
+![密码界面](./imgs/password.png)
 
 聊天界面
 
@@ -25,6 +25,7 @@
 | OPENAI_API_KEY          | 在 OpenAI 注册获得的 API Key       | 是       |                          |
 | ANONYMOUS_USER_PASSWORD | 限制用户访问，不填为站点可公开访问 | 否       |                          |
 | SUPER_USER_PASSWORD     | 可使用文本补全功能的用户           | 否       |                          |
+| BAIDU_API_KEY     | 百度统计代码的 API KEY           | 否       |                          |
 
 ## 如何部署
 

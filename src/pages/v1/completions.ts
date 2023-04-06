@@ -17,7 +17,7 @@ export const post: APIRoute = async ({ request, cookies }) => {
 
   const bypass =
     isSuperUser(pass) ||
-    import.meta.env.PROD ||
+    import.meta.env.DEV ||
     request.headers.has('Authorization');
 
   if (!bypass) {
