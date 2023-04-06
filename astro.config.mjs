@@ -14,4 +14,8 @@ export default defineConfig({
   ssr: {
     noExternal: ['vditor'],
   },
+  site: 'https://ai.zhengxs.cn',
+  build: {
+    assetsPrefix: 'https://cdn.zhengxs.cn/ai/',
+  },
 });
