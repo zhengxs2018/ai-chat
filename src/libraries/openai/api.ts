@@ -21,12 +21,10 @@ import type {
   CreateRequestInfo,
 } from './types';
 
-const BASE_PATH = 'https://api.openai.com/v1';
+const BASE_PATH = 'https://api.openai.com';
 
-function buildURL(path: string, base?: string): string {
-  return `${removeTrailingSlash(base || BASE_PATH)}/${removeLeadingSlash(
-    path
-  )}`;
+function buildURL(path: string, base?: string): URL {
+  return new URL(path, base || BASE_PATH);
 }
 
 export class OpenAIApiBuilder {
@@ -37,9 +35,12 @@ export class OpenAIApiBuilder {
   }
 
   async createRequest(info: CreateRequestInfo): Promise<Response> {
-    const { baseURL, headersInit } = this.configuration;
+    const { baseURL, apiVersion = 'v1', headersInit } = this.configuration;
 
-    return fetch(buildURL(info.url, baseURL), {
+    // 防止外部存在多余的斜杠
+    const path = removeTrailingSlash(removeLeadingSlash(apiVersion));
+
+    return fetch(buildURL(`/${path}/${info.url}`, baseURL), {
       method: info.method,
       headers: mergeHeaders(new Headers(info.headers), headersInit),
       body: info.body,

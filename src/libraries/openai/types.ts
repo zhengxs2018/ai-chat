@@ -1,14 +1,20 @@
 export interface Configuration {
   /**
-   * override base path
+   * 基础路径
    *
-   * @type {string}
-   * @memberof Configuration
+   * @defaultValue 'https://api.openai.com'
    */
   baseURL?: string;
 
   /**
-   * parameter for apiKey security
+   * API 版本
+   *
+   * @defaultValue 'v1'
+   */
+  apiVersion?: string;
+
+  /**
+   * OpenAI 的 API Key
    *
    * @param name security name
    * @memberof Configuration
@@ -16,34 +22,22 @@ export interface Configuration {
   apiKey?: string;
 
   /**
-   * OpenAI organization id
-   *
-   * @type {string}
-   * @memberof Configuration
+   * OpenAI 的 机构ID
    */
   organization?: string;
 
   /**
-   * parameter for basic security
-   *
-   * @type {string}
-   * @memberof Configuration
+   * TODO 预留
    */
   username?: string;
 
   /**
-   * parameter for basic security
-   *
-   * @type {string}
-   * @memberof Configuration
+   * TODO 预留
    */
   password?: string;
 
   /**
-   * parameter for oauth2 security
-   * @param name security name
-   * @param scopes oauth2 scope
-   * @memberof Configuration
+   * TODO 预留
    */
   accessToken?: string;
 

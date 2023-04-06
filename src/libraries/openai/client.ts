@@ -39,7 +39,7 @@ export class OpenAIApiClient {
 
   static builder(configuration?: Configuration) {
     return new OpenAIApiClient({
-      baseURL: `${window.location.origin}/v1`,
+      baseURL: window.location.origin,
       ...configuration,
     });
   }
