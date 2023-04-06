@@ -1,11 +1,12 @@
 import type { APIRoute } from 'astro';
-import { checkAuthPass } from '@/shared/node/auth';
+
+import { checkPass } from '@/shared/node/auth';
 
 export const post: APIRoute = async ({ request, cookies }) => {
   const body = await request.json();
   const pass = body.pass as string;
 
-  if (checkAuthPass(pass)) {
+  if (checkPass(pass)) {
     cookies.set('code', pass, {
       path: '/',
       httpOnly: true,
