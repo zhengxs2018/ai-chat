@@ -4,6 +4,10 @@
 
 ## 屏幕截图
 
+密码界面
+
+<img src="https://user-images.githubusercontent.com/7506913/230239243-c4ce29a8-127a-47ec-9fcb-8fbd88ae1d11.png" />
+
 聊天界面
 
 <img src="./imgs/chat.jpg" width="300px" /><img src="./imgs/chat-1.jpg" width="300px" />
@@ -25,6 +29,14 @@
 ## 如何部署
 
 参考 Astro 的 [部署文档](https://docs.astro.build/en/guides/deploy/)。
+
+## 感谢
+
+很多灵感来自以下开源项目，排名不分先后。
+
+- [Chatgpt Vercel](https://github.com/ourongxing/chatgpt-vercel)
+- [speechgpt](https://github.com/hahahumble/speechgpt)
+- And more.
 
 ## License
 
