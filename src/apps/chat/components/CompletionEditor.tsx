@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useRef, useEffect, useState } from 'react';
 import Toast from 'react-hot-toast';
 import Vditor from 'vditor';
 import 'vditor/dist/index.css';
@@ -11,6 +11,7 @@ export default function CompletionEditor() {
   // 使用本地变量，防止频繁触发本地同步
   const [draftTitle, setDraftTitle] = useState('');
 
+  const elemRef = useRef();
   const [vd, setVd] = useState<Vditor>();
 
   const service = useCompletion();
@@ -37,23 +38,25 @@ export default function CompletionEditor() {
   };
 
   useEffect(() => {
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore 需要优化
-    const vditor = new Vditor('editor', {
+    if (!elemRef.current) return;
+
+    const vditor = new Vditor(elemRef.current, {
       height: '100%',
       placeholder: '为冰淇淋店设计一个标语',
+      cache: {
+        enable: false,
+      },
       after: () => {
         vditor.setValue(service.data.content);
         setVd(vditor);
       },
     });
-  }, []);
+  }, [service.data.content, elemRef]);
 
   useEffect(() => {
     if (vd) {
       vd.setValue(service.data.content);
     }
-    // setDraftContent(service.data.content);
   }, [vd, service.data.id, service.data.content]);
 
   useEffect(() => {
@@ -85,7 +88,7 @@ export default function CompletionEditor() {
           警告：所有数据都存储在浏览器本地，请及时复制到其他存储空间保存！
         </div>
         <div className="flex-1 min-h-0 overflow-hidden">
-          <div id="editor"></div>
+          <div id="editor" ref={elemRef}></div>
         </div>
       </div>
     </div>

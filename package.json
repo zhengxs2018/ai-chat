@@ -17,6 +17,7 @@
     "@tippyjs/react": "^4.2.6",
     "ahooks": "^3.7.6",
     "astro": "^2.2.0",
+    "avvvatars-react": "^0.4.2",
     "classnames": "^2.3.2",
     "highlight.js": "^11.7.0",
     "katex": "^0.16.4",
