@@ -7,7 +7,6 @@
     #cfdde0 80%,
     #d4d9de 100%
   );
-  --ai-activitybar-avatar-width: 30px;
 
   /* 动作栏 */
   --ai-action-bar-item-height: 48px;
@@ -16,28 +15,6 @@
   --ai-header-height: 60px;
   --ai-primary-sidebar-width: 260px;
   --ai-secondary-sidebar-width: 250px;
-}
-
-.ai-activitybar {
-  padding-top: 66px;
-  min-width: var(--ai-activitybar-width);
-  max-width: var(--ai-activitybar-width);
-  background: var(--ai-activitybar-background);
-}
-
-.ai-activitybar-user {
-  margin: 0 auto;
-  width: var(--ai-activitybar-avatar-width);
-  height: var(--ai-activitybar-avatar-width);
-}
-
-.ai-action-button {
-  height: var(--ai-action-bar-item-height);
-}
-
-.action-button-icon {
-  width: var(--ai-action-bar-item-icon);
-  height: var(--ai-action-bar-item-icon);
 }
 
 .ai-header {
@@ -51,4 +28,24 @@
 
 .ai-secondary-sidebar {
   min-width: var(--ai-secondary-sidebar-width);
+}
+
+.ai-activitybar {
+  padding-top: 66px;
+  min-width: var(--ai-activitybar-width);
+  max-width: var(--ai-activitybar-width);
+  background: var(--ai-activitybar-background);
+}
+
+.ai-action-bar {
+  @apply flex flex-col;
+}
+
+.ai-action-button {
+  height: var(--ai-action-bar-item-height);
+}
+
+.action-button-icon {
+  width: var(--ai-action-bar-item-icon);
+  height: var(--ai-action-bar-item-icon);
 }

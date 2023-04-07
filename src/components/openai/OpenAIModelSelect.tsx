@@ -1,6 +1,7 @@
 import FieldSelect from '@/components/fields/FieldSelect';
 
-import { OPENAI_MODEL_ENGINES_MAP } from '../constants/openai';
+// see https://platform.openai.com/docs/models/model-endpoint-compatibility
+import models from './models.json';
 
 export type OpenAIModelSelectSelectProps = {
   mode?: 'chat' | 'complete' | 'edit';
@@ -13,14 +14,12 @@ export default function OpenAIModelSelect({
   value,
   onChange,
 }: OpenAIModelSelectSelectProps) {
-  const engines = OPENAI_MODEL_ENGINES_MAP[mode] || [];
-
   return (
     <FieldSelect
       text="模型"
       helpText="对话的 AI 模型"
       helpPlacement="top"
-      options={engines}
+      options={models[mode] || []}
       value={value}
       onChange={onChange}
     />

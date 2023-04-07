@@ -2,10 +2,11 @@ import { createContext, useEffect } from 'react';
 
 import { uuid } from '@/shared/client/uuid';
 
-import { OpenAICreateCompletionParameters } from '../api/openai';
-import { useCursor } from './useCursor';
-import { useLocalHistory } from './useLocalHistory';
-import { LocalState, useLocalState } from './useLocalState';
+import { CreateCompletionRequest } from '@/libraries/openai';
+
+import { useLocalHistory } from '@/libraries/hooks/useLocalHistory';
+import { LocalState, useLocalState } from '@/libraries/hooks/useLocalState';
+import { useCursor } from '@/libraries/hooks/useCursor';
 
 export type CompletionVersionMessage = {
   content: string;
@@ -32,7 +33,7 @@ export type CompletionUpdateItem = {
 };
 
 type CompletionConfiguration = LocalState &
-  Omit<OpenAICreateCompletionParameters, 'prompt'> & {
+  Omit<CreateCompletionRequest, 'prompt'> & {
     useVersions: boolean;
   };
 

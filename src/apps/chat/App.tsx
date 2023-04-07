@@ -1,22 +1,26 @@
-import { useState } from 'react';
+import { useChat } from './hooks/useChat';
 
-import Activitybar from './components/Activitybar';
-import Viewport from './components/Viewport';
-import { DEFAULT_APP_FEATURE } from './constants/app';
+import ChatViewSidebar from './components/ChatViewSidebar';
+import ChatViewHeader from './components/ChatViewHeader';
+import ChatMessageList from './components/ChatMessageList';
+import ChatInputbar from './components/ChatInputbar';
+import ChatViewEmpty from './components/ChatViewEmpty';
 
-function App() {
-  const [viewName, setViewName] = useState(DEFAULT_APP_FEATURE);
+export default function App() {
+  const { data } = useChat();
 
   return (
-    <div className="w-screen h-screen bg-gray-100">
-      <div className="mx-auto max-w-[1440px] h-full md:min-h-[600px] lg:py-8 transition-all ease-out duration-200">
-        <div className="flex h-full overflow-hidden bg-white md:border md:rounded-md">
-          <Activitybar active={viewName} onActive={setViewName}></Activitybar>
-          <Viewport viewName={viewName}></Viewport>
+    <div className="flex-1 flex items-stretch w-full h-full overflow-hidden">
+      <ChatViewSidebar></ChatViewSidebar>
+      {data ? (
+        <div className="flex flex-col items-stretch w-full min-h-0 bg-gray-100">
+          <ChatViewHeader></ChatViewHeader>
+          <ChatMessageList></ChatMessageList>
+          <ChatInputbar></ChatInputbar>
         </div>
-      </div>
+      ) : (
+        <ChatViewEmpty></ChatViewEmpty>
+      )}
     </div>
   );
 }
-
-export default App;

@@ -15,7 +15,7 @@ export default function ActivitybarUser() {
 
   const button = (
     <Menu.Button>
-      <div className="ai-activitybar-user bg-gray-400 opacity-60"></div>
+      <div className="w-[30px] h-[30px] bg-gray-400 opacity-60"></div>
     </Menu.Button>
   );
 

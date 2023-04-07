@@ -1,11 +1,14 @@
 import { createContext, useEffect } from 'react';
 
-import { uuid } from '@/shared/client/uuid';
+import { useLocalHistory } from '@/libraries/hooks/useLocalHistory';
+import { LocalState, useLocalState } from '@/libraries/hooks/useLocalState';
+import { useCursor } from '@/libraries/hooks/useCursor';
 
-import { OpenAICreateChatParameters } from '../api/openai';
-import { useCursor } from './useCursor';
-import { useLocalHistory } from './useLocalHistory';
-import { LocalState, useLocalState } from './useLocalState';
+import type {
+  ChatCompletionMessageRoleEnum,
+  CreateChatCompletionRequest,
+} from '@/libraries/openai';
+import { uuid } from '@/shared/client/uuid';
 
 export type ChatAssistant = LocalState & {
   id: string;
@@ -16,7 +19,7 @@ export type ChatAssistant = LocalState & {
 
 export type ChatMessage = {
   id: string;
-  role: 'user' | 'assistant' | 'system';
+  role: ChatCompletionMessageRoleEnum;
   type: 'text';
   content: string;
   date: number;
@@ -31,7 +34,7 @@ export type ChatItem = {
   date: number;
 };
 
-type ChatConfiguration = Omit<OpenAICreateChatParameters, 'messages'> &
+type ChatConfiguration = Omit<CreateChatCompletionRequest, 'messages'> &
   LocalState & {
     useAssistant: boolean;
   };

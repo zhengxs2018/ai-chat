@@ -1,17 +1,32 @@
 ---
-import { SiteData, SITE_DATA } from '@/shared/constants/data'
-
-export type Props = Partial<SiteData>;
+export type Props = {
+  /**
+   * 站点语言
+   */
+  lang?: string;
+  /**
+   * 站点标题
+   */
+  title?: string;
+  /**
+   * 站点描述
+   */
+  description?: string;
+  /**
+   * 站点关键词
+   */
+  keywords?: string;
+}
 
 const {
-  lang = SITE_DATA.lang,
-  title = SITE_DATA.title,
-  description =SITE_DATA.description,
-  keywords = SITE_DATA.keywords,
+  lang = import.meta.env.SITE_LANG,
+  title = import.meta.env.SITE_TITLE,
+  description = import.meta.env.SITE_DESCRIPTION,
+  keywords = import.meta.env.SITE_KEYWORDS,
 } = Astro.props;
 
 // 百度统计代码
-const baApiKey = import.meta.env.BAIDU_API_KEY
+const baApiKey = import.meta.env.BAIDU_API_KEY;
 ---
 
 <!DOCTYPE html>
@@ -24,24 +39,32 @@ const baApiKey = import.meta.env.BAIDU_API_KEY
     <meta name="description" content={description} />
     <meta name="keywords" content={keywords} />
     <title>{title}</title>
-    <slot name="head"></slot>
+    <slot name="head" />
   </head>
   <body>
     <slot />
 
-    {import.meta.env.PROD && baApiKey && (
-      <script is:inline async src={`https://hm.baidu.com/hm.js?${baApiKey}`}></script>
-      <script is:inline>var _hmt = _hmt || [];</script>
-    )}
+    {
+      import.meta.env.PROD && baApiKey && (
+        <>
+          <script
+            is:inline
+            async
+            src={`https://hm.baidu.com/hm.js?${baApiKey}`}
+          />
+          <script is:inline>var _hmt = _hmt || [];</script>
+        </>
+      )
+    }
   </body>
 </html>
 
 <style is:global>
-.ai-fcc {
-  @apply flex items-center justify-center;
-}
+  .ai-fcc {
+    @apply flex items-center justify-center;
+  }
 
-.ai-fcb {
-  @apply flex items-center justify-between;
-}
+  .ai-fcb {
+    @apply flex items-center justify-between;
+  }
 </style>

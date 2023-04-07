@@ -4,9 +4,9 @@ import { PlusCircleIcon } from '@heroicons/react/24/outline';
 
 import ConcatList from '@/components/message/ContactList';
 import type { IContact } from '@/components/message/interfaces';
+import PrimarySidebar from '@/components/app/PrimarySidebar';
 
 import { useChatService } from '../hooks/useChatService';
-import PrimarySidebar from './PrimarySidebar';
 import ChatItemActions from './ChatItemActions';
 import ChatViewSideEmpty from './ChatViewSideEmpty';
 

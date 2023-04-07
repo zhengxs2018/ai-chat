@@ -1,9 +1,11 @@
 import { pick } from 'lodash-es';
 import { useMemo } from 'react';
 
-import openai from '../api/openai';
+import openai from '@/shared/client/openai';
+
+import { useSender } from '@/libraries/hooks/useSender';
+
 import { useCompletionService } from './useCompletionService';
-import { useSender } from './useSender';
 
 export function useCompletion() {
   const service = useCompletionService();
@@ -32,12 +34,10 @@ export function useCompletion() {
       ]);
 
       const res = await openai.createCompletion(
-        { ...payload, prompt: `${input}<|endoftext|>` },
+        { ...payload, prompt: input },
         { signal }
       );
 
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore
       const content = res.choices[0].text;
       service.complete(itemId, input + content);
 

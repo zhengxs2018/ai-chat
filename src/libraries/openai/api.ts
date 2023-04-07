@@ -1,185 +1,140 @@
-import {
-  mergeHeaders,
-  serializeDataIfNeeded,
-  convertToFormDataIfNeeded,
-  removeLeadingSlash,
-  removeTrailingSlash,
-} from '../common/http';
+import { assignHeaders } from '@/shared/utils/http';
 
-import type {
-  Configuration,
-  CreateChatCompletionRequest,
-  CreateCompletionRequest,
-  CreateEditRequest,
-  CreateEmbeddingRequest,
-  CreateImageRequest,
-  CreateModerationRequest,
-  CreateImageEditRequest,
-  CreateImageVariationRequest,
-  CreateTranscriptionRequest,
-  CreateTranslationRequest,
-  CreateRequestInfo,
-} from './types';
+const BASE_URL = 'https://api.openai.com';
 
-const BASE_PATH = 'https://api.openai.com';
+export type OpenAIApiConfiguration = {
+  /**
+   * 基础路径
+   *
+   * @defaultValue 'https://api.openai.com'
+   */
+  baseURL?: string;
 
-function buildURL(path: string, base?: string): URL {
-  return new URL(path, base || BASE_PATH);
-}
+  /**
+   * API 版本
+   *
+   * @defaultValue 'v1'
+   */
+  apiVersion?: string;
+
+  /**
+   * OpenAI 的 API Key
+   *
+   * @param name security name
+   * @memberof Configuration
+   */
+  apiKey?: string;
+
+  /**
+   * OpenAI 的 机构ID
+   */
+  organization?: string;
+
+  /**
+   * 自定义请求头
+   */
+  headersInit?: Record<string, string>;
+};
 
 export class OpenAIApiBuilder {
-  constructor(public configuration: Configuration) {}
+  baseURL: string;
+  apiKey?: string | null;
+  apiVersion: string;
+  organization?: string | null;
+  headersInit: Record<string, string>;
 
-  configure(configuration: Configuration) {
-    this.configuration = { ...this.configuration, ...configuration };
+  constructor(config: OpenAIApiConfiguration) {
+    this.baseURL = config.baseURL || BASE_URL;
+    this.apiKey = config.apiKey;
+    this.apiVersion = config.apiVersion || 'v1';
+    this.organization = config.organization;
+    this.headersInit = config.headersInit || {};
   }
 
-  async createRequest(info: CreateRequestInfo): Promise<Response> {
-    const { baseURL, apiVersion = 'v1', headersInit } = this.configuration;
+  createChatCompletion(init: RequestInit): Promise<Response> {
+    return this.json('chat/completions', init);
+  }
 
-    // 防止外部存在多余的斜杠
-    const path = removeTrailingSlash(removeLeadingSlash(apiVersion));
+  createCompletion(init: RequestInit): Promise<Response> {
+    return this.json('completions', init);
+  }
 
-    return fetch(buildURL(`/${path}/${info.url}`, baseURL), {
-      method: info.method,
-      headers: mergeHeaders(new Headers(info.headers), headersInit),
-      body: info.body,
+  createEdit(init: RequestInit): Promise<Response> {
+    return this.json('edits', init);
+  }
+
+  createEmbedding(init: RequestInit): Promise<Response> {
+    return this.json('embeddings', init);
+  }
+
+  createImage(init: RequestInit): Promise<Response> {
+    return this.form('images/generations', init);
+  }
+
+  createImageEdit(init: RequestInit): Promise<Response> {
+    return this.form('images/edits', init);
+  }
+
+  createImageVariation(init: RequestInit): Promise<Response> {
+    return this.form('images/variations', init);
+  }
+
+  createModeration(init: RequestInit): Promise<Response> {
+    return this.form('moderations', init);
+  }
+
+  createTranscription(init: RequestInit): Promise<Response> {
+    return this.form('audio/transcriptions', init);
+  }
+
+  createTranslation(init: RequestInit): Promise<Response> {
+    return this.form('audio/translations', init);
+  }
+
+  json(uri: string, init: RequestInit): Promise<Response> {
+    const headers = this.createHeaders({
+      'Content-Type': 'application/json',
+    });
+
+    return fetch(this.buildURL(uri), {
+      ...init,
+      method: 'POST',
+      headers: assignHeaders(headers, init.headers),
     });
   }
 
-  createChatCompletion(
-    createChatCompletionRequest: BodyInit | CreateChatCompletionRequest,
-    needsSerialization?: boolean
-  ) {
-    return this.createRequest({
-      url: 'chat/completions',
+  form(uri: string, init: RequestInit): Promise<Response> {
+    const headers = this.createHeaders({
+      'Content-Type': 'multipart/form-data',
+    });
+
+    return fetch(this.buildURL(uri), {
+      ...init,
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: serializeDataIfNeeded(
-        createChatCompletionRequest,
-        needsSerialization
-      ),
+      headers: assignHeaders(headers, init.headers),
     });
   }
 
-  createCompletion(
-    createCompletionRequest: BodyInit | CreateCompletionRequest,
-    needsSerialization?: boolean
-  ) {
-    return this.createRequest({
-      url: 'completions',
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: serializeDataIfNeeded(createCompletionRequest, needsSerialization),
-    });
+  createHeaders(init: HeadersInit): Headers {
+    const { apiKey, organization } = this;
+    const headers = new Headers(this.headersInit);
+
+    if (apiKey) {
+      headers.set(`Authorization`, `Bearer ${apiKey}`);
+    }
+
+    if (organization) {
+      headers.set(`OpenAI-Organization`, organization);
+    }
+
+    return assignHeaders(headers, init);
   }
 
-  createEdit(
-    createEditRequest: BodyInit | CreateEditRequest,
-    needsSerialization?: boolean
-  ) {
-    return {
-      url: 'edits',
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: serializeDataIfNeeded(createEditRequest, needsSerialization),
-    };
+  buildURL(uri: string, base?: string): URL {
+    return new URL(`/${this.apiVersion}/${uri}`, base || this.baseURL);
   }
 
-  createEmbedding(
-    createEmbeddingRequest: BodyInit | CreateEmbeddingRequest,
-    needsSerialization?: boolean
-  ) {
-    return {
-      url: 'embeddings',
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: serializeDataIfNeeded(createEmbeddingRequest, needsSerialization),
-    };
-  }
-
-  createImage(
-    createImageRequest: BodyInit | CreateImageRequest,
-    needsConversion?: boolean
-  ) {
-    return {
-      url: 'images/generations',
-      method: 'POST',
-      headers: { 'Content-Type': 'multipart/form-data' },
-      body: convertToFormDataIfNeeded(createImageRequest, needsConversion),
-    };
-  }
-
-  createImageEdit(
-    createImageEditRequest: BodyInit | CreateImageEditRequest,
-    needsConversion?: boolean
-  ) {
-    return {
-      url: ' /images/edits',
-      method: 'POST',
-      headers: { 'Content-Type': 'multipart/form-data' },
-      body: convertToFormDataIfNeeded(createImageEditRequest, needsConversion),
-    };
-  }
-
-  createImageVariation(
-    createImageVariationRequest: BodyInit | CreateImageVariationRequest,
-    needsConversion?: boolean
-  ) {
-    return {
-      url: ' /images/variations',
-      method: 'POST',
-      headers: { 'Content-Type': 'multipart/form-data' },
-      body: convertToFormDataIfNeeded(
-        createImageVariationRequest,
-        needsConversion
-      ),
-    };
-  }
-
-  createModeration(
-    createModerationRequest: BodyInit | CreateModerationRequest,
-    needsConversion?: boolean
-  ) {
-    return {
-      url: ' /moderations',
-      method: 'POST',
-      headers: { 'Content-Type': 'multipart/form-data' },
-      body: convertToFormDataIfNeeded(createModerationRequest, needsConversion),
-    };
-  }
-
-  createTranscription(
-    createTranscriptionRequest: BodyInit | CreateTranscriptionRequest,
-    needsConversion?: boolean
-  ) {
-    return {
-      url: 'audio/transcriptions',
-      method: 'POST',
-      headers: { 'Content-Type': 'multipart/form-data' },
-      body: convertToFormDataIfNeeded(
-        createTranscriptionRequest,
-        needsConversion
-      ),
-    };
-  }
-
-  createTranslation(
-    createTranslationRequest: BodyInit | CreateTranslationRequest,
-    needsConversion?: boolean
-  ) {
-    return {
-      url: 'audio/translations',
-      method: 'POST',
-      headers: { 'Content-Type': 'multipart/form-data' },
-      body: convertToFormDataIfNeeded(
-        createTranslationRequest,
-        needsConversion
-      ),
-    };
-  }
-
-  static build(configuration: Configuration) {
-    return new OpenAIApiBuilder(configuration);
+  static build(config: OpenAIApiConfiguration) {
+    return new OpenAIApiBuilder(config);
   }
 }

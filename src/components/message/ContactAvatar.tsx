@@ -12,7 +12,7 @@ function ContactAvatar({
 }: ContactAvatarProps) {
   return (
     <div className={`ai-fcc ${className}`}>
-      <Avvvatars value={payload.name} radius={2} border={false} />
+      <Avvvatars value={payload.name} />
     </div>
   );
 }

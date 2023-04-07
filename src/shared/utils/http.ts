@@ -1,11 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-export function serializeDataIfNeeded(data: any, needsSerialization?: boolean) {
+export function serializeDataIfNeeded(data: any): BodyInit {
   if (!data) return;
 
-  return needsSerialization && typeof data === 'object'
-    ? JSON.stringify(data)
-    : data || '';
+  return typeof data === 'object' ? JSON.stringify(data) : data || '';
 }
 
 export function convertToFormDataIfNeeded(
@@ -39,20 +37,12 @@ export function convertToFormDataIfNeeded(
   return data;
 }
 
-export function mergeHeaders(headers: Headers, init?: HeadersInit) {
-  const mergedHeaders = new Headers(init);
-
-  headers.forEach((value, key) => {
-    mergedHeaders.append(key, value);
+export function assignHeaders(headers: Headers, ...custom: HeadersInit[]) {
+  custom.forEach((rawHeaders) => {
+    new Headers(rawHeaders).forEach((value, key) => {
+      headers.append(key, value);
+    });
   });
 
-  return mergedHeaders;
-}
-
-export function removeLeadingSlash(path: string) {
-  return path.startsWith('/') ? path.slice(1) : path;
-}
-
-export function removeTrailingSlash(path: string) {
-  return path.endsWith('/') ? path.slice(0, -1) : path;
+  return headers;
 }

@@ -1,52 +1,3 @@
-export interface Configuration {
-  /**
-   * 基础路径
-   *
-   * @defaultValue 'https://api.openai.com'
-   */
-  baseURL?: string;
-
-  /**
-   * API 版本
-   *
-   * @defaultValue 'v1'
-   */
-  apiVersion?: string;
-
-  /**
-   * OpenAI 的 API Key
-   *
-   * @param name security name
-   * @memberof Configuration
-   */
-  apiKey?: string;
-
-  /**
-   * OpenAI 的 机构ID
-   */
-  organization?: string;
-
-  /**
-   * TODO 预留
-   */
-  username?: string;
-
-  /**
-   * TODO 预留
-   */
-  password?: string;
-
-  /**
-   * TODO 预留
-   */
-  accessToken?: string;
-
-  /**
-   * 自定义请求头
-   */
-  headersInit?: Record<string, string>;
-}
-
 export enum ChatCompletionMessageRoleEnum {
   System = 'system',
   User = 'user',
@@ -935,11 +886,4 @@ export interface CreateTranslationRequest {
   prompt?: string;
   responseFormat?: string;
   temperature?: number;
-}
-
-export interface CreateRequestInfo {
-  url: string;
-  method?: string;
-  headers: Record<string, string>;
-  body: BodyInit;
 }

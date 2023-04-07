@@ -6,11 +6,12 @@ import { withHttpError, withLog, whenLogin } from '@/shared/node/middleware';
 export const post: APIRoute = withHttpError(
   withLog(
     whenLogin(async ({ request }) => {
-      const response = await openai.createChatCompletion(request.body);
-
-      return new Response(response.body, {
-        status: response.status,
-        statusText: response.statusText,
+      return openai.createChatCompletion({
+        body: request.body,
+        headers: {
+          Accept: request.headers.get('Accept'),
+          'Content-Type': request.headers.get('Content-Type'),
+        },
       });
     })
   )

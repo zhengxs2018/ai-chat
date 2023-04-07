@@ -7,15 +7,6 @@ import { checkPass } from '@/shared/node/auth';
 if (!checkPass(Astro.cookies.get('code').value)) {
   return Astro.redirect('/password', 302);
 }
+
+return Astro.redirect('/app/chat', 302)
 ---
-
-<Layout title="与 AI 对话">
-  <ChatApp client:only="react" />
-</Layout>
-
-<style is:global>
-  /* Hide vertical scrollbar */
-  ::-webkit-scrollbar {
-    display: none;
-  }
-</style>

@@ -1,11 +1,12 @@
 import { useMemo } from 'react';
 import { pick } from 'lodash-es';
 
+import { ChatCompletionMessageRoleEnum } from '@/libraries/openai';
+import { useSender } from '@/libraries/hooks/useSender';
 import { uuid } from '@/shared/client/uuid';
+import openai from '@/shared/client/openai';
 
-import openai from '../api/openai';
 import { useChatService } from './useChatService';
-import { useSender } from './useSender';
 
 export function useChat() {
   const service = useChatService();
@@ -28,7 +29,7 @@ export function useChat() {
 
         const newMessages = service.addMessage(itemId, {
           id: uuid(),
-          role: 'user',
+          role: ChatCompletionMessageRoleEnum.User,
           type: 'text',
           content: input,
           date: Date.now(),
@@ -55,7 +56,7 @@ export function useChat() {
 
         service.addMessage(itemId, {
           id: uuid(),
-          role: 'assistant',
+          role: ChatCompletionMessageRoleEnum.Assistant,
           type: 'text',
           content: res.choices[0].message.content,
           date: Date.now(),

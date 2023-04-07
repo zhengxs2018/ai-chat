@@ -9,12 +9,13 @@ import {
 
 export const post: APIRoute = withHttpError(
   withLog(
-    whenSuperUser(async ({ request }) => {
-      const response = await openai.createCompletion(request.body);
-
-      return new Response(response.body, {
-        status: response.status,
-        statusText: response.statusText,
+    whenSuperUser(({ request }) => {
+      return openai.createCompletion({
+        body: request.body,
+        headers: {
+          Accept: request.headers.get('Accept'),
+          'Content-Type': request.headers.get('Content-Type'),
+        },
       });
     })
   )
