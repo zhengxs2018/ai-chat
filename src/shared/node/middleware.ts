@@ -1,9 +1,12 @@
+/* eslint-disable no-console */
 import type { APIContext, APIRoute } from 'astro';
 
 import { checkPass, isSuperUser } from './auth';
 
+import { humanize } from '../utils/number';
+
 export type Middleware = (
-  next: (context: APIContext) => Response | Promise<Response>
+  next: (context: APIContext) => ReturnType<APIRoute>
 ) => APIRoute;
 
 export const whenLogin: Middleware = (next) => {
@@ -40,7 +43,44 @@ export const whenSuperUser: Middleware = (next) => {
   };
 };
 
-export const catchHttpError = (next) => (context) => {
+export const withLog: Middleware = (next) => {
+  return (context) => {
+    const start = new Date();
+    const { url, method } = context.request;
+    const { pathname } = new URL(url);
+
+    console.log('%s <-- %s %s', start.toLocaleTimeString(), method, pathname);
+
+    return Promise.resolve(next(context)).then(
+      (response) => {
+        const end = new Date();
+        console.log(
+          `%s --> %s %s %s %s`,
+          end.toLocaleTimeString(),
+          method,
+          pathname,
+          (response as Response).status,
+          time(start, end)
+        );
+        return response;
+      },
+      (ex) => {
+        const end = new Date();
+        console.log(
+          `%s xxx %s %s %s %s`,
+          end.toLocaleTimeString(),
+          method,
+          pathname,
+          500,
+          time(start, end)
+        );
+        return Promise.reject(ex);
+      }
+    );
+  };
+};
+
+export const withHttpError: Middleware = (next) => (context) => {
   return Promise.resolve(next(context)).catch((ex) => {
     // eslint-disable-next-line no-console
     console.error(ex);
@@ -53,3 +93,11 @@ export const catchHttpError = (next) => (context) => {
     );
   });
 };
+
+function time(start, end) {
+  const delta = end - start;
+
+  return humanize(
+    delta < 10000 ? `${delta}ms` : `${Math.round(delta / 1000)}s`
+  );
+}
