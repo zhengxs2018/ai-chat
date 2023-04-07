@@ -1,7 +1,7 @@
 import FieldSlider from '@/components/fields/FieldSlider';
 
 import OpenAIModelEngineSelect from '@/components/openai/OpenAIModelSelect';
-import { useCompletionService } from '../hooks/useCompletionService';
+import { useCompletionService } from '../../../hooks/useCompletionService';
 
 export default function OpenAICompletionConfigurationForm() {
   const { preferences, setPreference } = useCompletionService();

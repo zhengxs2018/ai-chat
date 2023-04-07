@@ -1,19 +1,19 @@
 import React from 'react';
+import { RouterProvider } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
+
 import 'tippy.js/dist/tippy.css';
+import './index.css';
 
-import App from './App';
-import { ChatContext, useChatProvider } from './hooks/useChatProvider';
+import router from './router';
 
-export default function ChatApp() {
-  const chat = useChatProvider();
-
+export default function Chat() {
   return (
     <React.StrictMode>
-      <ChatContext.Provider value={chat}>
+      <div className="w-screen h-screen bg-gray-100">
         <Toaster />
-        <App />
-      </ChatContext.Provider>
+        <RouterProvider router={router} />
+      </div>
     </React.StrictMode>
   );
 }

@@ -1,4 +1,4 @@
-import { createContext, useEffect } from 'react';
+import { createContext, useEffect, useMemo } from 'react';
 
 import { useLocalHistory } from '@/libraries/hooks/useLocalHistory';
 import { LocalState, useLocalState } from '@/libraries/hooks/useLocalState';
@@ -75,6 +75,12 @@ export function useChatProvider() {
 
   const cursor = useCursor(history.data);
 
+  // TODO: 待优化
+  const current = useMemo(
+    () => history.data[cursor.index],
+    [history.data, cursor.index]
+  );
+
   useEffect(() => {
     prefs.refresh();
     history.refresh();
@@ -86,6 +92,7 @@ export function useChatProvider() {
     setPreference: prefs.set,
     assistant,
     data: history.data,
+    current,
     cursor,
     get(id: string) {
       return history.get(id);

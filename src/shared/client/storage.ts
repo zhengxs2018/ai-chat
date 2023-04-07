@@ -28,13 +28,13 @@ export type WebStorageOptions<Item extends WebStorageItem = WebStorageItem> = {
  */
 export function createWebStorage<Item extends WebStorageItem = WebStorageItem>(
   prefix: string,
-  options: WebStorageOptions<Item>
+  options?: WebStorageOptions<Item>
 ) {
   const {
     store = localStorage,
     serializer = (item) => JSON.stringify(item),
     deserializer = (item) => JSON.parse(item),
-  } = options;
+  } = options || {};
 
   function trySerialize(raw: Item): string | null {
     try {

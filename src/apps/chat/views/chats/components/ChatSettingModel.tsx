@@ -4,8 +4,8 @@ import ChatIcon from '@/components/icons/ChatIcon';
 import SettingIcon from '@/components/icons/SettingIcon';
 import SettingModel from '@/components/settings/SettingModel';
 
-import ChatSettingAssistantForm from './ChatSettingAssistantForm';
-import ChatSettingMessageForm from './ChatSettingMessageForm';
+import ChatSettingAssistantForm from './ChatAssistantForm';
+import ChatSettingMessageForm from './ChatSettingForm';
 
 export type ChatSettingModelProps = {
   opened: boolean;

@@ -5,7 +5,7 @@ import 'vditor/dist/index.css';
 
 import SendButton from '@/components/base/SendButton';
 
-import { useCompletion } from '../hooks/useCompletion';
+import { useCompletion } from '../../../hooks/useCompletion';
 
 export default function CompletionEditor() {
   // 使用本地变量，防止频繁触发本地同步

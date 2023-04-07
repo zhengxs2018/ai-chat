@@ -21,6 +21,7 @@
     "no-use-before-define": "off",
     "no-useless-constructor": "off",
     "no-plusplus": "off",
+    "object-shorthand": "off",
     "consistent-return": "off",
     "arrow-body-style": "off",
     "max-classes-per-file": "off",

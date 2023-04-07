@@ -1,18 +1,20 @@
 import Tippy from '@tippyjs/react';
 import { TrashIcon } from '@heroicons/react/24/outline';
 
-import type { ContactContentProps } from '@/components/message/interfaces';
+import { useCompletionService } from '../../../hooks/useCompletionService';
 
-import { useChatService } from '../hooks/useChatService';
+export type ContactContentProps = {
+  id: string;
+};
 
-export default function ChatActions(props: ContactContentProps) {
-  const { remove } = useChatService();
+export default function CompletionItemActions({ id }: ContactContentProps) {
+  const { remove } = useCompletionService();
 
   const handleTrashClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
     event.stopPropagation();
 
-    remove(props.payload.id);
+    remove(id);
   };
 
   return (

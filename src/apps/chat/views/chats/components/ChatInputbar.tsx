@@ -6,7 +6,7 @@ import MessageInputbar from '@/components/message/MessageInputbar';
 
 import { saveMarkdownToFile } from '@/shared/client/file';
 
-import { useChat } from '../hooks/useChat';
+import { useChat } from '../../../hooks/useChat';
 
 export default function ChatInputbar() {
   const { data, sending, send, clearMessages } = useChat();

@@ -6,7 +6,7 @@ export type ChatSettingMessageForm = {
   onChange?: (key: string, value: number | string | boolean) => void;
 };
 
-export default function SettingGeneralForm({
+export default function ChatSettingForm({
   data,
   onChange,
 }: ChatSettingMessageForm) {

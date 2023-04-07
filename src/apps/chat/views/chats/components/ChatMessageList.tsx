@@ -2,7 +2,7 @@ import { useMemo } from 'react';
 
 import MessageList from '@/components/message/MessageList';
 
-import { useChat } from '../hooks/useChat';
+import { useChat } from '../../../hooks/useChat';
 
 export default function ChatMessageList() {
   const { data } = useChat();

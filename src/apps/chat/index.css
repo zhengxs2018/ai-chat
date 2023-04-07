@@ -9,8 +9,8 @@
   );
 
   /* 动作栏 */
-  --ai-action-bar-item-height: 48px;
-  --ai-action-bar-item-icon: 25px;
+  --ai-action-item-height: 48px;
+  --ai-action-item-icon: 25px;
 
   --ai-header-height: 60px;
   --ai-primary-sidebar-width: 260px;
@@ -41,11 +41,14 @@
   @apply flex flex-col;
 }
 
+.ai-action-link,
 .ai-action-button {
-  height: var(--ai-action-bar-item-height);
+  margin: 0 auto;
+  width: var(--ai-action-item-height);
+  height: var(--ai-action-item-height);
 }
 
 .action-button-icon {
-  width: var(--ai-action-bar-item-icon);
-  height: var(--ai-action-bar-item-icon);
+  width: var(--ai-action-item-icon);
+  height: var(--ai-action-item-icon);
 }

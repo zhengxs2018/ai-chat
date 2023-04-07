@@ -32,7 +32,9 @@ words:
   - justjavac
   - katex
   - linkify
+  - lokijs
   - msgtype
+  - nozbe
   - npmmirror
   - openai
   - plusplus
@@ -47,6 +49,7 @@ words:
   - undici
   - unocss
   - Vditor
+  - watermelondb
 ignoreWords:
   - trivago
   - zhengxs

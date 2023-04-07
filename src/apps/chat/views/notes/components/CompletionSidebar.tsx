@@ -1,8 +1,8 @@
 import { PlusCircleIcon } from '@heroicons/react/24/outline';
 
-import PrimarySidebar from '@/components/app/PrimarySidebar';
+import PrimarySidebar from '__back/app/PrimarySidebar';
 
-import { useCompletionService } from '../hooks/useCompletionService';
+import { useCompletionService } from '../../../hooks/useCompletionService';
 import CompletionList from './CompletionList';
 import CompletionSideEmpty from './CompletionSideEmpty';
 

@@ -1,6 +1,6 @@
 import classNames from 'classnames';
 
-import { useCompletionService } from '../hooks/useCompletionService';
+import { useCompletionService } from '../../../hooks/useCompletionService';
 
 import CompletionItemActions from './CompletionItemActions';
 

@@ -1,4 +1,4 @@
-import { createContext, useEffect } from 'react';
+import { createContext, useEffect, useMemo } from 'react';
 
 import { uuid } from '@/shared/client/uuid';
 
@@ -63,6 +63,12 @@ export function useCompletionProvider() {
   });
 
   const cursor = useCursor(history.data);
+
+  // TODO: 待优化
+  const current = useMemo(
+    () => history.data[cursor.index],
+    [history.data, cursor.index]
+  );
 
   const create = (title?: string) => {
     history.create({
@@ -143,6 +149,7 @@ export function useCompletionProvider() {
     setPreference: prefs.set,
     data: history.data,
     cursor,
+    current,
     get(id: string) {
       return history.get(id);
     },
