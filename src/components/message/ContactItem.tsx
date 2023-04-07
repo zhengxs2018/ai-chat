@@ -31,7 +31,7 @@ function ContactItem({
     >
       <div className="flex items-start">
         <div className="ai-fcc h-[36px] min-w-[36px] max-w-[36px]">
-          <ContactAvatar></ContactAvatar>
+          <ContactAvatar payload={payload}></ContactAvatar>
         </div>
         <div className="flex-1 pl-[14px]">
           <div className="ai-fcb w-full">

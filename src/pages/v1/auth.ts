@@ -1,8 +1,9 @@
 import type { APIRoute } from 'astro';
 
 import { checkPass } from '@/shared/node/auth';
+import { withLog } from '@/shared/node/middleware';
 
-export const post: APIRoute = async ({ request, cookies }) => {
+export const post: APIRoute = withLog(async ({ request, cookies }) => {
   const body = await request.json();
   const pass = body.pass as string;
 
@@ -17,4 +18,4 @@ export const post: APIRoute = async ({ request, cookies }) => {
   }
 
   return new Response('{"code":-1}');
-};
+});

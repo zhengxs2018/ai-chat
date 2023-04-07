@@ -23,7 +23,7 @@ export default function ChatMessageItem({
         itself ? 'justify-end itself' : 'justify-start'
       }`}
     >
-      <ContactAvatar></ContactAvatar>
+      <ContactAvatar payload={payload.talker}></ContactAvatar>
       <div
         className={`flex flex-col overflow-hidden ${
           itself ? 'order-first mr-2' : 'ml-2'
