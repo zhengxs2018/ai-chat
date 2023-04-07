@@ -1,0 +1,17 @@
+---
+export type Props = {
+  active?: boolean;
+  href?: string;
+};
+
+const props = Astro.props;
+---
+
+<a
+  class={`ai-action-button flex items-center justify-center active:bg-light-300 ${
+    props.active && 'text-indigo-600'
+  }`}
+  href={props.href}
+>
+  <slot />
+</a>

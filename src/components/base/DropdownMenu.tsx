@@ -3,16 +3,21 @@ import React from 'react';
 
 export interface DropdownMenuProps {
   button: React.ReactNode;
+  className?: string;
   itemsClassName?: string;
   children: React.ReactNode;
 }
 
 const DropdownMenu: React.FC<DropdownMenuProps> = ({
+  className,
   itemsClassName,
   button,
   children,
 }) => (
-  <Menu as="div" className="relative inline-block text-left z-10">
+  <Menu
+    as="div"
+    className={`relative inline-block text-left z-10 ${className || ''}`}
+  >
     {button}
     <Transition
       as={React.Fragment}
