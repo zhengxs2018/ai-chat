@@ -4,6 +4,12 @@
   "version": "0.0.1",
   "description": "Fake DB based on web storage",
   "main": "./index.ts",
+  "peerDependencies": {
+    "react": "latest"
+  },
+  "dependencies": {
+    "react-use": "^17.4.0"
+  },
   "engines": {
     "node": ">=18.12.1"
   },

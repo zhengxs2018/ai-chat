@@ -1,7 +1,7 @@
-import { useContext } from 'react'
-import { ChatsContext } from '../components/ChatsProvider'
+import { useFakeList } from '@ai-chat/fake-db';
+
+import { ChatItem } from '../models';
 
 export function useChats() {
-  return useContext(ChatsContext)
+  return useFakeList<ChatItem>('chats');
 }
-

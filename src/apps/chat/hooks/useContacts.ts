@@ -1,9 +1,7 @@
-import { useList } from 'react-use';
+import { useFakeList } from '@ai-chat/fake-db';
 
-import { contacts, ContactItem } from '../models';
+import { ContactItem } from '../models';
 
 export function useContacts() {
-  const [items, op] = useList<ContactItem>(contacts.values());
-
-  return [items] as const;
+  return useFakeList<ContactItem>('contacts');
 }

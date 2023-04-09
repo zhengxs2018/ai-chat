@@ -27,10 +27,3 @@ export type FakeFieldSchema<T extends FakeRecord = FakeRecord> = {
   deserialize: (raw: FakeJson) => T;
   shouldSync: (source: Partial<T>, item?: T) => boolean;
 };
-
-export type FakeSchemaDefinition<T extends FakeRecord = FakeRecord> = Partial<
-  Omit<FakeFieldSchema<T>, 'name' | 'deserialize'>
-> & {
-  name: string;
-  fields: Array<string | (FakeFieldSchema & { name: string })>;
-};

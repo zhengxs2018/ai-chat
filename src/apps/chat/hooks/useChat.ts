@@ -1,21 +1,21 @@
 import { useMemo } from 'react';
 
 import { useChats } from './useChats';
-import { useMessages } from './useMessages';
+import { useChatMessages } from './useChatMessages';
 
 export function useChat(chatId: string) {
-  const chatsService = useChats();
-  const messagesService = useMessages();
+  const chatList = useChats();
+  const msgList = useChatMessages();
 
-  const info = useMemo(() => chatsService.get(chatId), [chatsService, chatId]);
+  const info = useMemo(() => chatList.get(chatId), [chatList, chatId]);
 
   const messages = useMemo(
-    () => messagesService.findMany((item) => item.chat_id === chatId),
-    [messagesService, chatId]
+    () => msgList.findMany((item) => item.chat_id === chatId),
+    [msgList, chatId]
   );
 
   const send = (content: string) => {
-    const message = messagesService.create({
+    const message = msgList.create({
       chat_id: chatId,
       content,
       role: 'user',

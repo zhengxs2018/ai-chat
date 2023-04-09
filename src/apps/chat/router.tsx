@@ -1,10 +1,12 @@
 import { createHashRouter } from 'react-router-dom';
 
 import App from './App';
+import ErrorBoundary from './views/exceptions/ErrorBoundary';
+
 import Chats from './views/chats/Chats';
 import Chat from './views/chats/Chat';
 import ChatEmpty from './views/chats/ChatEmpty';
-import ErrorBoundary from './views/exceptions/ErrorBoundary';
+import Contacts from './views/contacts/Contacts';
 
 export default createHashRouter([
   {
@@ -28,6 +30,10 @@ export default createHashRouter([
             errorElement: <ErrorBoundary />,
           },
         ],
+      },
+      {
+        path: 'contacts',
+        element: <Contacts />,
       },
     ],
   },

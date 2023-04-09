@@ -2,32 +2,21 @@ import React from 'react';
 import { RouterProvider } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
 
-import 'tippy.js/dist/tippy.css';
-import db from './models';
+import { FakeClientProvider } from '@ai-chat/fake-db';
 
+import 'tippy.js/dist/tippy.css';
 import './index.css';
 
-import ChatsProvider from './components/ChatsProvider';
-import ContactsProvider from './components/ContactsProvider';
-import MessagesProvider from './components/MessagesProvider';
-
+import db from './models';
 import router from './router';
 
 export default function Chat() {
-  db.connect();
-
   return (
     <React.StrictMode>
-      <ContactsProvider>
-        <MessagesProvider>
-          <ChatsProvider>
-            <div className="w-screen h-screen bg-gray-100">
-              <Toaster />
-              <RouterProvider router={router} />
-            </div>
-          </ChatsProvider>
-        </MessagesProvider>
-      </ContactsProvider>
+      <FakeClientProvider value={db}>
+        <Toaster />
+        <RouterProvider router={router} />
+      </FakeClientProvider>
     </React.StrictMode>
   );
 }

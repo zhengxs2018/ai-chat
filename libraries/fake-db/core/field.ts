@@ -1,7 +1,7 @@
 import { isInvalidValue, isInvalidDate } from '@ai-chat/shared/utils';
 
-import { FieldRequiredError } from './errors';
 import type { FakeFieldValue, FakeFieldType, FakeJsonValue } from './types';
+import { FieldRequiredError } from './errors';
 
 export const deserializes = {
   number(raw: number | string): number | undefined {
