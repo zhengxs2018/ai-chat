@@ -12,10 +12,10 @@ export default function ContactsAside() {
   const navigate = useNavigate();
   const { contactId } = useParams();
 
-  const contacts = useContacts();
+  const { items, create } = useContacts();
 
   const handleCreate = () => {
-    const contact = contacts.create({
+    const contact = create({
       avatar: '',
       name: '张三',
       bio: '比较常见的路人甲',
@@ -43,20 +43,19 @@ export default function ContactsAside() {
           <span className="text-sm">新增联系人</span>
         </button>
       </div>
+      <ContactList>
+        {items.map((item, index) => (
+          <ContactItem
+            index={index}
+            active={contactId === item.id}
+            payload={item}
+            key={item.id}
+            onClick={handleClick}
+          />
+        ))}
+      </ContactList>
 
-      {contacts.items.length > 0 ? (
-        <ContactList>
-          {contacts.items.map((item, index) => (
-            <ContactItem
-              index={index}
-              active={contactId === item.id}
-              payload={item}
-              key={item.id}
-              onClick={handleClick}
-            />
-          ))}
-        </ContactList>
-      ) : (
+      {items.length === 0 && (
         <div className="ai-fcc w-full h-full">
           <div className="text-center text-sm text-gray-400 select-none">
             <UserGroupIcon className="w-16 h-16 mb-2" />

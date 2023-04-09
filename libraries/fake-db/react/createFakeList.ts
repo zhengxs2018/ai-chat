@@ -38,6 +38,10 @@ export function createFakeList<T extends FakeRecord = FakeRecord>(
     return map.hasOwnProperty(id);
   }
 
+  function findFirst(predicate: (value: T) => boolean) {
+    return items.find(predicate);
+  }
+
   function findMany(predicate: (value: T) => boolean) {
     return items.filter(predicate);
   }
@@ -67,7 +71,7 @@ export function createFakeList<T extends FakeRecord = FakeRecord>(
     op.removeAt(items.findIndex((item) => item.id === id));
   }
 
-  return { items, get, has, findMany, create, update, upsert, remove } as const;
+  return { items, get, has, findFirst, findMany, create, update, upsert, remove } as const;
 }
 
 export type FakeList<T extends FakeRecord = FakeRecord> = ReturnType<

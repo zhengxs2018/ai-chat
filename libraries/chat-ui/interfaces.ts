@@ -11,7 +11,7 @@ export interface IMessagePayload {
   type: string;
   content: string;
   self: boolean;
-  date: number;
+  date: Date | number;
   talker: IContact;
 }
 

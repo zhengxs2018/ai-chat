@@ -1,18 +1,42 @@
 import { useMemo } from 'react';
 
+import { useContacts } from './useContacts';
 import { useChats } from './useChats';
 import { useMessages } from './useMessages';
 
 export function useChat(chatId: string) {
-  const chatList = useChats();
+  const contacts = useContacts();
+  const chats = useChats();
   const msgList = useMessages();
 
-  const info = useMemo(() => chatList.get(chatId), [chatList, chatId]);
+  const user = {
+    id: 'user',
+    name: '我',
+  };
 
-  const messages = useMemo(
-    () => msgList.findMany((item) => item.chat_id === chatId),
-    [msgList, chatId]
+  const info = useMemo(() => chats.get(chatId), [chatId]);
+  const talker = useMemo(
+    () =>
+      info ? contacts.findFirst((item) => item.id === info.talker_id) : null,
+    [info]
   );
+  const payload = useMemo(() => ({ ...info, talker }), [info, talker]);
+
+  const messages = useMemo(() => {
+    const items = msgList.findMany((item) => item.chat_id === chatId);
+
+    return items
+      .filter((item) => item.role !== 'system')
+      .map((item) => {
+        const self = item.role === 'user';
+
+        return {
+          ...item,
+          talker: self ? user : talker,
+          self,
+        };
+      });
+  }, [msgList, chatId, talker]);
 
   const send = (content: string) => {
     const message = msgList.create({
@@ -24,5 +48,5 @@ export function useChat(chatId: string) {
     console.log(message);
   };
 
-  return [info, messages, send] as const;
+  return [payload, messages, info, send] as const;
 }

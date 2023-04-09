@@ -3,7 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import Avvvatars from 'avvvatars-react';
 
 import Button from '@/components/base/Button';
-import { useContact, useChats } from '../../hooks';
+import { useContact } from '../../hooks';
 
 export default function Contact() {
   const navigate = useNavigate();
