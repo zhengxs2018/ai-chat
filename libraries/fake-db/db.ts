@@ -6,8 +6,16 @@ export type FakeDBConnectOptions = {
   tables?: FakeTable<any>[];
 };
 
-export function createFakeDB(name: string, options: FakeDBConnectOptions) {
-  const tables: Record<string, FakeTable<any>> = {};
+export type FakeDB = Record<string, FakeTable> & {
+  connect: () => void;
+  clear: () => void;
+};
+
+export function createFakeDB(
+  name: string,
+  options: FakeDBConnectOptions
+): FakeDB {
+  const tables: Record<string, FakeTable> = {};
 
   options.tables?.forEach((table) => {
     tables[table.name] = table;
@@ -19,7 +27,6 @@ export function createFakeDB(name: string, options: FakeDBConnectOptions) {
 
   function initialize() {
     const prefix = `${name}:`;
-
     for (const key in localStorage) {
       if (key.startsWith(prefix)) {
         const [_, tableName, id] = key.split(':');
@@ -72,13 +79,7 @@ export function createFakeDB(name: string, options: FakeDBConnectOptions) {
     setupListeners();
   }
 
-  return {
-    ...tables,
-    initialize,
-    setupListeners,
-    connect,
-    clear,
-  };
+  return Object.assign({}, tables, { connect, clear });
 }
 
 function syncTableToStorage(dbName: string, table: FakeTable<any>) {

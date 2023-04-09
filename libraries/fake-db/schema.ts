@@ -1,24 +1,23 @@
-import { FakeFieldSchema, FakeField } from './field';
+import { FakeField, FakeFieldOptions } from './field';
+import type { FakeJson, FakeRecord } from './types';
 
-export type JsonObject = Record<string, string | number | boolean | null>;
-
-export type FakeSchema<T> = {
+export type FakeSchema<T extends FakeRecord = FakeRecord> = {
   name: string;
   initialValue: () => Partial<T>;
   validate(data: Partial<T>): void | never;
-  serialize: (source: T) => string;
-  deserialize: (raw: JsonObject) => T;
-  shouldSync: (source: T, target?: T) => boolean;
+  serialize: (item: T) => string;
+  deserialize: (raw: FakeJson) => T;
+  shouldSync: (source: Partial<T>, item?: T) => boolean;
 };
 
-export type FakeSchemaDefinition<T> = Partial<
+export type FakeSchemaDefinition<T extends FakeRecord = FakeRecord> = Partial<
   Omit<FakeSchema<T>, 'name' | 'deserialize'>
 > & {
   name: string;
-  fields: Array<string | (FakeFieldSchema & { name: string })>;
+  fields: Array<string | (FakeFieldOptions & { name: string })>;
 };
 
-export function buildSchema<T = unknown>(
+export function buildSchema<T extends FakeRecord = FakeRecord>(
   definition: FakeSchemaDefinition<T>
 ): FakeSchema<T> {
   const { name, shouldSync = () => true } = definition;
@@ -33,7 +32,7 @@ export function buildSchema<T = unknown>(
   });
 
   function initialValue() {
-    const raw: Partial<T> = {};
+    const raw = {};
 
     fields.forEach((field) => {
       const value = field.default();
@@ -51,21 +50,24 @@ export function buildSchema<T = unknown>(
     });
   }
 
-  function deserialize(raw: JsonObject): T {
+  function deserialize(raw: FakeJson): T {
     return fields.reduce((acc, field) => {
-      acc[field.name] = field.output(raw[field.name]);
+      const value = field.output(raw[field.name]);
+
+      // @ts-ignore
+      acc[field.name] = value;
       return acc;
     }, {} as T);
   }
 
   function serialize(source: T): string {
-    const raw: JsonObject = {};
+    const raw: FakeJson = {};
 
     fields.forEach((field) => {
       const value = source[field.name];
       if (value == null) return;
 
-      raw[field.name] = value;
+      raw[field.name] = field.serialize(value);
     });
 
     return JSON.stringify(raw);

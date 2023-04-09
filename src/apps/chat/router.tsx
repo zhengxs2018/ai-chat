@@ -1,42 +1,34 @@
 import { createHashRouter } from 'react-router-dom';
 
 import App from './App';
+import Chats from './views/chats/Chats';
+import Chat from './views/chats/Chat';
+import ChatEmpty from './views/chats/ChatEmpty';
+import ErrorBoundary from './views/exceptions/ErrorBoundary';
 
-import ChatsView from './views/chats/ChatsView';
-import ChatView from './views/chats/ChatView';
-import ChatIndexView from './views/chats/ChatIndexView';
-
-import NotesView from './views/notes/NotesView';
-import ErrorView from './views/exceptions/ErrorView';
-
-const router = createHashRouter([
+export default createHashRouter([
   {
     path: '/',
     element: <App />,
-    errorElement: <ErrorView />,
+    errorElement: <ErrorBoundary />,
     children: [
       {
         path: 'chats',
-        element: <ChatsView />,
-        errorElement: <ErrorView />,
+        element: <Chats />,
+        errorElement: <ErrorBoundary />,
         children: [
           {
             index: true,
-            element: <ChatIndexView />,
+            element: <ChatEmpty />,
+            errorElement: <ErrorBoundary />,
           },
           {
             path: ':chatId',
-            element: <ChatView />,
+            element: <Chat />,
+            errorElement: <ErrorBoundary />,
           },
         ],
-      },
-      {
-        path: 'notes',
-        element: <NotesView />,
-        errorElement: <ErrorView />,
       },
     ],
   },
 ]);
-
-export default router;

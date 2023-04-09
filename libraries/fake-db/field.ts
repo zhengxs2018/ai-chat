@@ -1,5 +1,8 @@
 import { isInvalidValue, isInvalidDate } from '@ai-chat/shared/utils';
 
+import { FieldRequiredError } from './errors';
+import type { FakeFieldValue, FakeFieldType, FakeJsonValue } from './types';
+
 export const deserializes = {
   number(raw: number | string): number | undefined {
     const num = Number(raw);
@@ -15,50 +18,25 @@ export const deserializes = {
   },
 };
 
-export type FakeFieldValueType =
-  | Date
-  | string
-  | number
-  | boolean
-  | null
-  | undefined;
-
-export type FakeFieldType =
-  | 'raw'
-  | 'string'
-  | 'int'
-  | 'float'
-  | 'number'
-  | 'boolean'
-  | 'date';
-
-export interface FakeFieldSchema<
-  T extends FakeFieldValueType = FakeFieldValueType
-> {
+export interface FakeFieldOptions<T extends FakeFieldValue = FakeFieldValue> {
   required?: boolean;
-  type?: 'string' | 'int' | 'float' | 'number' | 'boolean' | 'date';
+  type?: FakeFieldType;
   format?: (raw: string) => T;
   default?: (() => T) | T;
 }
 
-export class FieldRequiredError extends Error {
-  constructor(name: string) {
-    super(`Field ${name} is required`);
-  }
-}
-
-export class FakeField<T extends FakeFieldValueType = FakeFieldValueType> {
+export class FakeField<T extends FakeFieldValue = FakeFieldValue> {
   name: string;
 
-  schema: FakeFieldSchema<T>;
+  options: FakeFieldOptions<T>;
 
-  constructor(name: string, schema?: FakeFieldSchema<T>) {
+  constructor(name: string, options?: FakeFieldOptions<T>) {
     this.name = name;
-    this.schema = schema || {};
+    this.options = options || {};
   }
 
   required() {
-    return this.schema.required === true;
+    return this.options.required === true;
   }
 
   validate(value: T) {
@@ -68,12 +46,12 @@ export class FakeField<T extends FakeFieldValueType = FakeFieldValueType> {
   }
 
   format(raw: string | number | boolean | null): T | undefined {
-    const { type, format = deserializes[type] } = this.schema;
+    const { type, format = deserializes[type] } = this.options;
     return format?.(raw) ?? raw ?? this.default();
   }
 
   default(): T {
-    const defaultValue = this.schema.default;
+    const defaultValue = this.options.default;
     return typeof defaultValue === 'function' ? defaultValue() : defaultValue;
   }
 
@@ -87,5 +65,9 @@ export class FakeField<T extends FakeFieldValueType = FakeFieldValueType> {
     }
 
     return value as T;
+  }
+
+  serialize(value: T): FakeJsonValue {
+    return value instanceof Date ? value.toISOString() : value;
   }
 }

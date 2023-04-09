@@ -1,17 +1,7 @@
-import {
-  FakeSchema,
-  FakeSchemaDefinition,
-  JsonObject,
-  buildSchema,
-} from './schema';
+import { FakeSchemaDefinition, FakeSchema, buildSchema } from './schema';
+import type { FakeJson, FakeRecord } from './types';
 
-export type FakeTableRecord = {
-  id: string;
-  version: number;
-  [key: string]: unknown;
-};
-
-export class FakeTable<T extends FakeTableRecord> extends EventTarget {
+export class FakeTable<T extends FakeRecord = FakeRecord> extends EventTarget {
   name: string;
 
   store = new Map<string, T>();
@@ -26,9 +16,13 @@ export class FakeTable<T extends FakeTableRecord> extends EventTarget {
     return this.store.get(id);
   }
 
-  create(part: Partial<Omit<FakeTableRecord, 'id'>>) {
+  values() {
+    return Array.from(this.store.values());
+  }
+
+  create(part: Partial<Omit<FakeRecord, 'id'>>): T {
     const initial = this.schema.initialValue();
-    const data = { ...initial, ...part, version: 0 };
+    const data = { ...initial, ...part, version: 0 } as T;
 
     // 数据验证
     this.schema.validate(data);
@@ -41,7 +35,7 @@ export class FakeTable<T extends FakeTableRecord> extends EventTarget {
     return data;
   }
 
-  update(part: Partial<FakeTableRecord & { id: string }>) {
+  update(part: Partial<FakeRecord & { id: string }>) {
     const id = part.id;
     const store = this.store;
     const old = store.get(id);
@@ -58,7 +52,7 @@ export class FakeTable<T extends FakeTableRecord> extends EventTarget {
     return data;
   }
 
-  upsert(part: Partial<FakeTableRecord & { id: string }>) {
+  upsert(part: Partial<FakeRecord & { id: string }>) {
     return this.store.has(part.id) ? this.update(part) : this.create(part);
   }
 
@@ -80,11 +74,7 @@ export class FakeTable<T extends FakeTableRecord> extends EventTarget {
     this.dispatchEvent(new CustomEvent('clear', { detail: ids }));
   }
 
-  getAll() {
-    return Array.from(this.store.values());
-  }
-
-  syncUpdate(raw: JsonObject) {
+  syncUpdate(raw: FakeJson) {
     const { store, schema } = this;
     const { deserialize, shouldSync } = schema;
 
@@ -111,10 +101,12 @@ export class FakeTable<T extends FakeTableRecord> extends EventTarget {
   }
 
   syncClear() {
+    if (this.store.size === 0) return;
     this.store.clear();
+    this.dispatchEvent(new CustomEvent('sync-clear'));
   }
 
-  static build<T extends FakeTableRecord>(definition: FakeSchemaDefinition<T>) {
+  static build<T extends FakeRecord>(definition: FakeSchemaDefinition<T>) {
     return new FakeTable(buildSchema(definition));
   }
 }
