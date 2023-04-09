@@ -16,7 +16,6 @@ export type FakeFieldType =
 export type FakeRecord = {
   id: string;
   version: number;
-  [key: string]: FakeFieldValue;
 };
 
 export type FakeFieldSchema<T extends FakeRecord = FakeRecord> = {

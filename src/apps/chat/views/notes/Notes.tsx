@@ -1,11 +1,11 @@
 import { Outlet } from 'react-router-dom';
 
-import ContactsAside from './components/ContactsAside';
+import NotesAside from './components/NotesAside';
 
-export default function Contacts() {
+export default function Notes() {
   return (
     <div className="flex w-full h-full overflow-hidden">
-      <ContactsAside />
+      <NotesAside />
       <div className="flex-1">
         <Outlet />
       </div>

@@ -22,7 +22,7 @@ export function createFakeList<T extends FakeRecord = FakeRecord>(
     return record;
   }, [items]);
 
-  function get(id: string) {
+  function get(id: string): T | undefined {
     return record[id];
   }
 

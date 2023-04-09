@@ -7,6 +7,9 @@ import Chats from './views/chats/Chats';
 import Chat from './views/chats/Chat';
 import ChatEmpty from './views/chats/ChatEmpty';
 import Contacts from './views/contacts/Contacts';
+import Contact from './views/contacts/Contact';
+import Notes from './views/notes/Notes';
+import Note from './views/notes/Note';
 
 export default createHashRouter([
   {
@@ -34,6 +37,26 @@ export default createHashRouter([
       {
         path: 'contacts',
         element: <Contacts />,
+        errorElement: <ErrorBoundary />,
+        children: [
+          {
+            path: ':contactId',
+            element: <Contact />,
+            errorElement: <ErrorBoundary />,
+          },
+        ],
+      },
+      {
+        path: 'notes',
+        element: <Notes />,
+        errorElement: <ErrorBoundary />,
+        children: [
+          {
+            path: ':noteId',
+            element: <Note />,
+            errorElement: <ErrorBoundary />,
+          },
+        ],
       },
     ],
   },

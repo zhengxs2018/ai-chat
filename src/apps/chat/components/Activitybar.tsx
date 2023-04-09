@@ -5,7 +5,7 @@ import {
   UsersIcon,
 } from '@heroicons/react/24/solid';
 
-import { useNavigation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
 import ActivitybarUser from './ActivitybarUser';
 import ActionLink from './ActionLink';
@@ -15,9 +15,7 @@ export type ActivitybarProps = {
 };
 
 export default function Activitybar({ className }: ActivitybarProps) {
-  const { location } = useNavigation();
-
-  console.log(location);
+  const { pathname } = useLocation();
 
   return (
     <div
@@ -30,13 +28,25 @@ export default function Activitybar({ className }: ActivitybarProps) {
         <ActivitybarUser />
       </div>
       <div className="flex-1 flex flex-col">
-        <ActionLink text="聊天" to="/chats">
+        <ActionLink
+          text="聊天"
+          active={pathname.startsWith('/chats')}
+          to="/chats"
+        >
           <ChatBubbleBottomCenterIcon className="action-button-icon" />
         </ActionLink>
-        <ActionLink text="通讯录" to="/contacts">
+        <ActionLink
+          text="通讯录"
+          active={pathname.startsWith('/contacts')}
+          to="/contacts"
+        >
           <UsersIcon className="action-button-icon" />
         </ActionLink>
-        <ActionLink text="笔记" to="/notes">
+        <ActionLink
+          text="笔记"
+          active={pathname.startsWith('/notes')}
+          to="/notes"
+        >
           <BookOpenIcon className="action-button-icon" />
         </ActionLink>
       </div>

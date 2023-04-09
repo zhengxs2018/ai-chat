@@ -1,13 +1,12 @@
-import type { IMessagePayload } from './interfaces';
+import { formatDate } from '../utils';
+import type { IMessagePayload } from '../interfaces';
 
-import { formatDate } from './utils';
-
-export type MessageUserProps = {
+export type MessageItemUserProps = {
   className?: string;
   payload: IMessagePayload;
 };
 
-function MessageUser({ payload }: MessageUserProps) {
+export function MessageItemUser({ payload }: MessageItemUserProps) {
   const { self, talker, date } = payload;
 
   if (self) {
@@ -33,5 +32,3 @@ function MessageUser({ payload }: MessageUserProps) {
     </div>
   );
 }
-
-export default MessageUser;

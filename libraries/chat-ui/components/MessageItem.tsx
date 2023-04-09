@@ -1,16 +1,14 @@
 import React from 'react';
 
-import type { MessageContentProps } from './interfaces';
-import MessageContentText from './MessageContentText';
+import type { MessageContentProps } from '../interfaces';
 
-import ContactAvatar from './ContactAvatar';
-import MessageUser from './MessageUser';
-
-import './message.css';
+import { MessageContent } from './MessageContent';
+import { ContactAvatar } from './ContactAvatar';
+import { MessageItemUser } from './MessageItemUser';
 
 export type MessageItemProps = React.PropsWithChildren<MessageContentProps>;
 
-export default function ChatMessageItem({
+export function MessageItem({
   index,
   children,
   payload,
@@ -29,7 +27,7 @@ export default function ChatMessageItem({
           itself ? 'order-first mr-2' : 'ml-2'
         }`}
       >
-        <MessageUser payload={payload}></MessageUser>
+        <MessageItemUser payload={payload}></MessageItemUser>
         {renderMessageContent(children, { index, payload })}
       </div>
     </div>
@@ -52,6 +50,6 @@ function renderMessageContent(
 
   switch (props.payload.type) {
     default:
-      return <MessageContentText {...props} />;
+      return <MessageContent {...props} />;
   }
 }

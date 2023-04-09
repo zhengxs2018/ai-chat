@@ -16,7 +16,7 @@ export interface IMessagePayload {
 }
 
 export type ContactContentProps = {
-  isActive: boolean;
+  active: boolean;
   index: number;
   payload: IContact;
 };

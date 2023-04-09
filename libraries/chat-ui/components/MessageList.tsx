@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
 import { Element, animateScroll } from 'react-scroll';
 
-import MessageItem from './MessageItem';
+import type { IMessagePayload } from '../interfaces';
 
-import { IMessagePayload } from './interfaces';
+import { MessageItem } from './MessageItem';
 
 export type MessageListProps = React.PropsWithChildren<{
   className?: string;
@@ -11,7 +11,7 @@ export type MessageListProps = React.PropsWithChildren<{
   messages: IMessagePayload[];
 }>;
 
-function MessageList({
+export function MessageList({
   id = 'messages',
   className = '',
   children,
@@ -35,5 +35,3 @@ function MessageList({
     </Element>
   );
 }
-
-export default MessageList;

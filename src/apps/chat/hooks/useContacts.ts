@@ -1,7 +1,7 @@
 import { useFakeList } from '@ai-chat/fake-db';
 
-import { ContactItem } from '../models';
+import { IContact } from '../models';
 
 export function useContacts() {
-  return useFakeList<ContactItem>('contacts');
+  return useFakeList<IContact>('contacts');
 }

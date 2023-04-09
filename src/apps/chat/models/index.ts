@@ -1,13 +1,12 @@
 import { createFakeDB } from '@ai-chat/fake-db';
 
-import chats, { ChatItem } from './chats';
-import contacts, { ContactItem } from './contacts';
-import messages, { MessageItem } from './messages';
+import chats, { IChat } from './chats';
+import contacts, { IContact } from './contacts';
+import messages, { IMessage } from './messages';
+import notes, { INote } from './notes';
 
-export type { ChatItem, ContactItem, MessageItem };
-
-export { chats, contacts, messages };
+export type { IChat, IContact, IMessage, INote };
 
 export default createFakeDB('ai-chat-app', {
-  tables: [chats, contacts, messages],
+  tables: [chats, contacts, messages, notes],
 });

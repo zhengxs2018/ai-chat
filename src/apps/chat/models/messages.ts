@@ -1,7 +1,7 @@
 import { FakeTable } from '@ai-chat/fake-db';
 import { v4 as uuid } from 'uuid';
 
-export type MessageItem = {
+export interface IMessage {
   id: string;
   version: number;
   type: string;
@@ -9,9 +9,9 @@ export type MessageItem = {
   content: string;
   chat_id: string;
   date: Date;
-};
+}
 
-export default FakeTable.build<MessageItem>({
+export default FakeTable.build<IMessage>({
   name: 'messages',
   fields: [
     { name: 'id', type: 'string', default: uuid },

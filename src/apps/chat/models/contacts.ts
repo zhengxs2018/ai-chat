@@ -1,16 +1,16 @@
 import { FakeTable } from '@ai-chat/fake-db';
 import { v4 as uuid } from 'uuid';
 
-export type ContactItem = {
+export interface IContact {
   id: string;
   version: number;
   name: string;
   avatar: string;
   bio: string;
   date: Date;
-};
+}
 
-export default FakeTable.build<ContactItem>({
+export default FakeTable.build<IContact>({
   name: 'contacts',
   fields: [
     { name: 'id', type: 'string', default: uuid },

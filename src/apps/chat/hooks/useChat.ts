@@ -1,11 +1,11 @@
 import { useMemo } from 'react';
 
 import { useChats } from './useChats';
-import { useChatMessages } from './useChatMessages';
+import { useMessages } from './useMessages';
 
 export function useChat(chatId: string) {
   const chatList = useChats();
-  const msgList = useChatMessages();
+  const msgList = useMessages();
 
   const info = useMemo(() => chatList.get(chatId), [chatList, chatId]);
 

@@ -14,6 +14,7 @@
   "dependencies": {
     "@ai-chat/fake-db": "workspace:*",
     "@ai-chat/openai": "workspace:*",
+    "@ai-chat/chat-ui": "workspace:*",
     "@ai-chat/shared": "workspace:*",
     "@headlessui/react": "^1.7.13",
     "@heroicons/react": "^2.0.17",

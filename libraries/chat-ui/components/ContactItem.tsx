@@ -1,33 +1,30 @@
 import React from 'react';
 
-import ContactAvatar from './ContactAvatar';
-import { ContactContentProps, IContact } from './interfaces';
+import { formatDate } from '../utils';
+import type { ContactContentProps, IContact } from '../interfaces';
 
-import './contact.css';
-import { formatDate } from './utils';
+import { ContactAvatar } from './ContactAvatar';
 
-export type ContactItemProps = {
+export type ContactItemProps = ContactContentProps & {
   extra?: React.ReactNode | ((props: ContactContentProps) => React.ReactNode);
-  current?: string;
   onClick: (
-    index: number,
     payload: IContact,
+    index: number,
     e: React.MouseEvent<HTMLDivElement, MouseEvent>
   ) => void;
-} & Omit<ContactContentProps, 'isActive'>;
+};
 
-function ContactItem({
-  current,
+export function ContactItem({
+  active,
   index,
   payload,
   extra,
   onClick,
 }: ContactItemProps) {
-  const isActive = current === payload.id;
   return (
     <div
-      className={`contact ${isActive ? 'is-active' : ''}`}
-      onClick={(e) => onClick(index, payload, e)}
+      className={`contact ${active ? 'is-active' : ''}`}
+      onClick={(e) => onClick(payload, index, e)}
     >
       <div className="flex items-start">
         <div className="ai-fcc h-[36px] min-w-[36px] max-w-[36px]">
@@ -37,7 +34,7 @@ function ContactItem({
           <div className="ai-fcb w-full">
             <div className="contact-name">{payload.name}</div>
             {typeof extra === 'function'
-              ? extra({ isActive, index, payload })
+              ? extra({ index, active, payload })
               : extra}
           </div>
           <div className="ai-fcb">
@@ -53,5 +50,3 @@ function ContactItem({
     </div>
   );
 }
-
-export default ContactItem;
