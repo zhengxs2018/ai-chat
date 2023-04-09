@@ -8,15 +8,5 @@ import {
 } from '@/shared/node/middleware';
 
 export const post: APIRoute = withHttpError(
-  withLog(
-    whenSuperUser(({ request }) => {
-      return openai.createCompletion({
-        body: request.body,
-        headers: {
-          Accept: request.headers.get('Accept'),
-          'Content-Type': request.headers.get('Content-Type'),
-        },
-      });
-    })
-  )
+  withLog(whenSuperUser(({ request }) => openai.createCompletion(request)))
 );

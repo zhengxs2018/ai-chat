@@ -1,6 +1,6 @@
-import { OpenAIClient } from '@/libraries/openai';
+import { OpenAiClient } from '@ai-chat/openai/client';
 
-const openai = new OpenAIClient({
+const openai = new OpenAiClient({
   baseURL: window.location.origin,
 });
 

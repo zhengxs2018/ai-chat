@@ -3,7 +3,7 @@ import type { APIContext, APIRoute } from 'astro';
 
 import { checkPass, isSuperUser } from './auth';
 
-import { humanize } from '../utils/format';
+import { humanize } from '../../../libraries/shared/format';
 
 export type Middleware = (
   next: (context: APIContext) => ReturnType<APIRoute>

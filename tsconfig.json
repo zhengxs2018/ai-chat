@@ -6,8 +6,8 @@
     "jsxImportSource": "react",
     "baseUrl": ".",
     "paths": {
+      "@ai-chat/*": ["libraries/*"],
       "@/*": ["src/*"],
-      "@chat/*": ["src/apps/chat/*"]
     },
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true

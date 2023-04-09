@@ -1,8 +1,6 @@
-export enum ChatCompletionMessageRoleEnum {
-  System = 'system',
-  User = 'user',
-  Assistant = 'assistant',
-}
+// Copy from openai
+
+export type ChatCompletionMessageRole= 'system' | 'user' | 'assistant';
 
 export interface ChatCompletionRequestMessage {
   /**
@@ -16,7 +14,7 @@ export interface ChatCompletionRequestMessage {
    * @type {string}
    * @memberof ChatCompletionRequestMessage
    */
-  role: ChatCompletionMessageRoleEnum;
+  role: ChatCompletionMessageRole;
   /**
    * The contents of the message
    * @type {string}

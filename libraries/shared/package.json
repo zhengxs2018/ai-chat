@@ -1,0 +1,14 @@
+{
+  "name": "@ai-chat/shared",
+  "type": "module",
+  "version": "0.0.1",
+  "main": "./index.ts",
+  "engines": {
+    "node": ">=18.12.1"
+  },
+  "author": {
+    "name": "zhengxs2018",
+    "email": "zhengxs2018@gmail.com"
+  },
+  "license": "MIT"
+}
