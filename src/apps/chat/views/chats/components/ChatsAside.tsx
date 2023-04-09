@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import classNames from 'classnames';
 
 import { useChats } from '../../../hooks';
@@ -9,11 +9,14 @@ export type ChatsAsideProps = {
 
 export default function ChatsAside({ className }: ChatsAsideProps) {
   const chats = useChats();
+  const navigate = useNavigate();
 
   const handleCreate = () => {
-    chats.create({
+    const chat = chats.create({
       talker_id: '1',
     });
+
+    navigate(`/chats/${chat.id}`)
   };
 
   return (

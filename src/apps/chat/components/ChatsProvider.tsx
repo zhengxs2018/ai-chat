@@ -33,7 +33,7 @@ export default function ChatsProvider({ children }: React.PropsWithChildren) {
 
   function create(item: Partial<Omit<ChatItem, 'id' | 'version'>>) {
     const newItem = chats.create(item);
-    op.push(newItem);
+    op.insertAt(0, newItem);
     return newItem;
   }
 
