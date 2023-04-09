@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import Toast from 'react-hot-toast';
 
 import Alert from '@/components/base/Alert';
+import Button from '@/components/base/Button';
 
 import { useNote } from '../../hooks';
 import RichEditor from '../../components/RichEditor';
@@ -53,14 +54,10 @@ export default function Note() {
           value={title}
           onChange={(e) => setTitle(e.target.value.trim())}
         />
-        <div className="p-2">
-          <button
-            className="flex flex-row items-center space-x-2 px-4 py-2 rounded-lg font-medium text-white bg-gradient-to-tr from-indigo-500 to-purple-500 transition-colors duration-300 hover:from-indigo-600 hover:to-purple-600"
-            type="button"
-            onClick={handleSave}
-          >
+        <div className="p-2 flex space-x-2">
+          <Button type="primary" onClick={handleSave}>
             保存
-          </button>
+          </Button>
         </div>
       </header>
       <div className="flex-1 flex flex-col w-full p-2 overflow-hidden">

@@ -35,7 +35,7 @@ export class FakeField<T extends FakeFieldValue = FakeFieldValue> {
     this.options = options || {};
   }
 
-  required() {
+  get required() {
     return this.options.required === true;
   }
 

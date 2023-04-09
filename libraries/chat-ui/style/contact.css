@@ -10,7 +10,7 @@
   @apply text-xs text-gray-800 tracking-wide max-w-[126px] truncate;
 }
 
-.contact-desc,
+.contact-bio,
 .contact-date {
   @apply text-xs text-gray-400 tracking-wide;
 }

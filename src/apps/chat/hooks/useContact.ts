@@ -4,7 +4,7 @@ import { useContacts } from './useContacts';
 
 export function useContact(contactId: string) {
   const contacts = useContacts();
-  const contact = useMemo(() => contacts.get(contactId), [contacts, contactId]);
+  const payload = useMemo(() => contacts.get(contactId), [contacts, contactId]);
 
-  return [contact] as const;
+  return [payload] as const;
 }

@@ -2,7 +2,7 @@ export interface IContact {
   id: string;
   name: string;
   avatar?: string;
-  desc?: string;
+  bio?: string;
   date?: number | string | Date;
 }
 

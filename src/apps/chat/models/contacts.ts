@@ -7,6 +7,10 @@ export interface IContact {
   name: string;
   avatar: string;
   bio: string;
+  relationship?: string;
+  hint?: string;
+  hobbies?: string
+  prompt?: string;
   date: Date;
 }
 
@@ -18,6 +22,8 @@ export default FakeTable.build<IContact>({
     { name: 'name', type: 'string', required: true },
     { name: 'avatar', type: 'string' },
     { name: 'bio', type: 'string' },
+    { name: 'hint', type: 'string' },
+    { name: 'prompt', type: 'string' },
     { name: 'date', type: 'date', default: () => new Date() },
   ],
 });

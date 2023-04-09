@@ -13,7 +13,7 @@ export function ContactAvatar({
 }: ContactAvatarProps) {
   return (
     <div className={`ai-fcc ${className}`}>
-      <Avvvatars value={payload.name} />
+      <Avvvatars value={payload.name} radius={4} />
     </div>
   );
 }

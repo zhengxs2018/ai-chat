@@ -38,8 +38,8 @@ export function ContactItem({
               : extra}
           </div>
           <div className="ai-fcb">
-            <div className="contact-desc w-[126px] truncate">
-              {payload.desc}
+            <div className="contact-bio w-[126px] truncate">
+              {payload.bio}
             </div>
             <div className="contact-date">
               {payload.date && formatDate(payload.date)}

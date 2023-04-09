@@ -6,9 +6,7 @@ export default function Contacts() {
   return (
     <div className="flex w-full h-full overflow-hidden">
       <ContactsAside />
-      <div className="flex-1">
-        <Outlet />
-      </div>
+      <Outlet />
     </div>
   );
 }
