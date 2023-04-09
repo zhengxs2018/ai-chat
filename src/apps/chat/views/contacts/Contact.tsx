@@ -3,13 +3,23 @@ import { useParams, useNavigate } from 'react-router-dom';
 import Avvvatars from 'avvvatars-react';
 
 import Button from '@/components/base/Button';
-import { useContact } from '../../hooks';
+import { useContact, useChats } from '../../hooks';
 
 export default function Contact() {
   const navigate = useNavigate();
   const { contactId } = useParams();
 
-  const [payload] = useContact(contactId);
+  const [payload, op] = useContact(contactId);
+
+  function handleNewChat() {
+    op.startChat();
+    navigate(`/chats/${contactId}`);
+  }
+
+  function handleDelete() {
+    op.remove();
+    navigate('/contacts');
+  }
 
   useEffect(() => {
     if (!payload) return navigate('/contacts');
@@ -63,8 +73,12 @@ export default function Contact() {
           <div className="px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
             <dt className="text-sm font-medium text-gray-500"></dt>
             <dd className="mt-1 flex space-x-2 text-sm sm:col-span-2 sm:mt-0">
-              <Button type="primary">开始聊天</Button>
-              <Button type="danger">删除</Button>
+              <Button type="primary" onClick={handleNewChat}>
+                开始聊天
+              </Button>
+              <Button type="danger" onClick={handleDelete}>
+                删除
+              </Button>
             </dd>
           </div>
         </dl>
