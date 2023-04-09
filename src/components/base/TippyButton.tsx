@@ -22,7 +22,7 @@ function TippyButton(props: TippyButtonProps) {
           trigger={'mouseenter'}
         >
           <button
-            className={`py-2 px-2 rounded-md ai-fcc ${props.className}`}
+            className={`py-2 px-2 rounded-md ai-fcc select-none ${props.className}`}
             onClick={props.onClick}
           >
             {props.icon}
@@ -32,7 +32,7 @@ function TippyButton(props: TippyButtonProps) {
       )}
       {!props.tooltip && (
         <button
-          className={`py-2 px-2 rounded-md ai-fcc ${props.className}`}
+          className={`py-2 px-2 rounded-md ai-fcc select-none ${props.className}`}
           onClick={props.onClick}
         >
           {props.icon}

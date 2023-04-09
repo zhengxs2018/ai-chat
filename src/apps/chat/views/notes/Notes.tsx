@@ -6,9 +6,7 @@ export default function Notes() {
   return (
     <div className="flex w-full h-full overflow-hidden">
       <NotesAside />
-      <div className="flex-1">
-        <Outlet />
-      </div>
+      <Outlet />
     </div>
   );
 }

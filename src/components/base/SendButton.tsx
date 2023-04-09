@@ -26,7 +26,7 @@ function MessageInputSendButton({
         className={classNames(base, 'cursor-wait', className)}
       >
         <WaitingIcon className="h-5 w-5 animate-spin" />
-        <div>等待</div>
+        <span>等待</span>
       </button>
     );
   }
@@ -36,13 +36,13 @@ function MessageInputSendButton({
       type="button"
       className={classNames(
         base,
-        ' hover:bg-green-600 hover:from-indigo-600 hover:to-purple-600 ',
+        ' hover:from-indigo-600 hover:to-purple-600 ',
         className
       )}
       onClick={onClick}
     >
       <SendIcon className="h-5 w-5" />
-      <div>{text}</div>
+      <span>{text}</span>
     </button>
   );
 }
