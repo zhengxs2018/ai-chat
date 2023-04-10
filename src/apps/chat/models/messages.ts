@@ -1,4 +1,4 @@
-import { FakeTable, FakeRecord } from '@ai-chat/fake-db';
+import { FakeTable, FakeRecord, FakeCreateInputWith } from '@ai-chat/fake-db';
 
 export interface IMessage extends FakeRecord {
   type: string;
@@ -6,6 +6,8 @@ export interface IMessage extends FakeRecord {
   content: string;
   chat_id: string;
 }
+
+export type ContactCreateInput = FakeCreateInputWith<IMessage>;
 
 export default FakeTable.build<IMessage>({
   name: 'messages',

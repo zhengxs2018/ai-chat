@@ -1,5 +1,4 @@
-import markdown from '@ai-chat/shared/client/markdown'
-;
+import markdown from '@ai-chat/shared/client/markdown';
 import type { MessageContentProps } from '../interfaces';
 
 export function MessageContent({ payload }: MessageContentProps) {

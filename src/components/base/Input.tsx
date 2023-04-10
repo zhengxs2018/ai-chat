@@ -7,7 +7,7 @@ export type InputProps = {
   disabled?: boolean;
   placeholder?: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  step?: string;
+  step?: string | number;
 };
 
 export default function Input({

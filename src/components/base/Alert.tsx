@@ -5,12 +5,15 @@ const styles = {
 };
 
 export type AlertProps = {
+  className?: string;
   text: string;
   type?: 'success' | 'error' | 'warning' | 'info';
 };
 
-export default function Alert({ type, text }: AlertProps) {
+export default function Alert({ className, type, text }: AlertProps) {
   return (
-    <div className={classNames('mb-2 p-2 text-xs', styles[type])}>{text}</div>
+    <div className={classNames('p-2 text-xs', styles[type], className)}>
+      {text}
+    </div>
   );
 }

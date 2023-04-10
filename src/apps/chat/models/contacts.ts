@@ -1,4 +1,4 @@
-import { FakeTable, FakeRecord } from '@ai-chat/fake-db';
+import { FakeTable, FakeRecord, FakeCreateInputWith } from '@ai-chat/fake-db';
 
 export interface IContact extends FakeRecord {
   /**
@@ -31,7 +31,7 @@ export interface IContact extends FakeRecord {
   hint?: string;
 }
 
-export type CreateContact = Omit<IContact, 'id' | 'version' | 'date'>;
+export type ContactCreateInput = FakeCreateInputWith<IContact>;
 
 export default FakeTable.build<IContact>({
   name: 'contacts',

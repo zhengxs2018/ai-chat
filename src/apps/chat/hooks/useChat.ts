@@ -13,7 +13,7 @@ export function useChatWithTalker(chatId: string) {
 
   const payload = useMemo<IChatWithContact>(() => {
     const data = chats.get(chatId);
-    const talkerId = data?.talker_id;
+    const talkerId = data.talker_id;
     const talker = contacts.findFirst((item) => item.id === talkerId);
 
     return { ...data, talker };
@@ -27,5 +27,9 @@ export function useChatWithTalker(chatId: string) {
     });
   };
 
-  return [payload, { send }] as const;
+  const clear = () => {
+    // TODO: clear messages
+  };
+
+  return [payload, { send, clear }] as const;
 }

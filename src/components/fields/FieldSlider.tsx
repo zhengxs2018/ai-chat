@@ -1,54 +1,45 @@
 import { useEffect } from 'react';
-import { Placement } from 'tippy.js';
 
 import Input from '../base/Input';
-import RangeSlider from '../base/RangeSlider';
-import FieldLabel from './FieldLabel';
+import RangeSlider, { RangeSliderProps } from '../base/RangeSlider';
+import FieldLabel, { FieldLabelProps } from './FieldLabel';
 
-export interface FieldSliderProps {
-  text: string;
-  helpText?: string;
-  helpPlacement?: Placement;
-  value: number;
-  id?: string;
-  min: string;
-  max: string;
-  step: string;
-  className?: string;
-  inputClassName?: string;
-  sliderClassName?: string;
-  onChange: (value: number) => void;
-}
+export type FieldSliderProps = RangeSliderProps &
+  FieldLabelProps & {
+    className?: string;
+    inputClassName?: string;
+    sliderClassName?: string;
+    onChange: (value: number) => void;
+  };
 
 export default function FieldSlider({
-  text,
-  value,
-  id,
+  label,
+  tooltip,
+  placement,
   min,
   max,
+  value,
+  id,
   step,
-  helpText,
-  helpPlacement = 'top',
   className = '',
   inputClassName = '',
   sliderClassName = '',
   onChange,
 }: FieldSliderProps) {
   useEffect(() => {
-    if (value < parseFloat(min)) {
-      onChange(parseFloat(min));
-    } else if (value > parseFloat(max)) {
-      onChange(parseFloat(max));
+    const _min = typeof min === 'string' ? parseFloat(min) : min;
+    const _max = typeof max === 'string' ? parseFloat(max) : max;
+
+    if (value < _min) {
+      onChange(_min);
+    } else if (value > _max) {
+      onChange(_max);
     }
   }, [value, min, max, onChange]);
 
   return (
     <div className={`flex flex-col items-start space-y-2 ${className}`}>
-      <FieldLabel
-        text={text}
-        helpText={helpText}
-        helpPlacement={helpPlacement}
-      />
+      <FieldLabel label={label} tooltip={tooltip} placement={placement} />
       <div className="self-start flex flex-row items-center space-x-4">
         <Input
           id={id}

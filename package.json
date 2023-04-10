@@ -9,7 +9,7 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "lint": "eslint --fix --quiet --ext .js,.ts,.tsx,.astro ."
+    "lint": "eslint --fix --quiet --ext .js,.ts,.tsx ."
   },
   "dependencies": {
     "@ai-chat/chat-ui": "workspace:*",

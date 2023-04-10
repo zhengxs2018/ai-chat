@@ -37,7 +37,9 @@ export class OpenAiClient {
     input: CreateChatCompletionRequest,
     init?: RequestInit
   ): Promise<CreateChatCompletionResponse> {
-    const request = await this.builder.createChatCompletion(JSON.stringify(input));
+    const request = await this.builder.createChatCompletion(
+      JSON.stringify(input)
+    );
     return transformResponse(await fetch(request, init));
   }
 }

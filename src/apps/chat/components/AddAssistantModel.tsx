@@ -8,13 +8,13 @@ import FieldGroup from '@/components/fields/FieldGroup';
 import FieldInput from '@/components/fields/FieldInput';
 import FieldTextArea from '@/components/fields/FieldTextArea';
 
-import { CreateContact } from '../models/contacts';
+import { ContactCreateInput } from '../models/contacts';
 import { useContacts } from '../hooks/useContacts';
 
 import { useAppSelector, useAppDispatch } from '../store';
 import { closeAddContactModel } from '../store/app';
 
-function initialState(): CreateContact {
+function initialState(): ContactCreateInput {
   return {
     name: '大橘为重',
     relationship: '宠物',
@@ -37,7 +37,7 @@ export default function AddAssistantModel() {
   const visible = useAppSelector((state) => state.app.addAssistantVisible);
 
   const contacts = useContacts();
-  const [formData, setFormData] = useState<CreateContact>(initialState());
+  const [formData, setFormData] = useState<ContactCreateInput>(initialState());
 
   const onSave = () => {
     if (!formData.name) {

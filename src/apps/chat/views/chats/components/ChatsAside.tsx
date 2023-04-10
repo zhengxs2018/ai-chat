@@ -6,42 +6,52 @@ import {
 import { useMemo } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
-import { ContactList, ContactItem } from '@ai-chat/chat-ui';
+import { ContactList, ContactItem, IContactPayload } from '@ai-chat/chat-ui';
 
 import PrimarySidebar from '../../../components/PrimarySidebar';
 
-import { IContact } from '../../../models';
-import { useContacts, useChats } from '../../../hooks';
+import { useChats } from '../../../hooks/useChats';
 
 export default function ChatsAside() {
   const navigate = useNavigate();
   const { chatId } = useParams();
 
   const { items, remove } = useChats();
-  const { get } = useContacts();
 
-  const chats = useMemo(() => {
-    return items.map((item) => {
-      const contact = get(item.talker_id);
+  const chats = useMemo<IContactPayload[]>(
+    () =>
+      items.map((item) => ({
+        id: item.id,
+        avatar: item.logo,
+        name: item.title,
+        bio: item.description || '暂无描述',
+        date: item.date,
+      })),
+    [items]
+  );
 
-      return {
-        ...contact,
-        ...item,
-      };
-    });
-  }, [items, get]);
-
-  const handleClick = (payload: IContact) => {
-    navigate(`/chats/${payload.id}`);
+  const handleClick = (payload: IContactPayload) => {
+    navigate(`/chats/${payload.id}`, { replace: true });
   };
 
-  const handleTrashClick = () => {
-    remove(chatId);
-    navigate('/chats');
+  const handleTrashClick = (
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+    id: string
+  ) => {
+    event.stopPropagation();
+    event.preventDefault();
+
+    if (id === chatId) {
+      navigate('/chats/', { replace: true, relative: 'path' });
+    }
+
+    // TODO 如何优化？
+    // hack 解决路由未跳转数据已删除，导致页面报错的问题
+    requestIdleCallback(() => remove(chatId));
   };
 
   return (
-    <PrimarySidebar className="flex flex-col">
+    <PrimarySidebar className="flex flex-col bg-white">
       <ContactList>
         {chats.map((item, index) => (
           <ContactItem
@@ -51,7 +61,7 @@ export default function ChatsAside() {
             extra={
               <button
                 className={`font-bold p-1 rounded-md hover:bg-gray-200 active:bg-gray-300`}
-                onClick={handleTrashClick}
+                onClick={(event) => handleTrashClick(event, item.id)}
               >
                 <TrashIcon className="w-[12px] h-[12px] text-gray-500" />
               </button>
@@ -66,7 +76,7 @@ export default function ChatsAside() {
         <div className="ai-fcc w-full h-full">
           <div className="text-center text-sm text-gray-400 select-none">
             <ChatBubbleLeftRightIcon className="w-16 h-16 mb-2" />
-            <p>还没有联系人</p>
+            <p>没有聊天室</p>
           </div>
         </div>
       )}

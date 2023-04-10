@@ -1,4 +1,4 @@
-import { FakeTable, FakeRecord } from '@ai-chat/fake-db';
+import { FakeTable, FakeRecord, FakeCreateInputWith } from '@ai-chat/fake-db';
 
 import type { IContact } from './contacts';
 
@@ -20,6 +20,8 @@ export interface IChat extends FakeRecord {
    */
   talker_id: string;
 }
+
+export type ChatCreateInput = FakeCreateInputWith<IChat>;
 
 export interface IChatWithContact extends IChat {
   talker: IContact;

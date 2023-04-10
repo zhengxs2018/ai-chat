@@ -27,3 +27,8 @@ export type FakeFieldSchema<T extends FakeRecord = FakeRecord> = {
   deserialize: (raw: FakeJson) => T;
   shouldSync: (source: Partial<T>, item?: T) => boolean;
 };
+
+export type FakeCreateInputWith<T extends FakeRecord = FakeRecord> = Omit<
+  T,
+  'id' | 'version' | 'date'
+>;

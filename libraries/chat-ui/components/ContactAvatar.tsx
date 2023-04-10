@@ -1,10 +1,10 @@
 import Avvvatars from 'avvvatars-react';
 
-import type { IContact } from '../interfaces';
+import type { IContactPayload } from '../interfaces';
 
 export type ContactAvatarProps = {
   className?: string;
-  payload: IContact;
+  payload: IContactPayload;
 };
 
 export function ContactAvatar({

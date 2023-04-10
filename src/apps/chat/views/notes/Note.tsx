@@ -5,7 +5,7 @@ import Toast from 'react-hot-toast';
 import Alert from '@/components/base/Alert';
 import Button from '@/components/base/Button';
 
-import { useNote } from '../../hooks';
+import { useNote } from '../../hooks/useNote';
 import RichEditor from '../../components/RichEditor';
 
 export default function Note() {
@@ -61,6 +61,7 @@ export default function Note() {
       <div className="flex-1 flex flex-col w-full p-2 overflow-hidden">
         <Alert
           type="warning"
+          className="mb-2"
           text="警告：数据存储在浏览器本地，请及时复制到其他存储空间保存！"
         />
         <div className="flex-1 overflow-hidden">

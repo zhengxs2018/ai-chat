@@ -1,6 +1,6 @@
-export interface SettingTitleProps {
+export type SettingTitleProps = {
   text: string;
-}
+};
 
 export default function SettingTitle({ text }: SettingTitleProps) {
   return (

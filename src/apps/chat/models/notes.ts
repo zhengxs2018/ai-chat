@@ -1,9 +1,11 @@
-import { FakeTable, FakeRecord } from '@ai-chat/fake-db';
+import { FakeTable, FakeRecord, FakeCreateInputWith } from '@ai-chat/fake-db';
 
 export interface INote extends FakeRecord {
   title: string;
   content: string;
 }
+
+export type ContactCreateInput = FakeCreateInputWith<INote>;
 
 export default FakeTable.build<INote>({
   name: 'notes',

@@ -5,8 +5,8 @@ import { ContactList, ContactItem } from '@ai-chat/chat-ui';
 
 import PrimarySidebar from '../../../components/PrimarySidebar';
 
-import { IContact } from '../../../models';
-import { useContacts } from '../../../hooks';
+import type { IContact } from '../../../models/contacts';
+import { useContacts } from '../../../hooks/useContacts';
 import { useAppDispatch } from '../../../store';
 import { openAddAssistantsPopup } from '../../../store/app';
 
@@ -22,7 +22,7 @@ export default function ContactsAside() {
   };
 
   const handleClick = (payload: IContact) => {
-    navigate(`/contacts/${payload.id}`);
+    navigate(`/contacts/${payload.id}`, { replace: true });
   };
 
   return (

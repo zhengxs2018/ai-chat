@@ -2,7 +2,7 @@ import { PlusCircleIcon, BookOpenIcon } from '@heroicons/react/24/outline';
 import { useNavigate, useParams } from 'react-router-dom';
 
 import PrimarySidebar from '../../../components/PrimarySidebar';
-import { useNotes } from '../../../hooks';
+import { useNotes } from '../../../hooks/useNotes';
 
 import NoteList from './NoteList';
 import NoteItem from './NoteItem';

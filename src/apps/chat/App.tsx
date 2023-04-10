@@ -1,8 +1,9 @@
 import { Outlet } from 'react-router-dom';
 
 import Activitybar from './components/Activitybar';
-import UserProfileModel from './components/UserProfileModel';
 import AddAssistantModel from './components/AddAssistantModel';
+import UserProfileModel from './components/UserProfileModel';
+import PreferencesModel from './components/PreferencesModel';
 
 export default function App() {
   return (
@@ -13,8 +14,9 @@ export default function App() {
           <Outlet />
         </div>
       </div>
-      <UserProfileModel />
       <AddAssistantModel />
+      <UserProfileModel />
+      <PreferencesModel />
     </div>
   );
 }

@@ -22,6 +22,7 @@
     "no-useless-constructor": "off",
     "no-plusplus": "off",
     "no-continue": "off",
+    "no-underscore-dangle":"off",
     "prefer-destructuring": "off",
     "object-shorthand": "off",
     "consistent-return": "off",

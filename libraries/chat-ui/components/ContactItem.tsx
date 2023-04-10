@@ -1,14 +1,14 @@
 import React from 'react';
 
 import { formatDate } from '../utils';
-import type { ContactContentProps, IContact } from '../interfaces';
+import type { ContactContentProps, IContactPayload } from '../interfaces';
 
 import { ContactAvatar } from './ContactAvatar';
 
 export type ContactItemProps = ContactContentProps & {
   extra?: React.ReactNode | ((props: ContactContentProps) => React.ReactNode);
   onClick: (
-    payload: IContact,
+    payload: IContactPayload,
     index: number,
     e: React.MouseEvent<HTMLDivElement, MouseEvent>
   ) => void;
@@ -38,9 +38,7 @@ export function ContactItem({
               : extra}
           </div>
           <div className="ai-fcb">
-            <div className="contact-bio w-[126px] truncate">
-              {payload.bio}
-            </div>
+            <div className="contact-bio w-[126px] truncate">{payload.bio}</div>
             <div className="contact-date">
               {payload.date && formatDate(payload.date)}
             </div>

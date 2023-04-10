@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import { PlusIcon, BookOpenIcon } from '@heroicons/react/24/outline';
 
 import Button from '@/components/base/Button';
-import { useNotes } from '../../hooks';
+import { useNotes } from '../../hooks/useNotes';
 
 export default function NoteEmpty() {
   const navigate = useNavigate();

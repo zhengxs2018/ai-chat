@@ -1,4 +1,4 @@
-export interface IContact {
+export interface IContactPayload {
   id: string;
   name: string;
   avatar?: string;
@@ -12,13 +12,13 @@ export interface IMessagePayload {
   content: string;
   self: boolean;
   date: Date | number;
-  talker: IContact;
+  talker: IContactPayload;
 }
 
 export type ContactContentProps = {
   active: boolean;
   index: number;
-  payload: IContact;
+  payload: IContactPayload;
 };
 
 export type MessageContentProps = {

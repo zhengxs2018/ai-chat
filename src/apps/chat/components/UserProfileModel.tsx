@@ -15,7 +15,7 @@ export default function UserProfileModel() {
   const dispatch = useAppDispatch();
 
   const { visible, user } = useAppSelector((state) => ({
-    visible: state.app.userProfilePopupVisible,
+    visible: state.app.userProfileVisible,
     user: state.auth.user,
   }));
 

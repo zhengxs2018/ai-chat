@@ -1,32 +1,22 @@
-import { Placement } from 'tippy.js';
+import Toggle, { ToggleProps } from '../base/Toggle';
+import FieldLabel, { FieldLabelProps } from './FieldLabel';
 
-import Toggle from '../base/Toggle';
-import FieldLabel from './FieldLabel';
-
-interface FieldSwitchProps {
-  text: string;
-  helpText?: string;
-  checked: boolean;
-  helpPlacement?: Placement;
-  onChange: (checked: boolean) => void;
-  className?: string;
-}
+export type FieldSwitchProps = FieldLabelProps &
+  ToggleProps & {
+    className?: string;
+  };
 
 export default function FieldSwitch({
-  text,
-  helpText,
-  helpPlacement,
+  label,
+  tooltip,
+  placement,
+  className,
   checked,
   onChange,
-  className,
 }: FieldSwitchProps) {
   return (
     <div className="flex flex-row justify-between items-center">
-      <FieldLabel
-        text={text}
-        helpText={helpText}
-        helpPlacement={helpPlacement}
-      />
+      <FieldLabel label={label} tooltip={tooltip} placement={placement} />
       <Toggle checked={checked} onChange={onChange} className={className} />
     </div>
   );

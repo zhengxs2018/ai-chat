@@ -2,7 +2,6 @@ import React from 'react';
 
 export interface LogoIconProps {
   className?: string;
-  strokeWidth?: string;
 }
 
 const LogoIcon: React.FC<LogoIconProps> = ({ className }) => (

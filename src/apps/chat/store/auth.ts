@@ -8,7 +8,9 @@ export type UserState = {
 };
 
 function initialUserState(): UserState {
-  const raw = tryDeserialize<UserState>(localStorage.getItem('user'));
+  const raw = tryDeserialize<UserState>(
+    localStorage.getItem('ai-chat-app:user')
+  );
 
   return {
     name: raw?.name || '阿森',
