@@ -4,11 +4,17 @@ import TextareaAutosize from 'react-textarea-autosize';
 import { MessageSendButton } from './MessageSendButton';
 
 export type MessageInputbarProps = PropsWithChildren<{
+  className?: string;
   loading: boolean;
   onSend: (value: string) => void;
 }>;
 
-export function MessageInputbar({ loading, children, onSend }: MessageInputbarProps) {
+export function MessageInputbar({
+  loading,
+  className,
+  children,
+  onSend,
+}: MessageInputbarProps) {
   const [userInput, setUserInput] = useState('');
   const inputRef = useRef<HTMLTextAreaElement>();
 
@@ -45,7 +51,7 @@ export function MessageInputbar({ loading, children, onSend }: MessageInputbarPr
   }, [inputRef]);
 
   return (
-    <div className="px-[18px] py-[16px] border-t-[1px] bg-white">
+    <div className={`px-[18px] py-[16px] border-t-[1px] ${className}`}>
       <TextareaAutosize
         className="bg-gray-200 rounded-lg px-4 py-2 w-full border-none focus:ring-0 focus:outline-none resize-none"
         value={userInput}
@@ -59,8 +65,7 @@ export function MessageInputbar({ loading, children, onSend }: MessageInputbarPr
         <div className="flex justify-start items-center">{children}</div>
         <div className="flex justify-end items-center">
           <div className="mr-2 text-sm text-gray-400">⏎ 发送 / ⌘⏎ 换行</div>
-          <MessageSendButton
-           loading={loading} onClick={handleSend} />
+          <MessageSendButton loading={loading} onClick={handleSend} />
         </div>
       </div>
     </div>

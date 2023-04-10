@@ -35,8 +35,12 @@ export default function Chat() {
       >
         {payload?.talker?.name}
       </header>
-      <ChatMessages className="flex-1" chat={payload}></ChatMessages>
-      <MessageInputbar loading={sending} onSend={handleSend}>
+      <ChatMessages className="flex-1 bg-gray-100" chat={payload} />
+      <MessageInputbar
+        className="bg-gray-100"
+        loading={sending}
+        onSend={handleSend}
+      >
         <TippyButton
           tooltip="清空消息"
           placement="top"

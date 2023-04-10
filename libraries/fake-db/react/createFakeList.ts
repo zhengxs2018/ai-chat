@@ -1,4 +1,5 @@
-import React from 'react';
+/* eslint-disable react-hooks/rules-of-hooks */
+import { useMemo } from 'react';
 import { useList } from 'react-use';
 
 import type { FakeTable, FakeRecord } from '../core';
@@ -20,7 +21,7 @@ export function createFakeList<T extends FakeRecord = FakeRecord>(
 ) {
   const [items, op] = useList(table.values());
 
-  const map = React.useMemo(() => {
+  const map = useMemo(() => {
     const record = {};
 
     for (const item of items) {
@@ -35,6 +36,7 @@ export function createFakeList<T extends FakeRecord = FakeRecord>(
   }
 
   function has(id: string): boolean {
+    // eslint-disable-next-line no-prototype-builtins
     return map.hasOwnProperty(id);
   }
 
@@ -48,7 +50,13 @@ export function createFakeList<T extends FakeRecord = FakeRecord>(
 
   function create(item: CreateInput<T>) {
     const newItem = table.create(item);
-    op.insertAt(0, newItem);
+    op.push(newItem);
+    return newItem;
+  }
+
+  function insertAt(index: number, item: CreateInput<T>) {
+    const newItem = table.create(item);
+    op.insertAt(index, newItem);
     return newItem;
   }
 
@@ -61,9 +69,9 @@ export function createFakeList<T extends FakeRecord = FakeRecord>(
   function upsert(item: CreateInput<T> | UpdateInput<T>) {
     if (has((item as UpdateInput<T>).id)) {
       return update(item as UpdateInput<T>);
-    } else {
-      return create(item as CreateInput<T>);
     }
+
+    return create(item as CreateInput<T>);
   }
 
   function remove(id: string) {
@@ -71,7 +79,18 @@ export function createFakeList<T extends FakeRecord = FakeRecord>(
     op.removeAt(items.findIndex((item) => item.id === id));
   }
 
-  return { items, get, has, findFirst, findMany, create, update, upsert, remove } as const;
+  return {
+    items,
+    get,
+    has,
+    findFirst,
+    findMany,
+    create,
+    insertAt,
+    update,
+    upsert,
+    remove,
+  } as const;
 }
 
 export type FakeList<T extends FakeRecord = FakeRecord> = ReturnType<
