@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { FakeSchema } from './schema';
 import { FakeTable } from './table';
 
@@ -56,25 +58,26 @@ function createConnection(
     }
   }
 
-  function handleStorageEvent({ key, newValue }: StorageEvent) {
-    // 用户清空了所有数据
-    if (key == null) {
-      Object.values(tables).forEach((table) => table.syncClear());
-      return;
-    }
+  // TODO 同步可能导致很多问题，暂时不实现
+  // function handleStorageEvent({ key, newValue }: StorageEvent) {
+  //   // 用户清空了所有数据
+  //   if (key == null) {
+  //     Object.values(tables).forEach((table) => table.syncClear());
+  //     return;
+  //   }
 
-    const [dbName, tableName, id] = key.split(':');
-    if (dbName !== name) return;
+  //   const [dbName, tableName, id] = key.split(':');
+  //   if (dbName !== name) return;
 
-    const table = tables[tableName];
-    if (!table) return;
+  //   const table = tables[tableName];
+  //   if (!table) return;
 
-    if (newValue == null) {
-      table.syncDelete(id);
-    } else {
-      table.syncUpdate(JSON.parse(newValue));
-    }
-  }
+  //   if (newValue == null) {
+  //     table.syncDelete(id);
+  //   } else {
+  //     table.syncUpdate(JSON.parse(newValue));
+  //   }
+  // }
 
   function connect() {
     initialize();
@@ -83,11 +86,11 @@ function createConnection(
       setupTableListeners(storage, name, table);
     });
 
-    window.addEventListener('storage', handleStorageEvent);
+    // window.addEventListener('storage', handleStorageEvent);
   }
 
   function disconnect() {
-    window.removeEventListener('storage', handleStorageEvent);
+    // window.removeEventListener('storage', handleStorageEvent);
   }
 
   return {

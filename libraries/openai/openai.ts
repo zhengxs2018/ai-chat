@@ -1,6 +1,6 @@
 // Copy from openai
 
-export type ChatCompletionMessageRole= 'system' | 'user' | 'assistant';
+export type ChatCompletionMessageRole = 'system' | 'user' | 'assistant';
 
 export interface ChatCompletionRequestMessage {
   /**

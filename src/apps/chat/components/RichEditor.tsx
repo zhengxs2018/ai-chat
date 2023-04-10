@@ -78,7 +78,7 @@ export default function RichEditor({
       const element = editor?.vditor?.element;
       if (element) editor.destroy();
     };
-  }, [id, config]);
+  }, [id, config, onChange]);
 
   return <div id={`vditor-${id}`} className={className} key={id}></div>;
 }

@@ -6,7 +6,7 @@ import { useMessages } from './useMessages';
 import { useCurrentUser } from './useCurrentUser';
 
 export function useChatMessages(chat: IChatWithContact) {
-  const user = useCurrentUser();
+  const [user] = useCurrentUser();
   const messages = useMessages();
 
   return useMemo(() => {

@@ -4,5 +4,5 @@ export function useCurrentUser() {
     name: '阿森',
   };
 
-  return user;
+  return [user] as const;
 }
