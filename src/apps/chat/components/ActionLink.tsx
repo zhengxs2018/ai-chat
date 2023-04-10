@@ -26,7 +26,7 @@ export default function ActionLink({
       trigger={'mouseenter'}
     >
       <Link
-        className={`ai-action-link flex items-center justify-center active:bg-light-300 ${className} ${
+        className={`ai-action-link flex items-center justify-center text-gray-400 active:bg-light-300 ${className} ${
           active && 'text-indigo-600'
         }`}
         to={to}

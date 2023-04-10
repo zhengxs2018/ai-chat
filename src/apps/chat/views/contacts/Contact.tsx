@@ -1,6 +1,5 @@
-import { useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
 import Avvvatars from 'avvvatars-react';
+import { useParams, useNavigate } from 'react-router-dom';
 
 import Button from '@/components/base/Button';
 import { useContact } from '../../hooks';
@@ -21,12 +20,6 @@ export default function Contact() {
     navigate('/contacts');
   }
 
-  useEffect(() => {
-    if (!payload) return navigate('/contacts');
-  }, [payload]);
-
-  if (!payload) return;
-
   return (
     <div className="flex-1 flex justify-center h-full w-full">
       <div className="w-[400px] mt-24">
@@ -46,27 +39,35 @@ export default function Contact() {
 
         <dl>
           <div className="px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-            <dt className="text-sm font-medium text-gray-500">与你的关系</dt>
+            <dt className="text-sm font-medium text-gray-500 select-none">
+              与你的关系
+            </dt>
             <dd className="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
               {payload.relationship || '无'}
             </dd>
           </div>
           <div className="px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-            <dt className="text-sm font-medium text-gray-500">对你的称呼</dt>
+            <dt className="text-sm font-medium text-gray-500 select-none">
+              对你的称呼
+            </dt>
             <dd className="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
-              {payload.hint || '无'}
+              {payload.callYou || '无'}
             </dd>
           </div>
           <div className="px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-            <dt className="text-sm font-medium text-gray-500">兴趣爱好</dt>
+            <dt className="text-sm font-medium text-gray-500 select-none">
+              兴趣爱好
+            </dt>
             <dd className="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
               {payload.hobbies || '无'}
             </dd>
           </div>
           <div className="px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-            <dt className="text-sm font-medium text-gray-500">其他提示</dt>
+            <dt className="text-sm font-medium text-gray-500  select-none">
+              其他提示
+            </dt>
             <dd className="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
-              {payload.prompt || '无'}
+              {payload.hint || '无'}
             </dd>
           </div>
 

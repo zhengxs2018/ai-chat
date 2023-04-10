@@ -3,18 +3,30 @@ import { createSlice } from '@reduxjs/toolkit';
 const appSlice = createSlice({
   name: 'app',
   initialState: {
-    userPopupVisible: false,
+    userProfilePopupVisible: false,
+    addAssistantVisible: false,
   },
   reducers: {
     openUserPopup(state) {
-      state.userPopupVisible = true;
+      state.userProfilePopupVisible = true;
     },
     closeUserPopup(state) {
-      state.userPopupVisible = false;
+      state.userProfilePopupVisible = false;
+    },
+    openAddAssistantsPopup(state) {
+      state.addAssistantVisible = true;
+    },
+    closeAddContactModel(state) {
+      state.addAssistantVisible = false;
     },
   },
 });
 
-export const { openUserPopup, closeUserPopup } = appSlice.actions;
+export const {
+  openUserPopup,
+  closeUserPopup,
+  openAddAssistantsPopup,
+  closeAddContactModel,
+} = appSlice.actions;
 
 export default appSlice.reducer;

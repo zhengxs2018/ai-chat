@@ -7,25 +7,18 @@ import PrimarySidebar from '../../../components/PrimarySidebar';
 
 import { IContact } from '../../../models';
 import { useContacts } from '../../../hooks';
+import { useAppDispatch } from '../../../store';
+import { openAddAssistantsPopup } from '../../../store/app';
 
 export default function ContactsAside() {
   const navigate = useNavigate();
   const { contactId } = useParams();
 
-  const { items, create } = useContacts();
+  const dispatch = useAppDispatch();
+  const { items } = useContacts();
 
   const handleCreate = () => {
-    const contact = create({
-      avatar: '',
-      name: '张三',
-      bio: '比较常见的路人甲',
-      hobbies: '',
-      relationship: '朋友',
-      hint: '小周',
-      prompt: '',
-    });
-
-    navigate(`/contacts/${contact.id}`);
+    dispatch(openAddAssistantsPopup());
   };
 
   const handleClick = (payload: IContact) => {

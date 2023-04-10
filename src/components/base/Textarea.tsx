@@ -6,6 +6,8 @@ export type TextareaProps = {
   placeholder?: string;
   rows?: number;
   maxRows?: number;
+  minLength?: number;
+  maxLength?: number;
   className?: string;
   readOnly?: boolean;
   disabled?: boolean;
@@ -18,6 +20,8 @@ export default function Textarea({
   placeholder,
   rows,
   maxRows,
+  minLength,
+  maxLength,
   className,
   readOnly,
   disabled,
@@ -38,6 +42,8 @@ export default function Textarea({
     <TextareaAutosize
       className={`focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 border-2 shadow-sm block text-base text-gray-700 py-1 px-3 border-gray-200 rounded-md ${className}`}
       value={inputValue}
+      minLength={minLength}
+      maxLength={maxLength}
       placeholder={placeholder}
       minRows={rows}
       maxRows={maxRows}

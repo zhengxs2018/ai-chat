@@ -1,14 +1,24 @@
-import { v4 as uuid } from 'uuid';
-
-import { FakeTable } from '@ai-chat/fake-db';
+import { FakeTable, FakeRecord } from '@ai-chat/fake-db';
 
 import type { IContact } from './contacts';
 
-export interface IChat {
-  id: string;
-  version: number;
+export interface IChat extends FakeRecord {
+  /**
+   * 聊天室图标
+   */
+  logo?: string;
+  /**
+   * 聊天室名称
+   */
+  title: string;
+  /**
+   * 聊天室描述
+   */
+  description?: string;
+  /**
+   * 对话人ID
+   */
   talker_id: string;
-  date: Date;
 }
 
 export interface IChatWithContact extends IChat {
@@ -18,9 +28,9 @@ export interface IChatWithContact extends IChat {
 export default FakeTable.build<IChat>({
   name: 'chats',
   fields: [
-    { name: 'id', type: 'string', default: uuid },
-    { name: 'version', type: 'int', required: true },
+    { name: 'logo', type: 'string' },
+    { name: 'title', type: 'string', required: true },
+    { name: 'description', type: 'string' },
     { name: 'talker_id', type: 'string' },
-    { name: 'date', type: 'date', default: () => new Date() },
   ],
 });

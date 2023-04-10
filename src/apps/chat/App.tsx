@@ -2,6 +2,7 @@ import { Outlet } from 'react-router-dom';
 
 import Activitybar from './components/Activitybar';
 import UserProfileModel from './components/UserProfileModel';
+import AddAssistantModel from './components/AddAssistantModel';
 
 export default function App() {
   return (
@@ -13,6 +14,7 @@ export default function App() {
         </div>
       </div>
       <UserProfileModel />
+      <AddAssistantModel />
     </div>
   );
 }

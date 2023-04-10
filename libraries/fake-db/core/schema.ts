@@ -1,3 +1,5 @@
+import { v4 as uuid } from 'uuid';
+
 import { FakeField, FakeFieldOptions } from './field';
 import type { FakeJson, FakeRecord } from './types';
 
@@ -22,13 +24,20 @@ export function buildSchema<T extends FakeRecord = FakeRecord>(
 ): FakeSchema<T> {
   const { name, shouldSync = () => true } = definition;
 
-  const fields: FakeField[] = definition.fields.map((nameOrDef) => {
+  const fields: FakeField[] = [
+    new FakeField('id', { type: 'string', default: uuid }),
+    new FakeField('version', { type: 'int', default: 0 }),
+    new FakeField('date', { type: 'date', default: () => new Date() }),
+  ];
+
+  definition.fields.forEach((nameOrDef) => {
     if (typeof nameOrDef === 'string') {
-      return new FakeField(nameOrDef);
+      fields.push(new FakeField(nameOrDef));
+      return;
     }
 
     const { name, ...schema } = nameOrDef;
-    return new FakeField(name, schema);
+    fields.push(new FakeField(name, schema));
   });
 
   function initialValue() {
@@ -54,7 +63,6 @@ export function buildSchema<T extends FakeRecord = FakeRecord>(
     return fields.reduce((acc, field) => {
       const value = field.output(raw[field.name]);
 
-      // @ts-ignore
       acc[field.name] = value;
       return acc;
     }, {} as T);

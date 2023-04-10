@@ -1,25 +1,18 @@
-import { FakeTable } from '@ai-chat/fake-db';
-import { v4 as uuid } from 'uuid';
+import { FakeTable, FakeRecord } from '@ai-chat/fake-db';
 
-export interface IMessage {
-  id: string;
-  version: number;
+export interface IMessage extends FakeRecord {
   type: string;
-  role: string;
+  role: 'user' | 'system' | 'assistant';
   content: string;
   chat_id: string;
-  date: Date;
 }
 
 export default FakeTable.build<IMessage>({
   name: 'messages',
   fields: [
-    { name: 'id', type: 'string', default: uuid },
-    { name: 'version', type: 'int', required: true },
     { name: 'type', type: 'string', default: 'text' },
     { name: 'role', type: 'string', required: true },
     { name: 'content', type: 'string', required: true },
     { name: 'chat_id', type: 'string', required: true },
-    { name: 'date', type: 'date', default: () => new Date() },
   ],
 });
