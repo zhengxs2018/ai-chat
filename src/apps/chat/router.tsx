@@ -1,4 +1,4 @@
-import { createHashRouter } from 'react-router-dom';
+import { createHashRouter, Navigate } from 'react-router-dom';
 
 import App from './App';
 import ErrorBoundary from './views/exceptions/ErrorBoundary';
@@ -12,6 +12,7 @@ import ContactEmpty from './views/contacts/ContactEmpty';
 import Notes from './views/notes/Notes';
 import Note from './views/notes/Note';
 import NoteEmpty from './views/notes/NoteEmpty';
+import NotFound from './views/exceptions/NotFound';
 
 export default createHashRouter([
   {
@@ -19,6 +20,10 @@ export default createHashRouter([
     element: <App />,
     errorElement: <ErrorBoundary />,
     children: [
+      {
+        index: true,
+        element: <Navigate to="/chats" replace />,
+      },
       {
         path: 'chats',
         element: <Chats />,
@@ -57,6 +62,10 @@ export default createHashRouter([
             errorElement: <ErrorBoundary />,
           },
         ],
+      },
+      {
+        path: '*',
+        element: <NotFound />,
       },
     ],
   },
