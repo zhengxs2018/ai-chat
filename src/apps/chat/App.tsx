@@ -1,7 +1,7 @@
 import { Outlet } from 'react-router-dom';
 
 import Activitybar from './components/Activitybar';
-import AddAssistantModel from './components/AddAssistantModel';
+import AddContactModel from './components/AddContactModel';
 import UserProfileModel from './components/UserProfileModel';
 import PreferencesModel from './components/PreferencesModel';
 
@@ -14,7 +14,7 @@ export default function App() {
           <Outlet />
         </div>
       </div>
-      <AddAssistantModel />
+      <AddContactModel />
       <UserProfileModel />
       <PreferencesModel />
     </div>

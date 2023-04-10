@@ -1,6 +1,6 @@
-import { useEffect, useState } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
-import { TrashIcon } from '@heroicons/react/24/outline';
+import { useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { ArrowPathIcon } from '@heroicons/react/24/outline';
 
 import { MessageInputbar } from '@ai-chat/chat-ui';
 
@@ -12,7 +12,6 @@ import { useChatWithTalker } from '../../hooks/useChat';
 import ChatMessages from './components/ChatMessages';
 
 export default function Chat() {
-  const navigate = useNavigate();
   const { chatId } = useParams();
   const [sending] = useState(false);
   const [payload, op] = useChatWithTalker(chatId);
@@ -21,9 +20,9 @@ export default function Chat() {
     op.send(value);
   };
 
-  useEffect(() => {
-    if (!payload) return navigate('/chats');
-  }, [payload, navigate]);
+  const handleReset = () => {
+    // pass
+  };
 
   return (
     <div className="flx-1 flex flex-col h-full w-full">
@@ -43,11 +42,11 @@ export default function Chat() {
         onSend={handleSend}
       >
         <TippyButton
-          tooltip="清空消息"
+          tooltip="重试"
           placement="top"
-          icon={<TrashIcon className="w-6 h-6 text-gray-500" />}
+          icon={<ArrowPathIcon className="w-6 h-6 text-gray-500" />}
           className="hover:bg-gray-200 active:bg-gray-300"
-          onClick={() => op.clear()}
+          onClick={handleReset}
         />
       </MessageInputbar>
     </div>

@@ -1,4 +1,4 @@
-export interface LogoIconProps {
+export interface OpenAiIconProps {
   className?: string;
   strokeWidth?: number;
 }
@@ -6,7 +6,7 @@ export interface LogoIconProps {
 export default function OpenAiIcon({
   className,
   strokeWidth = 2,
-}: LogoIconProps) {
+}: OpenAiIconProps) {
   return (
     <svg
       width="41"

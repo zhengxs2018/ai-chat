@@ -3,7 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 const appSlice = createSlice({
   name: 'app',
   initialState: {
-    addAssistantVisible: false,
+    addContactVisible: false,
     userProfileVisible: false,
     preferencesVisible: false,
   },
@@ -15,10 +15,10 @@ const appSlice = createSlice({
       state.userProfileVisible = false;
     },
     openAddAssistantsPopup(state) {
-      state.addAssistantVisible = true;
+      state.addContactVisible = true;
     },
     closeAddContactModel(state) {
-      state.addAssistantVisible = false;
+      state.addContactVisible = false;
     },
     openPreferencesPopup(state) {
       state.preferencesVisible = true;

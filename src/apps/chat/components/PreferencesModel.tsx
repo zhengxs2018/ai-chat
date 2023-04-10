@@ -39,7 +39,9 @@ export default function PreferencesModel() {
       showConfirm={false}
       onClose={onClose}
     >
-      {contents[catalogItems.indexOf(selected)]}
+      <div className="md:w-[240px]">
+        {contents[catalogItems.indexOf(selected)]}
+      </div>
     </SettingModel>
   );
 }

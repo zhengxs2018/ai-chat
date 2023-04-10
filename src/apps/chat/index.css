@@ -52,3 +52,8 @@
   width: var(--ai-action-item-icon);
   height: var(--ai-action-item-icon);
 }
+
+/* Hide vertical scrollbar */
+::-webkit-scrollbar {
+  display: none;
+}
