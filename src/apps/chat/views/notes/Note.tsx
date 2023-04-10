@@ -24,8 +24,6 @@ export default function Note() {
     if (!title) return Toast.error('标题不能为空');
     if (!content || content === '\n') return Toast.error('内容不能为空');
 
-    console.log(content);
-
     // 如果内容没有变化，则不保存
     if (content === note.content && title === note.title) return;
 
@@ -40,7 +38,7 @@ export default function Note() {
     setTitle(title);
     setContent(content);
     setInitialValue(content);
-  }, [note]);
+  }, [navigate, note]);
 
   return (
     <div className="flex-1 flex flex-col w-full h-full">

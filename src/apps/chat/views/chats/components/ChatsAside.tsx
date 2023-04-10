@@ -1,5 +1,4 @@
 import {
-  UserGroupIcon,
   TrashIcon,
   ChatBubbleLeftRightIcon,
 } from '@heroicons/react/24/outline';
@@ -22,8 +21,6 @@ export default function ChatsAside() {
   const { get } = useContacts();
 
   const chats = useMemo(() => {
-    console.log(chatId);
-
     return items.map((item) => {
       const contact = get(item.talker_id);
 
@@ -32,13 +29,13 @@ export default function ChatsAside() {
         ...item,
       };
     });
-  }, [items]);
+  }, [items, get]);
 
   const handleClick = (payload: IContact) => {
     navigate(`/chats/${payload.id}`);
   };
 
-  const handleTrashClick = (item: IContact) => {
+  const handleTrashClick = () => {
     remove(chatId);
     navigate('/chats');
   };
@@ -54,7 +51,7 @@ export default function ChatsAside() {
             extra={
               <button
                 className={`font-bold p-1 rounded-md hover:bg-gray-200 active:bg-gray-300`}
-                onClick={() => handleTrashClick(item)}
+                onClick={handleTrashClick}
               >
                 <TrashIcon className="w-[12px] h-[12px] text-gray-500" />
               </button>

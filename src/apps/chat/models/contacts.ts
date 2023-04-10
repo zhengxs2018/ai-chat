@@ -9,7 +9,7 @@ export interface IContact {
   bio: string;
   relationship?: string;
   hint?: string;
-  hobbies?: string
+  hobbies?: string;
   prompt?: string;
   date: Date;
 }

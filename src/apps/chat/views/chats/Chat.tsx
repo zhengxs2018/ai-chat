@@ -1,35 +1,50 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import { TrashIcon } from '@heroicons/react/24/outline';
 
-import { MessageList } from '@ai-chat/chat-ui';
+import { MessageInputbar } from '@ai-chat/chat-ui';
 
-import { useChat } from '../../hooks/useChat';
-import ChatInputbar from './components/ChatInputbar';
+import TippyButton from '@/components/base/TippyButton';
+
+import { useChatWithTalker } from '../../hooks/useChat';
+
+import ChatMessages from './components/ChatMessages';
 
 export default function Chat() {
   const navigate = useNavigate();
   const { chatId } = useParams();
+  const [sending] = useState(false);
+  const [payload, op] = useChatWithTalker(chatId);
 
-  const [payload, messages] = useChat(chatId);
+  const handleSend = (value: string) => {
+    op.send(value);
+  };
+
+  const handleClear = () => {
+    // pass
+  };
 
   useEffect(() => {
     if (!payload) return navigate('/chats');
-  }, [payload]);
-
-  if (!(payload && payload.talker)) return;
+  }, [payload, navigate]);
 
   return (
     <div className="flx-1 flex flex-col h-full w-full">
       <header
         className={`flex justify-between items-center min-h-[60px] h-[60px] px-[20px] bg-white border-b-[1px]`}
       >
-        {payload.talker.name}
+        {payload?.talker?.name}
       </header>
-
-      <div className="flex-1 flex flex-col items-stretch min-h-0 overflow-hidden">
-        <MessageList className="flex-1" messages={messages}></MessageList>
-        <ChatInputbar />
-      </div>
+      <ChatMessages className="flex-1" chat={payload}></ChatMessages>
+      <MessageInputbar loading={sending} onSend={handleSend}>
+        <TippyButton
+          tooltip="清空消息"
+          placement="top"
+          icon={<TrashIcon className="w-6 h-6 text-gray-500" />}
+          className="hover:bg-gray-200 active:bg-gray-300"
+          onClick={handleClear}
+        />
+      </MessageInputbar>
     </div>
   );
 }
