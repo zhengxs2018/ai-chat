@@ -3,19 +3,31 @@ import {
   AdjustmentsHorizontalIcon,
   PowerIcon,
 } from '@heroicons/react/24/outline';
+import Avvvatars from 'avvvatars-react';
 
 import Toast from 'react-hot-toast';
 
 import DropdownMenu from '@/components/base/DropdownMenu';
 
+import { useAppDispatch } from '../store';
+import { openUserPopup } from '../store/app';
+import { useCurrentUser } from '../hooks/useCurrentUser';
+
 export default function ActivitybarUser() {
-  const handleNoop = async () => {
-    Toast('没有功能');
+  const user = useCurrentUser();
+  const dispatch = useAppDispatch();
+
+  const showUserPopup = () => {
+    dispatch(openUserPopup());
+  };
+
+  const handleLogout = async () => {
+    Toast('下一个版本会支持退出登录');
   };
 
   const button = (
     <Menu.Button>
-      <div className="w-[30px] h-[30px] bg-gray-400 opacity-60"></div>
+      <Avvvatars value={user.name} radius={4} />
     </Menu.Button>
   );
 
@@ -33,7 +45,7 @@ export default function ActivitybarUser() {
                 ? 'bg-indigo-500 text-gray-100 active:bg-indigo-600'
                 : 'text-gray-700'
             } group flex rounded-md items-center w-full px-2 py-2 text-sm font-medium`}
-            onClick={handleNoop}
+            onClick={showUserPopup}
           >
             <AdjustmentsHorizontalIcon className="w-4 h-4" />
             <span className="ml-2">修改资料</span>
@@ -48,7 +60,7 @@ export default function ActivitybarUser() {
                 ? 'bg-indigo-500 text-gray-100 active:bg-indigo-600'
                 : 'text-gray-700'
             } group flex rounded-md items-center w-full px-2 py-2 text-sm font-medium`}
-            onClick={handleNoop}
+            onClick={handleLogout}
           >
             <PowerIcon className="w-4 h-4" />
             <span className="ml-2">退出登录</span>

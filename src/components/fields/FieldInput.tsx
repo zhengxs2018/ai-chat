@@ -4,39 +4,35 @@ import Input from '../base/Input';
 import FieldLabel from './FieldLabel';
 
 export interface FieldInputProps {
-  text: string;
-  helpText?: string;
+  label: string;
+  tooltip?: string;
   id?: string;
-  type: string;
+  type?: string;
   className?: string;
   value: string;
-  helpPlacement?: Placement;
+  placement?: Placement;
   disabled?: boolean;
   readOnly?: boolean;
-  placeholder: string;
+  placeholder?: string;
   onChange: (value: string) => void;
 }
 
 export default function FieldInput({
-  text,
-  helpText,
   id,
-  type,
-  className,
+  label,
   value,
+  className,
   readOnly,
   disabled,
-  helpPlacement,
-  placeholder,
+  tooltip,
+  placement,
+  type = 'text',
+  placeholder = '请输入内容',
   onChange,
 }: FieldInputProps) {
   return (
     <div className={'flex flex-col space-y-2'}>
-      <FieldLabel
-        text={text}
-        helpText={helpText}
-        helpPlacement={helpPlacement}
-      />
+      <FieldLabel label={label} tooltip={tooltip} placement={placement} />
       <Input
         id={id}
         type={type}

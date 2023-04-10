@@ -4,9 +4,9 @@ import Textarea from '../base/Textarea';
 import FieldLabel from './FieldLabel';
 
 interface FieldTextAreaProps {
-  text: string;
-  helpText?: string;
-  helpPlacement?: Placement;
+  label: string;
+  tooltip?: string;
+  placement?: Placement;
   value: string;
   onChange: (value: string) => void;
   className?: string;
@@ -18,9 +18,9 @@ interface FieldTextAreaProps {
 }
 
 export default function FieldTextArea({
-  text,
-  helpText,
-  helpPlacement,
+  label,
+  tooltip,
+  placement,
   value,
   onChange,
   className,
@@ -32,11 +32,7 @@ export default function FieldTextArea({
 }: FieldTextAreaProps) {
   return (
     <div className={'flex flex-col space-y-2'}>
-      <FieldLabel
-        text={text}
-        helpText={helpText}
-        helpPlacement={helpPlacement}
-      />
+      <FieldLabel label={label} tooltip={tooltip} placement={placement} />
       <Textarea
         value={value}
         readOnly={readOnly}

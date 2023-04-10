@@ -1,5 +1,7 @@
 import { Outlet } from 'react-router-dom';
+
 import Activitybar from './components/Activitybar';
+import UserProfileModel from './components/UserProfileModel';
 
 export default function App() {
   return (
@@ -10,6 +12,7 @@ export default function App() {
           <Outlet />
         </div>
       </div>
+      <UserProfileModel />
     </div>
   );
 }

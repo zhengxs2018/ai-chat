@@ -1,8 +1,5 @@
-export function useCurrentUser() {
-  const user = {
-    id: 'user',
-    name: '阿森',
-  };
+import { useAppSelector } from '../store';
 
-  return [user] as const;
+export function useCurrentUser() {
+  return useAppSelector((state) => state.auth.user);
 }
