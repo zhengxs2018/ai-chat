@@ -2,7 +2,7 @@ import { PlusCircleIcon, BookOpenIcon } from '@heroicons/react/24/outline';
 import { useNavigate, useParams } from 'react-router-dom';
 
 import PrimarySidebar from '../../../components/PrimarySidebar';
-import { useNotes } from '../../../hooks/useNotes';
+import { useNotesDataSource } from '../../../hooks/useNotesDataSource';
 
 import NoteList from './NoteList';
 import NoteItem from './NoteItem';
@@ -15,7 +15,7 @@ export default function NotesAside() {
   const navigate = useNavigate();
   const { noteId } = useParams();
 
-  const notes = useNotes();
+  const notes = useNotesDataSource();
 
   const handleCreate = () => {
     const contact = notes.create({

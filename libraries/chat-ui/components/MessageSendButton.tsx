@@ -1,15 +1,17 @@
 import { PaperAirplaneIcon, ArrowPathIcon } from '@heroicons/react/24/solid';
 
 export interface MessageSendButtonProps {
-  loading: boolean;
+  sending: boolean;
+  waiting?: boolean;
   onClick?: () => void;
 }
 
 export function MessageSendButton({
-  loading,
+  sending,
+  waiting,
   onClick,
 }: MessageSendButtonProps) {
-  if (loading) {
+  if (sending) {
     return (
       <button
         type="button"
@@ -17,7 +19,20 @@ export function MessageSendButton({
         className="flex flex-row items-center space-x-2 cursor-wait rounded-lg px-4 py-2 font-medium text-white bg-gradient-to-tr from-indigo-500 to-purple-500 transition-colors duration-300"
       >
         <ArrowPathIcon className="h-5 w-5 animate-spin" />
-        <div>等待</div>
+        <div>发送中</div>
+      </button>
+    );
+  }
+
+  if (waiting) {
+    return (
+      <button
+        type="button"
+        disabled
+        className="flex flex-row items-center space-x-2 cursor-wait rounded-lg px-4 py-2 font-medium text-white bg-gradient-to-tr from-indigo-500 to-purple-500 transition-colors duration-300"
+      >
+        <ArrowPathIcon className="h-5 w-5 animate-spin" />
+        <div>等待中</div>
       </button>
     );
   }

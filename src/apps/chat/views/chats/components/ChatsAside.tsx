@@ -10,13 +10,13 @@ import { ContactList, ContactItem, IContactPayload } from '@ai-chat/chat-ui';
 
 import PrimarySidebar from '../../../components/PrimarySidebar';
 
-import { useChats } from '../../../hooks/useChats';
+import { useChatsDataSource } from '../../../hooks/useChatsDataSource';
 
 export default function ChatsAside() {
   const navigate = useNavigate();
   const { chatId } = useParams();
 
-  const { items, remove } = useChats();
+  const { items, remove } = useChatsDataSource();
 
   const chats = useMemo<IContactPayload[]>(
     () =>

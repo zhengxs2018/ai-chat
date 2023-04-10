@@ -8,7 +8,7 @@ export interface IContactPayload {
 
 export interface IMessagePayload {
   id: string;
-  type: string;
+  type?: string;
   content: string;
   self: boolean;
   date: Date | number;

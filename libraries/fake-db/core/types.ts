@@ -32,3 +32,8 @@ export type FakeCreateInputWith<T extends FakeRecord = FakeRecord> = Omit<
   T,
   'id' | 'version' | 'date'
 >;
+
+export type FakeUpdateInputWith<T extends FakeRecord = FakeRecord> = Omit<
+  Partial<T>,
+  'version' | 'date'
+> & { id: string };

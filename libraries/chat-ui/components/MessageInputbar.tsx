@@ -5,13 +5,15 @@ import { MessageSendButton } from './MessageSendButton';
 
 export type MessageInputbarProps = PropsWithChildren<{
   className?: string;
-  loading: boolean;
+  sending: boolean;
+  waiting?: boolean;
   onSend: (value: string) => void;
 }>;
 
 export function MessageInputbar({
-  loading,
   className,
+  sending,
+  waiting,
   children,
   onSend,
 }: MessageInputbarProps) {
@@ -65,7 +67,11 @@ export function MessageInputbar({
         <div className="flex justify-start items-center">{children}</div>
         <div className="flex justify-end items-center">
           <div className="mr-2 text-sm text-gray-400">⏎ 发送 / ⌘⏎ 换行</div>
-          <MessageSendButton loading={loading} onClick={handleSend} />
+          <MessageSendButton
+            sending={sending}
+            waiting={waiting}
+            onClick={handleSend}
+          />
         </div>
       </div>
     </div>

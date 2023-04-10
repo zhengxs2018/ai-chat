@@ -6,7 +6,7 @@ import { ContactList, ContactItem } from '@ai-chat/chat-ui';
 import PrimarySidebar from '../../../components/PrimarySidebar';
 
 import type { IContact } from '../../../models/contacts';
-import { useContacts } from '../../../hooks/useContacts';
+import { useContactsDataSource } from '../../../hooks/useContactsDataSource';
 import { useAppDispatch } from '../../../store';
 import { openAddAssistantsPopup } from '../../../store/app';
 
@@ -15,7 +15,7 @@ export default function ContactsAside() {
   const { contactId } = useParams();
 
   const dispatch = useAppDispatch();
-  const { items } = useContacts();
+  const { items } = useContactsDataSource();
 
   const handleCreate = () => {
     dispatch(openAddAssistantsPopup());

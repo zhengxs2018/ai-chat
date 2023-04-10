@@ -2,21 +2,18 @@
 import { useMemo } from 'react';
 import { useList } from 'react-use';
 
-import type { FakeTable, FakeRecord } from '../core';
-
-export type CreateInput<T extends FakeRecord = FakeRecord> = Partial<
-  Omit<T, 'id' | 'version'>
->;
-
-export type UpdateInput<T extends FakeRecord = FakeRecord> = Partial<
-  Omit<T, 'version'>
-> & { id: string };
+import type {
+  FakeTable,
+  FakeRecord,
+  FakeCreateInputWith,
+  FakeUpdateInputWith,
+} from '../core';
 
 function isSame(a: FakeRecord, b: FakeRecord) {
   return a.id === b.id;
 }
 
-export function createFakeList<T extends FakeRecord = FakeRecord>(
+export function createFakeDataSource<T extends FakeRecord = FakeRecord>(
   table: FakeTable<T>
 ) {
   const [items, op] = useList(table.values());
@@ -48,30 +45,30 @@ export function createFakeList<T extends FakeRecord = FakeRecord>(
     return items.filter(predicate);
   }
 
-  function create(item: CreateInput<T>) {
+  function create(item: FakeCreateInputWith<T>) {
     const newItem = table.create(item);
     op.push(newItem);
     return newItem;
   }
 
-  function insertAt(index: number, item: CreateInput<T>) {
+  function insertAt(index: number, item: FakeCreateInputWith<T>) {
     const newItem = table.create(item);
     op.insertAt(index, newItem);
     return newItem;
   }
 
-  function update(item: UpdateInput<T>) {
+  function update(item: FakeUpdateInputWith<T>) {
     const newItem = table.update(item);
     op.update(isSame, newItem);
     return newItem;
   }
 
-  function upsert(item: CreateInput<T> | UpdateInput<T>) {
-    if (has((item as UpdateInput<T>).id)) {
-      return update(item as UpdateInput<T>);
+  function upsert(item: FakeCreateInputWith<T> | FakeUpdateInputWith<T>) {
+    if (has((item as FakeUpdateInputWith<T>).id)) {
+      return update(item as FakeUpdateInputWith<T>);
     }
 
-    return create(item as CreateInput<T>);
+    return create(item as FakeCreateInputWith<T>);
   }
 
   function remove(id: string) {
@@ -93,6 +90,6 @@ export function createFakeList<T extends FakeRecord = FakeRecord>(
   } as const;
 }
 
-export type FakeList<T extends FakeRecord = FakeRecord> = ReturnType<
-  typeof createFakeList<T>
+export type FakeDataSource<T extends FakeRecord = FakeRecord> = ReturnType<
+  typeof createFakeDataSource<T>
 >;

@@ -1,11 +1,11 @@
 import { useMemo } from 'react';
 
-import { useContacts } from './useContacts';
-import { useChats } from './useChats';
+import { useContactsDataSource } from './useContactsDataSource';
+import { useChatsDataSource } from './useChatsDataSource';
 
 export function useContact(contactId: string) {
-  const chats = useChats();
-  const contacts = useContacts();
+  const chats = useChatsDataSource();
+  const contacts = useContactsDataSource();
   const payload = useMemo(() => contacts.get(contactId), [contacts, contactId]);
 
   const op = {

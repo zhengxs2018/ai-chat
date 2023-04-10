@@ -2,11 +2,11 @@ import { useNavigate } from 'react-router-dom';
 import { PlusIcon, BookOpenIcon } from '@heroicons/react/24/outline';
 
 import Button from '@/components/base/Button';
-import { useNotes } from '../../hooks/useNotes';
+import { useNotesDataSource } from '../../hooks/useNotesDataSource';
 
 export default function NoteEmpty() {
   const navigate = useNavigate();
-  const notes = useNotes();
+  const notes = useNotesDataSource();
 
   const handleCreate = () => {
     const contact = notes.create({

@@ -9,7 +9,7 @@ import FieldInput from '@/components/fields/FieldInput';
 import FieldTextArea from '@/components/fields/FieldTextArea';
 
 import { ContactCreateInput } from '../models/contacts';
-import { useContacts } from '../hooks/useContacts';
+import { useContactsDataSource } from '../hooks/useContactsDataSource';
 
 import { useAppSelector, useAppDispatch } from '../store';
 import { closeAddContactModel } from '../store/app';
@@ -31,7 +31,7 @@ export default function AddContactModel() {
   const dispatch = useAppDispatch();
   const visible = useAppSelector((state) => state.app.addContactVisible);
 
-  const contacts = useContacts();
+  const contacts = useContactsDataSource();
   const [formData, setFormData] = useState<ContactCreateInput>(initialState());
 
   const onSave = () => {

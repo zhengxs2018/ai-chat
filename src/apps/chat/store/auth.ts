@@ -1,8 +1,11 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
+import { v4 as uuid } from 'uuid';
+
 import { trySerialize, tryDeserialize } from '@/shared/client/json';
 
 export type UserState = {
+  id: string;
   name: string;
   bio: string;
 };
@@ -13,6 +16,7 @@ function initialUserState(): UserState {
   );
 
   return {
+    id: raw?.id || uuid(),
     name: raw?.name || '阿森',
     bio: raw?.bio || '这个人很懒，什么都没有留下',
   };

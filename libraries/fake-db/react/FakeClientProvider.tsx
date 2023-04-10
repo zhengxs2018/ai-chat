@@ -2,11 +2,11 @@ import React from 'react';
 
 import type { FakeDB, FakeTable } from '../core';
 
-import { createFakeList, FakeList } from './createFakeList';
+import { createFakeDataSource, FakeDataSource } from './createFakeDataSource';
 
 export type FakeClient = {
   tables: Record<string, FakeTable>;
-  lists: Record<string, FakeList>;
+  lists: Record<string, FakeDataSource>;
 };
 
 export const FakeClientContext = React.createContext<FakeClient>(null);
@@ -17,10 +17,10 @@ export type FakeClientProps = React.PropsWithChildren<{
 
 export function FakeClientProvider({ value, children }: FakeClientProps) {
   const { tables } = value;
-  const lists: Record<string, FakeList> = {};
+  const lists: Record<string, FakeDataSource> = {};
 
   Object.values(tables).forEach((table) => {
-    lists[table.name] = createFakeList(table);
+    lists[table.name] = createFakeDataSource(table);
   });
 
   return (

@@ -62,6 +62,8 @@ export const withLog: Middleware = (next) => {
           (response as Response).status,
           time(start, end)
         );
+
+        console.log(response);
         return response;
       },
       (ex) => {

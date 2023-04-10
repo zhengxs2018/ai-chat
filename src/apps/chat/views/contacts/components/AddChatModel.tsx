@@ -9,7 +9,7 @@ import FieldInput from '@/components/fields/FieldInput';
 import FieldTextArea from '@/components/fields/FieldTextArea';
 
 import type { ChatCreateInput } from '../../../models/chats';
-import { useChats } from '../../../hooks/useChats';
+import { useChatsDataSource } from '../../../hooks/useChatsDataSource';
 
 function initialState(talkerId: string): ChatCreateInput {
   return {
@@ -32,7 +32,7 @@ export default function AddChatModel({
 }: AddChatModelProps) {
   const navigate = useNavigate();
 
-  const chats = useChats();
+  const chats = useChatsDataSource();
   const [formData, setFormData] = useState<ChatCreateInput>(
     initialState(talkerId)
   );
