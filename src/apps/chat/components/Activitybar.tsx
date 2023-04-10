@@ -30,7 +30,7 @@ export default function Activitybar({ className }: ActivitybarProps) {
   return (
     <div
       className={classNames(
-        'ai-activitybar flex-col h-full hidden lg:flex',
+        'ai-activitybar flex-col h-full hidden md:flex',
         className
       )}
     >

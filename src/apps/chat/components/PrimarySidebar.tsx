@@ -12,7 +12,7 @@ export default function PrimarySidebar({
   return (
     <div
       className={classNames(
-        'ai-primary-sidebar h-full bg-gray-100 border-r-[1px] hidden md:flex md:flex-col',
+        'ai-primary-sidebar h-full bg-gray-100 border-r-[1px] hidden lg:flex lg:flex-col',
         className
       )}
     >
