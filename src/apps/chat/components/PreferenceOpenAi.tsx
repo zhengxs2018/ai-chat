@@ -1,7 +1,6 @@
 import SettingTitle from '@/components/settings/SettingTitle';
 import FieldGroup from '@/components/fields/FieldGroup';
 import FieldInput from '@/components/fields/FieldInput';
-import FieldSwitch from '@/components/fields/FieldSwitch';
 
 import { useAppSelector, useAppDispatch } from '../store';
 import { updateOpenAI } from '../store/preferences';
@@ -20,11 +19,6 @@ export default function PreferenceOpenAi() {
     <div className="pb-5 flex flex-col space-y-2 overflow-y-scroll sm:py-6 sm:max-h-96 w-full max-h-[32rem]">
       <SettingTitle text="通用信息" />
       <FieldGroup>
-        <FieldSwitch
-          label="启用自定义配置"
-          checked={data.enable}
-          onChange={(e) => onChange('enable', e)}
-        />
         <FieldInput
           label="基础地址"
           value={data.baseURL}
