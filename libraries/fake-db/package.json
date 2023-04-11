@@ -1,0 +1,22 @@
+{
+  "name": "@ai-chat/fake-db",
+  "type": "module",
+  "version": "0.0.1",
+  "description": "Fake DB based on web storage",
+  "main": "./index.ts",
+  "peerDependencies": {
+    "react": "latest"
+  },
+  "dependencies": {
+    "@ai-chat/shared": "workspace:*",
+    "react-use": "^17.4.0"
+  },
+  "engines": {
+    "node": ">=18.12.1"
+  },
+  "author": {
+    "name": "zhengxs2018",
+    "email": "zhengxs2018@gmail.com"
+  },
+  "license": "MIT"
+}

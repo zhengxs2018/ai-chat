@@ -1,4 +1,4 @@
-import type { PropsWithChildren, ReactNode } from 'react';
+import type { PropsWithChildren } from 'react';
 import { XMarkIcon, CheckIcon } from '@heroicons/react/24/outline';
 
 import Dialog from '../base/Dialog';
@@ -6,15 +6,11 @@ import TippyButton from '../base/TippyButton';
 import SettingSelector from './SettingSelector';
 import SettingMobileSelector from './SettingMobileSelector';
 
-export type SettingCatalogItem = {
-  icon: ReactNode;
-  name: string;
-};
-
 export type SettingsModelProps = PropsWithChildren<{
   open: boolean;
   catalogItems: string[];
   catalogIcons: JSX.Element[];
+  className?: string;
   selected: string;
   showConfirm?: boolean;
   showClose?: boolean;
@@ -29,30 +25,33 @@ export default function SettingsModel({
   catalogItems,
   catalogIcons,
   children,
+  className = '',
+  showClose = true,
+  showConfirm,
   onSelect,
   onConfirm,
   onClose,
-  showClose = true,
-  showConfirm = !!onConfirm,
 }: SettingsModelProps) {
   return (
-    <Dialog open={open} onClose={onClose}>
+    <Dialog className={className} open={open} onClose={onClose}>
       <div className="absolute top-4 right-4 flex sm:right-6">
         {showConfirm && (
           <TippyButton
+            className="hover:bg-gray-200 active:bg-gray-300"
             tooltip="确定"
             onClick={onConfirm}
-            icon={<CheckIcon className="w-6 h-6 text-gray-500" />}
-            className="hover:bg-gray-200 active:bg-gray-300"
-          />
+          >
+            <CheckIcon className="w-6 h-6 text-gray-500" />
+          </TippyButton>
         )}
         {showClose && (
           <TippyButton
+            className="hover:bg-gray-200 active:bg-gray-300"
             tooltip="取消"
             onClick={onClose}
-            icon={<XMarkIcon className="w-6 h-6 text-gray-500" />}
-            className="hover:bg-gray-200 active:bg-gray-300"
-          />
+          >
+            <XMarkIcon className="w-6 h-6 text-gray-500" />
+          </TippyButton>
         )}
       </div>
       <div className="sm:h-96 h-150 flex sm:flex-row space-y-3 sm:space-y-0 flex-col sm:justify-center pt-5 sm:pt-0">

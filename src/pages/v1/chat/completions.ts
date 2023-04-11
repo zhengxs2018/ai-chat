@@ -11,6 +11,10 @@ export const post: APIRoute = withHttpError(
       return new Response(response.body, {
         status: response.status,
         statusText: response.statusText,
+        // TODO 直接透传 Headers 会响应失败？
+        headers: {
+          'content-type': response.headers.get('content-type'),
+        },
       });
     })
   )

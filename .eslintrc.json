@@ -5,7 +5,7 @@
     "es2021": true,
     "node": true
   },
-  "extends": ["eslint:recommended", "airbnb-base", "prettier"],
+  "extends": ["eslint:recommended", "prettier"],
   "plugins": ["import", "prettier"],
   "rules": {
     "@typescript-eslint/ban-ts-comment": "off",
@@ -21,6 +21,10 @@
     "no-use-before-define": "off",
     "no-useless-constructor": "off",
     "no-plusplus": "off",
+    "no-continue": "off",
+    "no-underscore-dangle":"off",
+    "prefer-destructuring": "off",
+    "object-shorthand": "off",
     "consistent-return": "off",
     "arrow-body-style": "off",
     "max-classes-per-file": "off",

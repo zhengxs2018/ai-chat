@@ -1,0 +1,18 @@
+{
+  "name": "@ai-chat/openai",
+  "type": "module",
+  "version": "0.0.1",
+  "description": "OpenAI API wrapper for Node.js And Browser",
+  "main": "./index.ts",
+  "dependencies": {
+    "@ai-chat/shared": "workspace:*"
+  },
+  "engines": {
+    "node": ">=18.12.1"
+  },
+  "author": {
+    "name": "zhengxs2018",
+    "email": "zhengxs2018@gmail.com"
+  },
+  "license": "MIT"
+}

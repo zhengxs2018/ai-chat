@@ -1,16 +1,16 @@
+import type { PropsWithChildren } from 'react';
 import Tippy from '@tippyjs/react';
 
-export type ActionButtonProps = {
-  text: string;
+export type ActionButtonProps = PropsWithChildren & {
+  text?: string;
   active?: boolean;
-  icon?: JSX.Element | ((active: boolean) => JSX.Element);
   onClick?: () => void;
   onClickOutside?: () => void;
 };
 
 export default function ActionButton({
   text,
-  icon,
+  children,
   active,
   onClick,
   onClickOutside,
@@ -30,7 +30,7 @@ export default function ActionButton({
         }`}
         onClick={onClick}
       >
-        {typeof icon === 'function' ? icon(active) : icon}
+        {children}
       </button>
     </Tippy>
   );

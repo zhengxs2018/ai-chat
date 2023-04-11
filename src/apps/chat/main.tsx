@@ -1,27 +1,28 @@
 import React from 'react';
+import { RouterProvider } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
+import { Provider } from 'react-redux';
+
+import { FakeClientProvider } from '@ai-chat/fake-db';
+
 import 'tippy.js/dist/tippy.css';
+import '@ai-chat/chat-ui/style/index.css';
 
 import './index.css';
-import App from './App';
-import { ChatContext, useChatProvider } from './hooks/useChatProvider';
-import {
-  CompletionContext,
-  useCompletionProvider,
-} from './hooks/useCompletionProvider';
 
-export default function ChatApp() {
-  const chat = useChatProvider();
-  const complete = useCompletionProvider();
+import db from './models';
+import store from './store';
+import router from './router';
 
+export default function Chat() {
   return (
     <React.StrictMode>
-      <ChatContext.Provider value={chat}>
-        <CompletionContext.Provider value={complete}>
+      <Provider store={store}>
+        <FakeClientProvider value={db}>
           <Toaster />
-          <App />
-        </CompletionContext.Provider>
-      </ChatContext.Provider>
+          <RouterProvider router={router} />
+        </FakeClientProvider>
+      </Provider>
     </React.StrictMode>
   );
 }

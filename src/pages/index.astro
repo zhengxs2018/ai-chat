@@ -12,10 +12,3 @@ if (!checkPass(Astro.cookies.get('code').value)) {
 <Layout title="与 AI 对话">
   <ChatApp client:only="react" />
 </Layout>
-
-<style is:global>
-  /* Hide vertical scrollbar */
-  ::-webkit-scrollbar {
-    display: none;
-  }
-</style>

@@ -1,9 +1,9 @@
-export interface SelectProps {
+export type SelectProps = {
   options: string[];
   value: string;
-  onChange: (value: string) => void;
   className?: string;
-}
+  onChange: (value: string) => void;
+};
 
 export default function Select({
   options,

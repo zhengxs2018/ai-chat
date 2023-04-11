@@ -1,9 +1,7 @@
 const SUPER_USER_PASSWORD = import.meta.env.SUPER_USER_PASSWORD || '';
-const ANONYMOUS_USER_PASSWORD = import.meta.env.ANONYMOUS_USER_PASSWORD || '';
+const USER_PASSWORD = import.meta.env.USER_PASSWORD || '';
 
-const anonymousUsers: string[] = ANONYMOUS_USER_PASSWORD
-  ? ANONYMOUS_USER_PASSWORD.split(',')
-  : [];
+const users: string[] = USER_PASSWORD ? USER_PASSWORD.split(',') : [];
 
 const superUsers: string[] = SUPER_USER_PASSWORD
   ? SUPER_USER_PASSWORD.split(',')
@@ -16,7 +14,7 @@ const superUsers: string[] = SUPER_USER_PASSWORD
  * @returns 返回 true 也可能是没密码
  */
 export function isLoggedIn(pass: string) {
-  return anonymousUsers.length === 0 || anonymousUsers.includes(pass);
+  return users.length === 0 || users.includes(pass);
 }
 
 export function isSuperUser(pass: string) {

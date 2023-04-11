@@ -3,14 +3,24 @@ import { Fragment } from 'react';
 
 export interface DialogProps {
   open: boolean;
+  className?: string;
   onClose: () => void;
   children: React.ReactNode;
 }
 
-export default function Dialog({ open, onClose, children }: DialogProps) {
+export default function Dialog({
+  open,
+  className,
+  onClose,
+  children,
+}: DialogProps) {
   return (
     <Transition.Root show={open} as={Fragment}>
-      <Popup as="div" className="relative z-10" onClose={onClose}>
+      <Popup
+        as="div"
+        className={`relative z-10 ${className}`}
+        onClose={onClose}
+      >
         <Transition.Child
           as={Fragment}
           enter="ease-out duration-300"
@@ -34,8 +44,8 @@ export default function Dialog({ open, onClose, children }: DialogProps) {
               leaveFrom="opacity-100 translate-y-0 sm:scale-100"
               leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
             >
-              <Popup.Panel className="relative transform overflow-hidden rounded-xl bg-white shadow-xl transition-all w-90">
-                <div className="bg-white dark:bg-gray-800">{children}</div>
+              <Popup.Panel className="relative transform overflow-hidden rounded-xl shadow-xl bg-white transition-all">
+                {children}
               </Popup.Panel>
             </Transition.Child>
           </div>

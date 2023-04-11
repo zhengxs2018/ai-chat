@@ -2,6 +2,7 @@ import ActionButton, { ActionButtonProps } from './ActionButton';
 
 export type ActionButton = ActionButtonProps & {
   key: string;
+  icon?: React.ReactNode;
 };
 
 export type ActionBarProps = {
@@ -30,11 +31,12 @@ export default function ActionBar({
         <ActionButton
           text={button.text}
           active={active === button.key}
-          icon={button.icon}
           key={button.key}
           onClick={() => handleClick(button)}
           onClickOutside={() => handleClickOutside(button)}
-        />
+        >
+          {button.icon}
+        </ActionButton>
       ))}
     </div>
   );

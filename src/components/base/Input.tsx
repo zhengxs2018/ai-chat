@@ -1,25 +1,27 @@
-export interface InputProps {
-  id: string;
-  type: string;
+export type InputProps = {
+  id?: string;
+  type?: string;
   className?: string;
-  value: string;
+  value: number | string;
   readOnly?: boolean;
   disabled?: boolean;
-  placeholder: string;
+  placeholder?: string;
+  maxLength?: number;
+  step?: string | number;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  step?: string;
-}
+};
 
 export default function Input({
   id,
-  type,
-  className,
   value,
-  placeholder,
+  step,
+  className,
+  type = 'text',
+  placeholder = '请输入内容',
   readOnly,
+  maxLength,
   disabled,
   onChange,
-  step,
 }: InputProps) {
   return (
     <input
@@ -32,6 +34,7 @@ export default function Input({
       readOnly={readOnly}
       disabled={disabled}
       placeholder={placeholder}
+      maxLength={maxLength}
       onChange={onChange}
       step={step}
       spellCheck={false}

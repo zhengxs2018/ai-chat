@@ -3,7 +3,7 @@ import type { APIContext, APIRoute } from 'astro';
 
 import { checkPass, isSuperUser } from './auth';
 
-import { humanize } from '../utils/number';
+import { humanize } from '../../../libraries/shared/format';
 
 export type Middleware = (
   next: (context: APIContext) => ReturnType<APIRoute>
@@ -62,6 +62,7 @@ export const withLog: Middleware = (next) => {
           (response as Response).status,
           time(start, end)
         );
+
         return response;
       },
       (ex) => {
@@ -84,13 +85,10 @@ export const withHttpError: Middleware = (next) => (context) => {
   return Promise.resolve(next(context)).catch((ex) => {
     // eslint-disable-next-line no-console
     console.error(ex);
-    return new Response(
-      JSON.stringify({ code: ex.status, message: ex.message }),
-      {
-        status: ex.status || 500,
-        statusText: ex.statusText || 'Internal Server Error',
-      }
-    );
+    return new Response(null, {
+      status: ex.status || 500,
+      statusText: ex.statusText || 'Internal Server Error',
+    });
   });
 };
 

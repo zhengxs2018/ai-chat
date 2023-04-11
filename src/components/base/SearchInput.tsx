@@ -1,14 +1,14 @@
 import classNames from 'classnames';
 import { useState } from 'react';
 
-export interface SearchInputProps {
+export type SearchInputProps = {
   className?: string;
   readOnly?: boolean;
   disabled?: boolean;
   placeholder?: string;
   onSearch: (searchString: string) => void;
   onClear: () => void;
-}
+};
 
 export default function SearchInput({
   className,

@@ -22,6 +22,7 @@ words:
   - avvvatars
   - chatgpt
   - cognitiveservices
+  - contexify
   - csstype
   - davinci
   - eventsource
@@ -32,7 +33,9 @@ words:
   - justjavac
   - katex
   - linkify
+  - lokijs
   - msgtype
+  - nozbe
   - npmmirror
   - openai
   - plusplus
@@ -46,7 +49,9 @@ words:
   - tsconfigs
   - undici
   - unocss
+  - upsert
   - Vditor
+  - watermelondb
 ignoreWords:
   - trivago
   - zhengxs

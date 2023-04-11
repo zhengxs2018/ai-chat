@@ -1,0 +1,27 @@
+{
+  "name": "@ai-chat/chat-ui",
+  "type": "module",
+  "version": "0.0.1",
+  "description": "Fake DB based on web storage",
+  "main": "./index.ts",
+  "peerDependencies": {
+    "react": "latest"
+  },
+  "dependencies": {
+    "@ai-chat/shared": "workspace:*",
+    "@heroicons/react": "^2.0.17",
+    "react-scroll": "^1.8.9",
+    "react-textarea-autosize": "^8.4.1"
+  },
+  "devDependencies": {
+    "@types/react-scroll": "^1.8.6"
+  },
+  "engines": {
+    "node": ">=18.12.1"
+  },
+  "author": {
+    "name": "zhengxs2018",
+    "email": "zhengxs2018@gmail.com"
+  },
+  "license": "MIT"
+}

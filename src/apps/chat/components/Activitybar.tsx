@@ -1,43 +1,71 @@
-import Toast from 'react-hot-toast';
+import classNames from 'classnames';
+import {
+  ChatBubbleBottomCenterIcon,
+  BookOpenIcon,
+  UsersIcon,
+  Cog6ToothIcon,
+} from '@heroicons/react/24/solid';
 
-import SettingIcon from '@/components/icons/SettingIcon';
+import { useLocation } from 'react-router-dom';
 
-import { APP_FEATURES } from '../constants/app';
-import ActionBar, { ActionButton } from './ActionBar';
-import CurrentUser from './CurrentUser';
+import ActivitybarUser from './ActivitybarUser';
+import ActionLink from './ActionLink';
+import ActionButton from './ActionButton';
+
+import { useAppDispatch } from '../store';
+import { openPreferencesPopup } from '../store/app';
 
 export type ActivitybarProps = {
-  active: string;
-  onActive: (key: string) => void;
+  className?: string;
 };
 
-export default function Activitybar({ active, onActive }: ActivitybarProps) {
-  const handleNoop = async () => {
-    Toast('没有功能');
+export default function Activitybar({ className }: ActivitybarProps) {
+  const { pathname } = useLocation();
+  const dispatch = useAppDispatch();
+
+  const showPreferencesPopup = () => {
+    dispatch(openPreferencesPopup());
   };
 
-  const bottomButtons: ActionButton[] = [
-    {
-      text: '设置',
-      icon: <SettingIcon className="action-button-icon" />,
-      key: 'setting',
-      onClick: handleNoop,
-    },
-  ];
-
   return (
-    <div className="ai-activitybar flex-col h-full hidden lg:flex">
-      <div className="ai-fcc ai-current-user mb-4">
-        <CurrentUser />
+    <div
+      className={classNames(
+        'ai-activitybar flex-col h-full hidden md:flex',
+        className
+      )}
+    >
+      <div className="ai-fcc mb-4">
+        <ActivitybarUser />
       </div>
-
       <div className="flex-1 flex flex-col justify-between">
-        <ActionBar
-          active={active}
-          buttons={APP_FEATURES}
-          onClick={(a) => onActive(a.key)}
-        />
-        <ActionBar buttons={bottomButtons} />
+        <div className="flex flex-col">
+          <ActionLink
+            text="聊天"
+            active={pathname.startsWith('/chats')}
+            to="/chats"
+          >
+            <ChatBubbleBottomCenterIcon className="action-button-icon" />
+          </ActionLink>
+          <ActionLink
+            text="通讯录"
+            active={pathname.startsWith('/contacts')}
+            to="/contacts"
+          >
+            <UsersIcon className="action-button-icon" />
+          </ActionLink>
+          <ActionLink
+            text="笔记"
+            active={pathname.startsWith('/notes')}
+            to="/notes"
+          >
+            <BookOpenIcon className="action-button-icon" />
+          </ActionLink>
+        </div>
+        <div className="flex flex-col">
+          <ActionButton text="设置" onClick={showPreferencesPopup}>
+            <Cog6ToothIcon className="action-button-icon" />
+          </ActionButton>
+        </div>
       </div>
     </div>
   );

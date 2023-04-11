@@ -1,4 +1,4 @@
-export interface RangeSliderProps {
+export type RangeSliderProps = {
   id?: string;
   value: number;
   onChange: (value: number) => void;
@@ -6,7 +6,7 @@ export interface RangeSliderProps {
   min?: number | string;
   max?: number | string;
   step?: string | number;
-}
+};
 
 export default function RangeSlider({
   id,

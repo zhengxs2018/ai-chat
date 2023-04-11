@@ -1,0 +1,20 @@
+.contact {
+  @apply py-[16px] px-[14px] bg-white hover:bg-gray-100 active:bg-gray-200;
+}
+
+.contact.is-active {
+  @apply bg-gray-100;
+}
+
+.contact-name {
+  @apply text-xs text-gray-800 tracking-wide max-w-[126px] truncate;
+}
+
+.contact-bio,
+.contact-date {
+  @apply text-xs text-gray-400 tracking-wide;
+}
+
+.contact-date {
+  @apply select-none;
+}

@@ -12,12 +12,11 @@ export default function PrimarySidebar({
   return (
     <div
       className={classNames(
-        'ai-primary-sidebar flex-1 hidden flex-col h-full bg-gray-100 border-r-[1px]',
-        'md:flex',
+        'ai-primary-sidebar h-full bg-gray-100 border-r-[1px] hidden lg:flex lg:flex-col',
         className
       )}
     >
-      <div className="flex flex-col h-full overflow-hidden">{children}</div>
+      {children}
     </div>
   );
 }
