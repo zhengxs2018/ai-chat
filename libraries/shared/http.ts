@@ -1,8 +1,10 @@
 export function overrideHeaders(
   source: Headers,
-  target: Headers,
+  target?: Headers,
   ...keys: string[]
 ) {
+  if (!target) return;
+
   keys.forEach((key) => {
     if (target.has(key)) {
       source.append(key, target.get(key) as string);

@@ -9,7 +9,7 @@ export class OpenAiSDK {
     this.builder = OpenAiBuilder.build(config);
   }
 
-  async createCompletion({ body, headers }: Request): Promise<Response> {
+  async createCompletion(body: BodyInit, headers?: Headers): Promise<Response> {
     const request = await this.builder.createCompletion(body);
 
     // 允许客户端覆盖掉服务端的请求头
@@ -25,7 +25,10 @@ export class OpenAiSDK {
     return this.fetch(request);
   }
 
-  async createChatCompletion({ body, headers }: Request): Promise<Response> {
+  async createChatCompletion(
+    body: BodyInit,
+    headers?: Headers
+  ): Promise<Response> {
     const request = await this.builder.createChatCompletion(body);
 
     // 允许客户端覆盖掉服务端的请求头

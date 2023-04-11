@@ -9,7 +9,6 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { ContactList, ContactItem, IContactPayload } from '@ai-chat/chat-ui';
 
 import PrimarySidebar from '../../../components/PrimarySidebar';
-
 import { useChatsDataSource } from '../../../hooks/useChatsDataSource';
 
 export default function ChatsAside() {

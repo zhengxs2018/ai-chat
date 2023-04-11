@@ -63,7 +63,6 @@ export const withLog: Middleware = (next) => {
           time(start, end)
         );
 
-        console.log(response);
         return response;
       },
       (ex) => {
@@ -76,7 +75,6 @@ export const withLog: Middleware = (next) => {
           500,
           time(start, end)
         );
-        console.error(ex);
         return Promise.reject(ex);
       }
     );

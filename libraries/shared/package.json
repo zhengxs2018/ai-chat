@@ -3,6 +3,16 @@
   "type": "module",
   "version": "0.0.1",
   "main": "./index.ts",
+  "dependencies": {
+    "markdown-it": "^13.0.1",
+    "markdown-it-highlightjs": "^4.0.1",
+    "markdown-it-katex": "^2.0.3",
+    "highlight.js": "^11.7.0",
+    "katex": "^0.16.4"
+  },
+  "devDependencies": {
+    "@types/markdown-it": "^12.2.3"
+  },
   "engines": {
     "node": ">=18.12.1"
   },

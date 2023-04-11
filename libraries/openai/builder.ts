@@ -33,7 +33,7 @@ export type OpenAiConfiguration = {
   /**
    * 自定义请求头
    */
-  headersInit?: Record<string, string>;
+  headers?: Record<string, string>;
 };
 
 export class OpenAiBuilder {
@@ -41,14 +41,14 @@ export class OpenAiBuilder {
   apiKey?: string | null;
   apiVersion: string;
   organization?: string | null;
-  headersInit: Record<string, string>;
+  headers: Record<string, string>;
 
   constructor(config: OpenAiConfiguration) {
     this.baseURL = config.baseURL || BASE_URL;
     this.apiKey = config.apiKey;
     this.apiVersion = config.apiVersion || 'v1';
     this.organization = config.organization;
-    this.headersInit = config.headersInit || {};
+    this.headers = config.headers || {};
   }
 
   createChatCompletion(body: BodyInit): Request {
@@ -113,7 +113,7 @@ export class OpenAiBuilder {
 
   createHeaders(customHeaders: HeadersInit): Headers {
     const { apiKey, organization } = this;
-    const headers = new Headers(this.headersInit);
+    const headers = new Headers(this.headers);
 
     if (apiKey) {
       headers.set(`Authorization`, `Bearer ${apiKey}`);
