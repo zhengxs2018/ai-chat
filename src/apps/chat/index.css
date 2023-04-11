@@ -57,3 +57,11 @@
 ::-webkit-scrollbar {
   display: none;
 }
+
+.ai-context-menu {
+  --contexify-menu-minWidth: 80px;
+}
+
+.ai-context-menu .contexify_itemContent {
+  @apply justify-center;
+}

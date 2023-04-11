@@ -8,6 +8,7 @@
     "react": "latest"
   },
   "dependencies": {
+    "@ai-chat/shared": "workspace:*",
     "react-use": "^17.4.0"
   },
   "engines": {

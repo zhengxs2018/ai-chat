@@ -45,8 +45,7 @@ export default function FieldSlider({
           id={id}
           type={'number'}
           className={`ml-0.5 w-20 ${inputClassName}`}
-          value={value.toString()}
-          placeholder={value.toString()}
+          value={value}
           onChange={(e) => onChange(parseFloat(e.target.value))}
           step={step}
         />

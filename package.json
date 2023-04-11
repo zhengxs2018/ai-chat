@@ -2,7 +2,7 @@
   "name": "ai-chat",
   "private": true,
   "type": "module",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "scripts": {
     "preinstall": "npx only-allow pnpm",
     "start": "astro dev --host",
@@ -26,6 +26,7 @@
     "classnames": "^2.3.2",
     "lodash-es": "^4.17.21",
     "react": "^18.2.0",
+    "react-contexify": "^6.0.0",
     "react-dom": "^18.2.0",
     "react-hot-toast": "^2.4.0",
     "react-redux": "^8.0.5",

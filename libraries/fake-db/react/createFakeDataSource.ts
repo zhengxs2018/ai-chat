@@ -76,6 +76,20 @@ export function createFakeDataSource<T extends FakeRecord = FakeRecord>(
     op.removeAt(items.findIndex((item) => item.id === id));
   }
 
+  function removeMany(predicate: (value: T) => boolean) {
+    const ids: string[] = [];
+
+    op.filter((item) => {
+      const flag = predicate(item) === false;
+      ids.push(item.id);
+      return flag;
+    });
+
+    for (const id of ids) {
+      table.delete(id);
+    }
+  }
+
   return {
     items,
     get,
@@ -87,6 +101,7 @@ export function createFakeDataSource<T extends FakeRecord = FakeRecord>(
     update,
     upsert,
     remove,
+    removeMany,
   } as const;
 }
 

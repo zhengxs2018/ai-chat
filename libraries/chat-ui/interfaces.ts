@@ -1,3 +1,5 @@
+import React from 'react';
+
 export interface IContactPayload {
   id: string;
   name: string;
@@ -21,7 +23,15 @@ export type ContactContentProps = {
   payload: IContactPayload;
 };
 
+export type MessageItemMouseHandler = (
+  event: React.MouseEvent<HTMLDivElement, MouseEvent>,
+  payload: IMessagePayload,
+  index: number
+) => void;
+
 export type MessageContentProps = {
   index: number;
   payload: IMessagePayload;
+  onClick?: MessageItemMouseHandler;
+  onContextMenu?: MessageItemMouseHandler;
 };

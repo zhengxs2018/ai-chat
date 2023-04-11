@@ -2,12 +2,13 @@ export type InputProps = {
   id?: string;
   type?: string;
   className?: string;
-  value: string;
+  value: number | string;
   readOnly?: boolean;
   disabled?: boolean;
   placeholder?: string;
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  maxLength?: number;
   step?: string | number;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
 export default function Input({
@@ -18,6 +19,7 @@ export default function Input({
   type = 'text',
   placeholder = '请输入内容',
   readOnly,
+  maxLength,
   disabled,
   onChange,
 }: InputProps) {
@@ -32,6 +34,7 @@ export default function Input({
       readOnly={readOnly}
       disabled={disabled}
       placeholder={placeholder}
+      maxLength={maxLength}
       onChange={onChange}
       step={step}
       spellCheck={false}

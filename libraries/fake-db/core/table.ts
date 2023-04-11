@@ -1,8 +1,10 @@
 import { FakeSchemaDefinition, FakeSchema, buildSchema } from './schema';
+import type { FakeField } from './field';
 import type { FakeJson, FakeRecord } from './types';
 
 export class FakeTable<T extends FakeRecord = FakeRecord> extends EventTarget {
   name: string;
+  fields: FakeField[];
 
   store = new Map<string, T>();
 
@@ -10,6 +12,19 @@ export class FakeTable<T extends FakeRecord = FakeRecord> extends EventTarget {
     super();
 
     this.name = schema.name;
+    this.fields = schema.fields;
+  }
+
+  init(initData: FakeJson[] = []) {
+    const { store } = this;
+    const { deserialize, initialValue } = this.schema;
+
+    const data = initData.length > 0 ? initData : initialValue();
+
+    data.forEach((raw) => {
+      const item = deserialize(raw);
+      store.set(item.id, item);
+    });
   }
 
   get(id: string) {
@@ -21,7 +36,7 @@ export class FakeTable<T extends FakeRecord = FakeRecord> extends EventTarget {
   }
 
   create(part: Partial<Omit<FakeRecord, 'id'>>): T {
-    const initial = this.schema.initialValue();
+    const initial = this.initialValue();
     const data = { ...initial, ...part, version: 0 } as T;
 
     // 数据验证
@@ -104,6 +119,19 @@ export class FakeTable<T extends FakeRecord = FakeRecord> extends EventTarget {
     if (this.store.size === 0) return;
     this.store.clear();
     this.dispatchEvent(new CustomEvent('sync-clear'));
+  }
+
+  initialValue() {
+    const raw = {};
+
+    this.fields.forEach((field) => {
+      const value = field.default();
+      if (value == null) return;
+
+      raw[field.name] = value;
+    });
+
+    return raw;
   }
 
   static build<T extends FakeRecord>(definition: FakeSchemaDefinition<T>) {

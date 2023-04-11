@@ -1,5 +1,7 @@
 import { FakeTable, FakeRecord, FakeCreateInputWith } from '@ai-chat/fake-db';
 
+import messages from '../data/messages.json';
+
 export interface IMessage extends FakeRecord {
   type: string;
   role: 'user' | 'system' | 'assistant';
@@ -17,4 +19,5 @@ export default FakeTable.build<IMessage>({
     { name: 'content', type: 'string', required: true },
     { name: 'chat_id', type: 'string', required: true },
   ],
+  initialValue: () => messages,
 });

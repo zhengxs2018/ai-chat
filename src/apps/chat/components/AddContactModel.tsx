@@ -19,7 +19,6 @@ function initialState(): ContactCreateInput {
     name: '',
     relationship: '',
     bio: '',
-    hobbies: '',
     callYou: '',
     hint: '',
   };
@@ -63,6 +62,7 @@ export default function AddContactModel() {
           <FieldInput
             label="姓名"
             value={formData.name}
+            maxLength={8}
             onChange={(value) => onChange('name', value)}
           />
           <FieldTextArea
@@ -70,29 +70,26 @@ export default function AddContactModel() {
             value={formData.bio}
             rows={4}
             maxRows={4}
-            maxLength={40}
+            maxLength={280}
             onChange={(value) => onChange('bio', value)}
           />
           <FieldInput
-            label="与你的关系"
+            label="与我的关系"
             value={formData.relationship}
+            maxLength={8}
             onChange={(value) => onChange('relationship', value)}
           />
           <FieldInput
-            label="对你的称呼"
+            label="对我的称呼"
             value={formData.callYou}
+            maxLength={8}
             onChange={(value) => onChange('callYou', value)}
           />
-          <FieldInput
-            label="兴趣爱好"
-            value={formData.hobbies}
-            onChange={(value) => onChange('hobbies', value)}
-          />
           <FieldTextArea
-            label="其他提示"
+            label="系统提示"
             value={formData.hint}
             maxRows={4}
-            maxLength={40}
+            maxLength={280}
             onChange={(value) => onChange('hint', value)}
           />
           <div className="flex justify-end space-x-2 mt-2">

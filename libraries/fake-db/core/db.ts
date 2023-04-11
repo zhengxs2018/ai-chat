@@ -1,5 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import { tryDeserialize } from '@ai-chat/shared/json';
+
 import { FakeSchema } from './schema';
 import { FakeTable } from './table';
 
@@ -42,6 +44,8 @@ function createConnection(
 ) {
   function initialize() {
     const prefix = `${name}:`;
+    const datasets = {};
+
     for (const key in storage) {
       if (key.startsWith(prefix)) {
         const [_, tableName, id] = key.split(':');
@@ -53,8 +57,18 @@ function createConnection(
         const table = tables[tableName];
         if (!table) continue;
 
-        table.syncUpdate(JSON.parse(value));
+        const data = tryDeserialize(value);
+
+        datasets[tableName] = datasets[tableName] || [];
+        datasets[tableName].push(data);
       }
+    }
+
+    for (const key in tables) {
+      const table = tables[key];
+      const data = datasets[key] || [];
+
+      table.init(data);
     }
   }
 

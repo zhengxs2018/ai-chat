@@ -15,6 +15,8 @@ export type PreferencesState = {
     model: string;
     maxTokens: number;
     temperature: number;
+  };
+  message: {
     maxMessages: number;
     reportAssistantMessage: boolean;
   };
@@ -35,9 +37,11 @@ function initialState(): PreferencesState {
     },
     chat: {
       model: 'gpt-3.5-turbo',
-      maxTokens: 1024,
-      maxMessages: 10,
+      maxTokens: 256,
       temperature: 0.7,
+    },
+    message: {
+      maxMessages: 10,
       reportAssistantMessage: true,
     },
   });
@@ -57,6 +61,12 @@ const preferencesSlice = createSlice({
       const { payload } = action;
 
       state.chat = { ...state.chat, ...payload };
+      localStorage.setItem('ai-chat-app:preferences', trySerialize(state));
+    },
+    updateMessage(state, action: PayloadAction<PreferencesState['message']>) {
+      const { payload } = action;
+
+      state.message = { ...state.message, ...payload };
       localStorage.setItem('ai-chat-app:preferences', trySerialize(state));
     },
   },

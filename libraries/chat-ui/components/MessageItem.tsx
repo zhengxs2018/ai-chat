@@ -8,7 +8,7 @@ import { MessageItemUser } from './MessageItemUser';
 
 export type MessageItemProps = React.PropsWithChildren<MessageContentProps>;
 
-export function MessageItem({ index, children, payload }: MessageItemProps) {
+export function MessageItem({ children, payload, ...props }: MessageItemProps) {
   const itself = payload.self;
 
   return (
@@ -24,7 +24,7 @@ export function MessageItem({ index, children, payload }: MessageItemProps) {
         }`}
       >
         <MessageItemUser payload={payload}></MessageItemUser>
-        {renderMessageContent(children, { index, payload })}
+        {renderMessageContent(children, { payload, ...props })}
       </div>
     </div>
   );

@@ -38,7 +38,7 @@ export function isInvalidStatus(status: number) {
   return status < 200 || status >= 300;
 }
 
-export function convertToFormData(data: any): FormData {
+export function convertToFormData(data: unknown): FormData {
   const formData = new FormData();
 
   Object.entries(data).forEach(([key, value]) => {

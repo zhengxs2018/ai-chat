@@ -1,5 +1,7 @@
 import { FakeTable, FakeRecord, FakeCreateInputWith } from '@ai-chat/fake-db';
 
+import contacts from '../data/contacts.json';
+
 export interface IContact extends FakeRecord {
   /**
    * 头像
@@ -13,10 +15,6 @@ export interface IContact extends FakeRecord {
    * 简介
    */
   bio?: string;
-  /**
-   * 兴趣爱好
-   */
-  hobbies?: string;
   /**
    * 与用户的关系
    */
@@ -42,6 +40,6 @@ export default FakeTable.build<IContact>({
     { name: 'relationship', type: 'string' },
     { name: 'callYou', type: 'string' },
     { name: 'hint', type: 'string' },
-    { name: 'hobbies', type: 'string' },
   ],
+  initialValue: () => contacts,
 });

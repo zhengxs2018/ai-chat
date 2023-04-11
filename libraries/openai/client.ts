@@ -9,13 +9,16 @@ import type {
 
 async function transformResponse<T>(response: Response): Promise<T> {
   if (!response.ok || isInvalidStatus(response.status)) {
-    return Promise.reject(new Error(response.statusText));
+    try {
+      // TODO 需要格式化错误
+      const { error } = await response.json();
+      return Promise.reject(new Error(error.message));
+    } catch {
+      return Promise.reject(new Error(response.statusText));
+    }
   }
 
-  const res = await response.json();
-  const ex = res.error;
-
-  return ex ? Promise.reject(new Error(ex.message || '请求失败')) : res;
+  return response.json();
 }
 
 export class OpenAiClient {

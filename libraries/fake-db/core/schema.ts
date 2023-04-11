@@ -5,7 +5,8 @@ import type { FakeJson, FakeRecord } from './types';
 
 export type FakeSchema<T extends FakeRecord = FakeRecord> = {
   name: string;
-  initialValue: () => Partial<T>;
+  fields: FakeField[];
+  initialValue: () => FakeJson[];
   validate(data: Partial<T>): void | never;
   serialize: (item: T) => string;
   deserialize: (raw: FakeJson) => T;
@@ -13,16 +14,15 @@ export type FakeSchema<T extends FakeRecord = FakeRecord> = {
 };
 
 export type FakeSchemaDefinition<T extends FakeRecord = FakeRecord> = Partial<
-  Omit<FakeSchema<T>, 'name' | 'deserialize'>
+  Omit<FakeSchema<T>, 'fields' | 'deserialize'>
 > & {
-  name: string;
   fields: Array<string | (FakeFieldOptions & { name: string })>;
 };
 
 export function buildSchema<T extends FakeRecord = FakeRecord>(
   definition: FakeSchemaDefinition<T>
 ): FakeSchema<T> {
-  const { name, shouldSync = () => true } = definition;
+  const { name, initialValue = () => [], shouldSync = () => true } = definition;
 
   const fields: FakeField[] = [
     new FakeField('id', { type: 'string', default: uuid }),
@@ -39,19 +39,6 @@ export function buildSchema<T extends FakeRecord = FakeRecord>(
     const { name, ...schema } = nameOrDef;
     fields.push(new FakeField(name, schema));
   });
-
-  function initialValue() {
-    const raw = {};
-
-    fields.forEach((field) => {
-      const value = field.default();
-      if (value == null) return;
-
-      raw[field.name] = value;
-    });
-
-    return raw;
-  }
 
   function validate(data: Partial<T>) {
     fields.forEach((field) => {
@@ -83,6 +70,7 @@ export function buildSchema<T extends FakeRecord = FakeRecord>(
 
   return {
     name,
+    fields,
     initialValue,
     deserialize,
     serialize,

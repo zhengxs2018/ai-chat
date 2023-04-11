@@ -6,6 +6,7 @@ export type TippyButtonProps = React.PropsWithChildren<{
   className?: string;
   tooltip?: string;
   placement?: Placement;
+  disabled?: boolean;
   onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
 }>;
 
@@ -14,6 +15,7 @@ export default function TippyButton({
   children,
   tooltip = '',
   placement = 'bottom',
+  disabled,
   onClick,
 }: TippyButtonProps) {
   return (
@@ -26,6 +28,7 @@ export default function TippyButton({
     >
       <button
         className={`py-2 px-2 rounded-md select-none ${className}`}
+        disabled={disabled}
         onClick={onClick}
       >
         {children}
