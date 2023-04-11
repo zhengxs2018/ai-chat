@@ -21,11 +21,10 @@
 | 名称                    | 用途                               | 是否必须 | 默认值                   |
 | ----------------------- | ---------------------------------- | -------- | ------------------------ |
 | OPENAI_API_BASE_URL     | 请求基础路径                       | 否       | https://closeai.deno.dev |
-| OPENAI_ORGANIZATION          | 在 OpenAI 注册获得的机构 ID        | 否       |                          |
+| OPENAI_ORGANIZATION     | 在 OpenAI 注册获得的机构 ID        | 否       |                          |
 | OPENAI_API_KEY          | 在 OpenAI 注册获得的 API Key       | 是       |                          |
-| ANONYMOUS_USER_PASSWORD | 限制用户访问，不填为站点可公开访问 | 否       |                          |
-| SUPER_USER_PASSWORD     | 可使用文本补全功能的用户           | 否       |                          |
-| BAIDU_API_KEY     | 百度统计代码的 API KEY           | 否       |                          |
+| USER_PASSWORD | 限制用户访问，不填为站点可公开访问 | 否       |                          |
+| BAIDU_API_KEY           | 百度统计代码的 API KEY             | 否       |                          |
 
 ## 如何部署
 
