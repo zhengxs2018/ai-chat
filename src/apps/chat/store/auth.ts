@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import { v4 as uuid } from 'uuid';
 
-import { trySerialize, tryDeserialize } from '@/shared/client/json';
+import { trySerialize, tryDeserialize } from '@ai-chat/shared/json';
 
 export type UserState = {
   id: string;

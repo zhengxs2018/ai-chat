@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { defaultsDeep } from 'lodash-es';
 
-import { trySerialize, tryDeserialize } from '@/shared/client/json';
+import { trySerialize, tryDeserialize } from '@ai-chat/shared/json';
 
 export type PreferencesState = {
   openai: {
