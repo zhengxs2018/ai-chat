@@ -37,19 +37,21 @@ export default function SettingsModel({
       <div className="absolute top-4 right-4 flex sm:right-6">
         {showConfirm && (
           <TippyButton
+            className="hover:bg-gray-200 active:bg-gray-300"
             tooltip="确定"
             onClick={onConfirm}
-            icon={<CheckIcon className="w-6 h-6 text-gray-500" />}
-            className="hover:bg-gray-200 active:bg-gray-300"
-          />
+          >
+            <CheckIcon className="w-6 h-6 text-gray-500" />
+          </TippyButton>
         )}
         {showClose && (
           <TippyButton
+            className="hover:bg-gray-200 active:bg-gray-300"
             tooltip="取消"
             onClick={onClose}
-            icon={<XMarkIcon className="w-6 h-6 text-gray-500" />}
-            className="hover:bg-gray-200 active:bg-gray-300"
-          />
+          >
+            <XMarkIcon className="w-6 h-6 text-gray-500" />
+          </TippyButton>
         )}
       </div>
       <div className="sm:h-96 h-150 flex sm:flex-row space-y-3 sm:space-y-0 flex-col sm:justify-center pt-5 sm:pt-0">

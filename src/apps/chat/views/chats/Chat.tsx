@@ -115,12 +115,13 @@ export default function Chat() {
         onSend={handleSend}
       >
         <TippyButton
+          className="hover:bg-gray-200 active:bg-gray-300"
           tooltip="重试"
           placement="top"
-          icon={<ArrowPathIcon className="w-6 h-6 text-gray-500" />}
-          className="hover:bg-gray-200 active:bg-gray-300"
           onClick={handleReset}
-        />
+        >
+          <ArrowPathIcon className="w-6 h-6 text-gray-500" />
+        </TippyButton>
       </MessageInputbar>
     </div>
   );

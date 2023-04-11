@@ -3,11 +3,11 @@ import { Placement } from 'tippy.js';
 
 import HelpIcon from '../icons/HelpIcon';
 
-export interface FieldLabelProps {
+export type FieldLabelProps = {
   label: string;
   placement?: Placement;
   tooltip?: string;
-}
+};
 
 export default function FieldLabel({
   label,

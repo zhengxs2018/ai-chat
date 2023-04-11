@@ -1,11 +1,11 @@
 import { Switch } from '@headlessui/react';
 
-export interface ToggleProps {
+export type ToggleProps = {
   className?: string;
   checked: boolean;
   description?: string;
   onChange: (checked: boolean) => void;
-}
+};
 
 export default function Toggle({
   checked,

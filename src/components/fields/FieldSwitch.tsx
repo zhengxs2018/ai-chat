@@ -10,14 +10,12 @@ export default function FieldSwitch({
   label,
   tooltip,
   placement,
-  className,
-  checked,
-  onChange,
+  ...props
 }: FieldSwitchProps) {
   return (
     <div className="flex flex-row justify-between items-center">
       <FieldLabel label={label} tooltip={tooltip} placement={placement} />
-      <Toggle checked={checked} onChange={onChange} className={className} />
+      <Toggle {...props} />
     </div>
   );
 }
