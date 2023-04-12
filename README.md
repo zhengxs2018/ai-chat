@@ -1,5 +1,10 @@
 # [WIP] 2023 我们一起与 AI 对话
 
+<a href="https://github.com/zhengxs2018/ai-chat/pulls" target="_blank" rel="noopener noreferrer">
+  <img src="https://img.shields.io/badge/PRs-welcome-brightgreen?style=flat-square" alt="PRs Welcome" />
+</a>
+
+
 功能正在开发中。
 
 ## 屏幕截图
