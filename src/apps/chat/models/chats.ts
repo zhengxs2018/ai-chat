@@ -1,6 +1,6 @@
 import { FakeTable, FakeRecord, FakeCreateInputWith } from '@ai-chat/fake-db';
 
-import chats from '../data/chats.json';
+// import chats from '../data/chats.json';
 import type { IContact } from './contacts';
 
 export interface IChat extends FakeRecord {
@@ -36,5 +36,5 @@ export default FakeTable.build<IChat>({
     { name: 'description', type: 'string' },
     { name: 'talker_id', type: 'string' },
   ],
-  initialValue: () => chats,
+  // initialValue: () => chats,
 });
