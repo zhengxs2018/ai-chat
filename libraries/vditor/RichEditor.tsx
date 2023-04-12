@@ -41,7 +41,7 @@ export type RichEditorProps = {
   onChange?: (content: string) => void;
 };
 
-export default function RichEditor({
+export function RichEditor({
   id,
   value = '',
   toolbar = defaultToolbar,
@@ -54,8 +54,9 @@ export default function RichEditor({
       value,
       toolbar,
       placeholder,
+      input: onChange,
     }),
-    [value, toolbar, placeholder]
+    [value, toolbar, placeholder, onChange]
   );
 
   useEffect(() => {
@@ -70,7 +71,6 @@ export default function RichEditor({
         enable: true,
         position: 'left',
       },
-      input: onChange,
     });
 
     return () => {
@@ -78,7 +78,7 @@ export default function RichEditor({
       const element = editor?.vditor?.element;
       if (element) editor.destroy();
     };
-  }, [id, config, onChange]);
+  }, [id, config]);
 
   return <div id={`vditor-${id}`} className={className} key={id}></div>;
 }

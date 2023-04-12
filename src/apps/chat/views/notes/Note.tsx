@@ -2,11 +2,12 @@ import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import Toast from 'react-hot-toast';
 
+import { RichEditor } from '@ai-chat/vditor';
+
 import Alert from '@/components/base/Alert';
 import Button from '@/components/base/Button';
 
 import { useNote } from '../../hooks/useNote';
-import RichEditor from '../../components/RichEditor';
 
 export default function Note() {
   const navigate = useNavigate();

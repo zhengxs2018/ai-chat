@@ -1,0 +1,21 @@
+{
+  "name": "@ai-chat/vditor",
+  "type": "module",
+  "version": "0.0.1",
+  "description": "",
+  "main": "./index.ts",
+  "peerDependencies": {
+    "react": "latest"
+  },
+  "dependencies": {
+    "vditor": "^3.9.2"
+  },
+  "engines": {
+    "node": ">=18.12.1"
+  },
+  "author": {
+    "name": "zhengxs2018",
+    "email": "zhengxs2018@gmail.com"
+  },
+  "license": "MIT"
+}
