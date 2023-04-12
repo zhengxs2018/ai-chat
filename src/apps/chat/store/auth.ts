@@ -30,7 +30,7 @@ const authSlice = createSlice({
   reducers: {
     setUser(state, action: PayloadAction<Partial<UserState>>) {
       state.user = { ...state.user, ...action.payload };
-      localStorage.setItem('user', trySerialize(state.user));
+      localStorage.setItem('ai-chat-app:user', trySerialize(state.user));
     },
   },
 });
