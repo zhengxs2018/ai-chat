@@ -3,7 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 
 import { ContactList, ContactItem } from '@ai-chat/chat-ui';
 
-import PrimarySidebar from '../../../components/PrimarySidebar';
+import PrimarySidebar from '@/components/app/PrimarySidebar';
 
 import type { IContact } from '../../../models/contacts';
 import { useContactsDataSource } from '../../../hooks/useContactsDataSource';

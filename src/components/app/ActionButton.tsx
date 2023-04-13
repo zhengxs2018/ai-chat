@@ -1,9 +1,11 @@
 import type { PropsWithChildren } from 'react';
 import Tippy from '@tippyjs/react';
+import classNames from 'classnames';
 
 export type ActionButtonProps = PropsWithChildren & {
   text?: string;
   active?: boolean;
+  className?: string;
   onClick?: () => void;
   onClickOutside?: () => void;
 };
@@ -12,6 +14,7 @@ export default function ActionButton({
   text,
   children,
   active,
+  className,
   onClick,
   onClickOutside,
 }: ActionButtonProps) {
@@ -25,9 +28,13 @@ export default function ActionButton({
       onClickOutside={onClickOutside}
     >
       <button
-        className={`ai-action-button flex items-center justify-center active:bg-light-300 ${
-          active && 'text-indigo-600'
-        }`}
+        className={classNames(
+          'ai-action-button flex items-center justify-center active:bg-light-300',
+          {
+            'text-indigo-600': active,
+          },
+          className
+        )}
         onClick={onClick}
       >
         {children}

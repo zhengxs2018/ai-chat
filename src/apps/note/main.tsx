@@ -1,27 +1,22 @@
 import React from 'react';
 import { RouterProvider } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
-import { Provider } from 'react-redux';
 
 import { FakeClientProvider } from '@ai-chat/fake-db';
 
 import 'tippy.js/dist/tippy.css';
-import '@ai-chat/chat-ui/style/index.css';
 import '@/components/app/index.css';
 
 import db from './models';
-import store from './store';
 import router from './router';
 
-export default function ChatApp() {
+export default function NoteApp() {
   return (
     <React.StrictMode>
-      <Provider store={store}>
-        <FakeClientProvider value={db}>
-          <Toaster />
-          <RouterProvider router={router} />
-        </FakeClientProvider>
-      </Provider>
+      <FakeClientProvider value={db}>
+        <Toaster />
+        <RouterProvider router={router} />
+      </FakeClientProvider>
     </React.StrictMode>
   );
 }

@@ -4,7 +4,7 @@ import { PlusIcon, BookOpenIcon } from '@heroicons/react/24/outline';
 import Button from '@/components/base/Button';
 import { useNotesDataSource } from '../../hooks/useNotesDataSource';
 
-export default function NoteEmpty() {
+export default function EditNoteEmpty() {
   const navigate = useNavigate();
   const notes = useNotesDataSource();
 
@@ -14,7 +14,7 @@ export default function NoteEmpty() {
       content: '',
     });
 
-    navigate(`/notes/${contact.id}`);
+    navigate(`/edit/${contact.id}`);
   };
 
   return (

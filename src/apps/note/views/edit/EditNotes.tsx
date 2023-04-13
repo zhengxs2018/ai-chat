@@ -1,11 +1,11 @@
 import { Outlet } from 'react-router-dom';
 
-import NotesAside from './components/NotesAside';
+import EditNotesAside from './components/EditNotesAside';
 
-export default function Notes() {
+export default function EditNotes() {
   return (
     <div className="flex w-full h-full overflow-hidden">
-      <NotesAside />
+      <EditNotesAside />
       <Outlet />
     </div>
   );

@@ -1,11 +1,11 @@
 import { PlusCircleIcon, BookOpenIcon } from '@heroicons/react/24/outline';
 import { useNavigate, useParams } from 'react-router-dom';
 
-import PrimarySidebar from '../../../components/PrimarySidebar';
+import PrimarySidebar from '@/components/app/PrimarySidebar';
 import { useNotesDataSource } from '../../../hooks/useNotesDataSource';
 
-import NoteList from './NoteList';
-import NoteItem from './NoteItem';
+import NoteList from '../../../components/NoteList';
+import NoteItem from '../../../components/NoteItem';
 
 export type ContactsAsideProps = {
   className?: string;
@@ -23,7 +23,7 @@ export default function NotesAside() {
       content: '',
     });
 
-    navigate(`/notes/${contact.id}`);
+    navigate(`/edit/${contact.id}`);
   };
 
   return (
@@ -45,7 +45,7 @@ export default function NotesAside() {
               active={item.id === noteId}
               payload={item}
               key={item.id}
-              onClick={() => navigate(`/notes/${item.id}`)}
+              onClick={() => navigate(`/edit/${item.id}`)}
               onRemove={() => notes.remove(item.id)}
             />
           ))}
