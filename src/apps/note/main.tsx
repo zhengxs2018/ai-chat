@@ -10,12 +10,14 @@ import '@/components/app/index.css';
 import db from './models';
 import router from './router';
 
-export default function NoteApp() {
+export default function App() {
   return (
     <React.StrictMode>
       <FakeClientProvider value={db}>
         <Toaster />
-        <RouterProvider router={router} />
+        <div className="w-screen h-screen bg-gray-100">
+          <RouterProvider router={router} />
+        </div>
       </FakeClientProvider>
     </React.StrictMode>
   );
