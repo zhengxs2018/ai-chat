@@ -2,7 +2,7 @@ import classNames from 'classnames';
 import Tippy from '@tippyjs/react';
 import { TrashIcon } from '@heroicons/react/24/outline';
 
-import type { INote } from '../../../models';
+import type { INote } from '../models/notes';
 
 export type NoteItemProps = {
   className?: string;
@@ -30,7 +30,8 @@ export default function NoteItem({
     <div
       className={classNames(
         'flex justify-between py-[8px] px-[16px] cursor-pointer hover:bg-gray-200',
-        active && 'bg-gray-200'
+        active && 'bg-gray-200',
+        className
       )}
       onClick={() => onClick(payload)}
     >

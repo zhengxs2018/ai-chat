@@ -1,0 +1,62 @@
+:root {
+  /* 活动栏 */
+  --ai-activitybar-width: 60px;
+  --ai-activitybar-background: linear-gradient(
+    180deg,
+    #d4d9de 0%,
+    #cfdde0 80%,
+    #d4d9de 100%
+  );
+
+  /* 动作栏 */
+  --ai-action-item-height: 48px;
+  --ai-action-item-icon: 25px;
+
+  --ai-header-height: 60px;
+  --ai-primary-sidebar-width: 260px;
+  --ai-secondary-sidebar-width: 250px;
+}
+
+.ai-header {
+  height: var(--ai-header-height);
+}
+
+.ai-primary-sidebar {
+  max-width: var(--ai-primary-sidebar-width);
+  min-width: var(--ai-primary-sidebar-width);
+}
+
+.ai-secondary-sidebar {
+  min-width: var(--ai-secondary-sidebar-width);
+}
+
+.ai-activitybar {
+  padding-top: 66px;
+  min-width: var(--ai-activitybar-width);
+  max-width: var(--ai-activitybar-width);
+  background: var(--ai-activitybar-background);
+}
+
+.ai-action-bar {
+  @apply flex flex-col;
+}
+
+.ai-action-link,
+.ai-action-button {
+  margin: 0 auto;
+  width: var(--ai-action-item-height);
+  height: var(--ai-action-item-height);
+}
+
+.action-button-icon {
+  width: var(--ai-action-item-icon);
+  height: var(--ai-action-item-icon);
+}
+
+.ai-context-menu {
+  --contexify-menu-minWidth: 80px;
+}
+
+.ai-context-menu .contexify_itemContent {
+  @apply justify-center;
+}

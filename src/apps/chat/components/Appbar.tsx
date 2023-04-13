@@ -8,10 +8,13 @@ import {
 
 import { useLocation } from 'react-router-dom';
 
-import ActivitybarUser from './ActivitybarUser';
-import ActionLink from './ActionLink';
-import ActionButton from './ActionButton';
+import { openInNewWindow } from '@ai-chat/shared/client/native';
 
+import ActionBar from '@/components/app/ActionBar';
+import ActionLink from '@/components/app/ActionLink';
+import ActionButton from '@/components/app/ActionButton';
+
+import ActivitybarUser from './ActivitybarUser';
 import { useAppDispatch } from '../store';
 import { openPreferencesPopup } from '../store/app';
 
@@ -19,12 +22,16 @@ export type ActivitybarProps = {
   className?: string;
 };
 
-export default function Activitybar({ className }: ActivitybarProps) {
+export default function Appbar({ className }: ActivitybarProps) {
   const { pathname } = useLocation();
   const dispatch = useAppDispatch();
 
   const showPreferencesPopup = () => {
     dispatch(openPreferencesPopup());
+  };
+
+  const handleOpenNoteApp = () => {
+    openInNewWindow('/apps/note', 'note', 1024, 768);
   };
 
   return (
@@ -38,7 +45,7 @@ export default function Activitybar({ className }: ActivitybarProps) {
         <ActivitybarUser />
       </div>
       <div className="flex-1 flex flex-col justify-between">
-        <div className="flex flex-col">
+        <ActionBar>
           <ActionLink
             text="聊天"
             active={pathname.startsWith('/chats')}
@@ -53,19 +60,15 @@ export default function Activitybar({ className }: ActivitybarProps) {
           >
             <UsersIcon className="action-button-icon" />
           </ActionLink>
-          <ActionLink
-            text="笔记"
-            active={pathname.startsWith('/notes')}
-            to="/notes"
-          >
+        </ActionBar>
+        <ActionBar>
+          <ActionButton text="笔记" onClick={handleOpenNoteApp}>
             <BookOpenIcon className="action-button-icon" />
-          </ActionLink>
-        </div>
-        <div className="flex flex-col">
+          </ActionButton>
           <ActionButton text="设置" onClick={showPreferencesPopup}>
             <Cog6ToothIcon className="action-button-icon" />
           </ActionButton>
-        </div>
+        </ActionBar>
       </div>
     </div>
   );

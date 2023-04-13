@@ -9,7 +9,7 @@ import Button from '@/components/base/Button';
 
 import { useNote } from '../../hooks/useNote';
 
-export default function Note() {
+export default function EditNote() {
   const navigate = useNavigate();
   const { noteId } = useParams();
   const [note, op] = useNote(noteId);
@@ -32,7 +32,7 @@ export default function Note() {
   }
 
   useEffect(() => {
-    if (!note) return navigate('/notes');
+    if (!note) return navigate('/edit', { replace: true });
 
     const { title, content } = note;
 
