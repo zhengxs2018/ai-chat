@@ -1,0 +1,14 @@
+---
+import Layout from '@/theme/Layout.astro';
+
+import TranslatorApp from '@/apps/translator/main';
+import { checkPass } from '@/shared/node/auth';
+
+if (!checkPass(Astro.cookies.get('code').value)) {
+  return Astro.redirect('/password', 302);
+}
+---
+
+<Layout title="AI 翻译">
+  <TranslatorApp client:only="react" />
+</Layout>
