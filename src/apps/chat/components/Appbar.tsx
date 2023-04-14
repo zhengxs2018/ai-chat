@@ -1,4 +1,4 @@
-import classNames from 'classnames';
+import clsx from 'clsx';
 import {
   ChatBubbleBottomCenterIcon,
   BookOpenIcon,
@@ -36,7 +36,7 @@ export default function Appbar({ className }: ActivitybarProps) {
 
   return (
     <div
-      className={classNames(
+      className={clsx(
         'ai-activitybar flex-col h-full hidden md:flex',
         className
       )}

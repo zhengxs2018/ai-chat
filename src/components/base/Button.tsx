@@ -1,5 +1,5 @@
 import React from 'react';
-import classNames from 'classnames';
+import clsx from 'clsx';
 
 export const styles = {
   base: 'ai-fcc py-2 px-4 space-x-1 select-none',
@@ -30,7 +30,7 @@ export default function Button({
 }: ButtonProps) {
   return (
     <button
-      className={classNames(
+      className={clsx(
         styles.base,
         styles[type || 'default'],
         `text-${size}`,

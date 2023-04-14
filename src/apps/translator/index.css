@@ -45,8 +45,8 @@
   animation: caret 500ms steps(44) infinite;
 }
 
-@keyframes caret: {
-  50%: {
-    bordercolor: 'transparent';
+@keyframes caret {
+  50% {
+    border-color: transparent;
   }
 }

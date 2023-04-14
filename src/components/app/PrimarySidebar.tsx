@@ -1,4 +1,4 @@
-import classNames from 'classnames';
+import clsx from 'clsx';
 import React from 'react';
 
 export type PrimarySidebarProps = React.PropsWithChildren<{
@@ -11,7 +11,7 @@ export default function PrimarySidebar({
 }: PrimarySidebarProps) {
   return (
     <div
-      className={classNames(
+      className={clsx(
         'ai-primary-sidebar h-full bg-gray-100 border-r-[1px] hidden lg:flex lg:flex-col',
         className
       )}
