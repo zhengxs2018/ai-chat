@@ -1,6 +1,6 @@
 import type { PropsWithChildren } from 'react';
 import Tippy from '@tippyjs/react';
-import classNames from 'classnames';
+import clsx from 'clsx';
 
 export type ActionButtonProps = PropsWithChildren & {
   text?: string;
@@ -28,7 +28,7 @@ export default function ActionButton({
       onClickOutside={onClickOutside}
     >
       <button
-        className={classNames(
+        className={clsx(
           'ai-action-button flex items-center justify-center active:bg-light-300',
           {
             'text-indigo-600': active,

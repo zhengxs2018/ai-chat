@@ -1,4 +1,4 @@
-import classNames from 'classnames';
+import clsx from 'clsx';
 import React from 'react';
 
 interface HelpIconProps {
@@ -8,7 +8,7 @@ interface HelpIconProps {
 
 const HelpIcon: React.FC<HelpIconProps> = ({ className, strokeWidth }) => (
   <svg
-    className={classNames('', className)}
+    className={clsx('', className)}
     width="24"
     height="24"
     viewBox="0 0 24 24"

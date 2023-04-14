@@ -1,4 +1,4 @@
-import classNames from 'classnames';
+import clsx from 'clsx';
 import { isMobile } from 'react-device-detect';
 
 export type TransTextareaProps = {
@@ -36,7 +36,7 @@ export default function TransTextarea({
 
   return (
     <textarea
-      className={classNames(
+      className={clsx(
         'w-full p-4 text-xs md:text-sm text-gray-600 rounded-md border border-white bg-white focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 resize-none',
         className
       )}

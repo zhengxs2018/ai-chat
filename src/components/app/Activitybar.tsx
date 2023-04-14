@@ -1,5 +1,5 @@
 import type { PropsWithChildren } from 'react';
-import classNames from 'classnames';
+import clsx from 'clsx';
 
 export type ActivitybarProps = PropsWithChildren<{
   className?: string;
@@ -8,7 +8,7 @@ export type ActivitybarProps = PropsWithChildren<{
 export default function Activitybar({ className, children }: ActivitybarProps) {
   return (
     <div
-      className={classNames(
+      className={clsx(
         'ai-activitybar flex-col h-full hidden md:flex',
         className
       )}

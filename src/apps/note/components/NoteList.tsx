@@ -1,5 +1,5 @@
 import React from 'react';
-import classNames from 'classnames';
+import clsx from 'clsx';
 
 export type NoteListProps = React.PropsWithChildren<{
   className?: string;
@@ -8,7 +8,7 @@ export type NoteListProps = React.PropsWithChildren<{
 export default function NoteList({ className, children }: NoteListProps) {
   return (
     <div
-      className={classNames(
+      className={clsx(
         'w-full min-h-0 overflow-x-hidden overflow-y-auto',
         className
       )}

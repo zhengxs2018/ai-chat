@@ -1,5 +1,5 @@
 import { isMobile } from 'react-device-detect';
-import classNames from 'classnames';
+import clsx from 'clsx';
 
 export type TransResultProps = {
   className?: string;
@@ -19,7 +19,7 @@ export default function TransResult({ className, text }: TransResultProps) {
 
   return (
     <div
-      className={classNames(
+      className={clsx(
         'w-full p-4 border border-transparent rounded-md md:rounded-l-none bg-gray-200',
         className
       )}

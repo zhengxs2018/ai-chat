@@ -1,4 +1,4 @@
-import classNames from 'classnames';
+import clsx from 'clsx';
 import { useState } from 'react';
 
 export type SearchInputProps = {
@@ -37,7 +37,7 @@ export default function SearchInput({
   return (
     <input
       type="search"
-      className={classNames(
+      className={clsx(
         'w-full h-[30px] py-1 px-3 rounded-md',
         'text-xs text-gray-700 bg-[#eaeaea]',
         'focus:bg-white focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500',
