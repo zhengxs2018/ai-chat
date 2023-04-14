@@ -18,9 +18,9 @@ export default defineConfig({
   adapter: isDev
     ? node({ mode: 'standalone' })
     : deno({
-        hostname: 'localhost',
-        port: 2320,
-      }),
+      hostname: 'localhost',
+      port: 2320,
+    }),
   ssr: {
     noExternal: ['vditor'],
   },
@@ -32,12 +32,24 @@ export default defineConfig({
         resolveId(source) {
           if (import.meta.env.DEV) return;
 
-          if (externals.includes(source)) {
-            return {
-              external: true,
-              id: `https://esm.sh/${source}`,
-            };
+          if (
+            source.includes('astro') ||
+            source.includes('highlight') ||
+            source.includes('v115') ||
+            source.startsWith('node:') ||
+            source.startsWith('@ai-chat') ||
+            source.startsWith('/') ||
+            source.startsWith('@/') ||
+            source.startsWith('.') ||
+            source.endsWith('.css')
+          ) {
+            return;
           }
+
+          return {
+            external: true,
+            id: `https://esm.sh/${source}`,
+          };
         },
       },
     ],
