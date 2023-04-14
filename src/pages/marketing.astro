@@ -1,0 +1,32 @@
+---
+import Layout from '@/theme/Layout.astro';
+
+import Marketing from '@/apps/marketing/main';
+import type { CategoryType } from '@/apps/marketing/data/categories';
+
+const { searchParams } = Astro.url;
+---
+
+<Layout title="应用市场">
+  <main class="mx-auto max-w-7xl">
+    <section class="px-4">
+      <div class="grid mt-3 mb-6 lg:gap-8 lg:mt-5 lg:mb-6 xl:grid-cols-3">
+        <div class="col-span-2 mb-2 lg:mb-0">
+          <h1 class="mb-2 text-3xl font-extrabold tracking-tight text-gray-900">
+            应用市场
+          </h1>
+          <p class="text-lg text-gray-500">
+            一些基于 OpenAI 开发的应用与插件，可以让你与 AI 对话，或者让 AI
+            辅助你工作。
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <Marketing
+      client:load
+      category={searchParams.get('category') as CategoryType}
+      query={searchParams.get('query')}
+    />
+  </main>
+</Layout>
